@@ -9,7 +9,7 @@ import ViewApiButton from '../ViewApiButton';
 
 const url = 'https://cambodia.computervision.com.vn/api/v2/ekyc/card?get_thumb=true'
 
-export default function DemoCambodia() {
+export default function DemoCambodia({ result, setResult }) {
 
 
     const [loading, setLoading] = useState(false)
@@ -17,7 +17,6 @@ export default function DemoCambodia() {
     const [imageUrl, setImageUrl] = useState(null)
     const [input, setInput] = useState('')
     const [error, setError] = useState('')
-    const [result, setResult] = useState(null)
 
     const hasData = file && result?.data
 

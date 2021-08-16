@@ -10,11 +10,11 @@ const types = [
 
 export default function DemoPage3() {
   const [currentType, setCurrentType] = useState("smart-crop");
-  // const [result, setResult] = useState(null);
+  const [result, setResult] = useState(null);
 
   const demoOptions = {
-    "smart-crop": <DemoSmartCrop />,
-    tagging: <DemoTagging />
+    "smart-crop": <DemoSmartCrop result={result} setResult={setResult} />,
+    tagging: <DemoTagging result={result} setResult={setResult} />
   };
 
   return (
@@ -37,7 +37,7 @@ export default function DemoPage3() {
                 type={key === currentType ? "primary" : "default"}
                 onClick={() => {
                   setCurrentType(key);
-                  // setResult(null);
+                  setResult(null);
                 }}
               >
                 {name}

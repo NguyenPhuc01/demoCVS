@@ -46,7 +46,7 @@ const sizeList = [
 const url1 = 'https://demo.computervision.com.vn/api/v2/smartcrop/crop_person'
 const url2 = 'https://demo.computervision.com.vn/api/v2/smartcrop/crop_image'
 
-export default function DemoSmartCrop({ cropPerson }) {
+export default function DemoSmartCrop({ cropPerson, result, setResult }) {
 
 
     const [loading, setLoading] = useState(false)
@@ -54,7 +54,6 @@ export default function DemoSmartCrop({ cropPerson }) {
     const [imageUrl, setImageUrl] = useState(null)
     const [input, setInput] = useState('')
     const [error, setError] = useState('')
-    const [result, setResult] = useState(null)
     const [size, setSize] = useState({ width: '100', height: '100' })
 
     const hasData = file && result?.data

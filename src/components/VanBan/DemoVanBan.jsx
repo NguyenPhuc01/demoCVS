@@ -17,7 +17,7 @@ const urlOptions = {
   'bvcare-claim': 'https://demo.computervision.com.vn/api/v2/ocr/bvcareclaim?get_thumb=true',
 }
 
-export default function DemoVanBan({ currentType }) {
+export default function DemoVanBan({ currentType, result, setResult }) {
 
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
@@ -28,7 +28,6 @@ export default function DemoVanBan({ currentType }) {
   const [imageUrl, setImageUrl] = useState(null)
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
-  const [result, setResult] = useState(null)
 
   const hasData = file && result?.data
 

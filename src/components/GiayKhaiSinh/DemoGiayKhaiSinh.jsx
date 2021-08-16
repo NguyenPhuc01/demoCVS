@@ -9,7 +9,7 @@ import ViewApiButton from '../ViewApiButton';
 
 const url = 'https://demo.computervision.com.vn/api/v2/ocr/birth_certificate?get_thumb=true'
 
-export default function DemoGiayKhaiSinh() {
+export default function DemoGiayKhaiSinh({ result, setResult }) {
 
 
     const [loading, setLoading] = useState(false)
@@ -17,7 +17,6 @@ export default function DemoGiayKhaiSinh() {
     const [imageUrl, setImageUrl] = useState(null)
     const [input, setInput] = useState('')
     const [error, setError] = useState('')
-    const [result, setResult] = useState(null)
 
     const hasData = file && result?.data
 

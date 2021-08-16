@@ -16,11 +16,10 @@ const urlOptions = {
   'bang-tong-quat': 'https://demo.computervision.com.vn/api/v2/ocr/document/table_excel?get_thumb=false',
 }
 
-export default function DemoTable({ currentType }) {
+export default function DemoTable({ currentType, result, setResult }) {
 
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
-  const [result, setResult] = useState(null)
   const isPDF = file?.type.includes('pdf')
   const [numPages, setNumPages] = useState(null);
   const isLargePDF = numPages > 3

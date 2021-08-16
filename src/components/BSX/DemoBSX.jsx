@@ -9,7 +9,7 @@ import ViewApiButton from '../ViewApiButton';
 
 const url = 'https://demo.computervision.com.vn/api/v2/ocr/vehicle_plate?get_thumb=true'
 
-export default function DemoBSX() {
+export default function DemoBSX({ result, setResult }) {
 
 
     const [loading, setLoading] = useState(false)
@@ -17,7 +17,6 @@ export default function DemoBSX() {
     const [imageUrl, setImageUrl] = useState(null)
     const [input, setInput] = useState('')
     const [error, setError] = useState('')
-    const [result, setResult] = useState(null)
 
     const hasData = file && result?.data
 

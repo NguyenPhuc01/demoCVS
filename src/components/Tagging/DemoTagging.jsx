@@ -9,7 +9,7 @@ import ViewApiButton from '../ViewApiButton';
 
 const url = 'https://dev.computervision.com.vn/api/tagging/query'
 
-export default function DemoTagging() {
+export default function DemoTagging({ result, setResult }) {
 
 
     const [loading, setLoading] = useState(false)
@@ -17,7 +17,6 @@ export default function DemoTagging() {
     const [imageUrl, setImageUrl] = useState(null)
     const [input, setInput] = useState('')
     const [error, setError] = useState('')
-    const [result, setResult] = useState(null)
 
     const hasData = file && result?.data
 

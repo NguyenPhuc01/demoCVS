@@ -44,36 +44,110 @@ const types = [
 
 export default function DemoPage() {
   const [currentType, setCurrentType] = useState("CMND/CCCD");
-  // const [result, setResult] = useState(null);
+  const [result, setResult] = useState(null);
 
   const demoOptions = {
-    "CMND/CCCD": <DemoCMND />,
-    "ho-chieu-vn": <DemoCMND />,
-    "giay-phep-lai-xe": <DemoCMND />,
+    "CMND/CCCD": <DemoCMND result={result} setResult={setResult} />,
+    "ho-chieu-vn": <DemoCMND result={result} setResult={setResult} />,
+    "giay-phep-lai-xe": <DemoCMND result={result} setResult={setResult} />,
 
-    "dang-ky-xe": <DemoDangKyXe />,
-    "dang-kiem-xe": <DemoDangKiemXe />,
-    "bien-so-xe": <DemoBSX />,
-    "giay-khai-sinh": <DemoGiayKhaiSinh />,
-    "dang-ky-doanh-nghiep": <DemoDangKyDoanhNghiep />,
+    "dang-ky-xe": <DemoDangKyXe result={result} setResult={setResult} />,
+    "dang-kiem-xe": <DemoDangKiemXe result={result} setResult={setResult} />,
+    "bien-so-xe": <DemoBSX result={result} setResult={setResult} />,
+    "giay-khai-sinh": (
+      <DemoGiayKhaiSinh result={result} setResult={setResult} />
+    ),
+    "dang-ky-doanh-nghiep": (
+      <DemoDangKyDoanhNghiep result={result} setResult={setResult} />
+    ),
 
-    "bang-diem": <DemoTable currentType={currentType} />,
-    "sao-ke-ngan-hang": <DemoTable currentType={currentType} />,
-    "bang-ke-vien-phi": <DemoTable currentType={currentType} />,
-    "bao-cao-tai-chinh": <DemoTable currentType={currentType} />,
-    "bang-tong-quat": <DemoTable currentType={currentType} />,
+    "bang-diem": (
+      <DemoTable
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "sao-ke-ngan-hang": (
+      <DemoTable
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "bang-ke-vien-phi": (
+      <DemoTable
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "bao-cao-tai-chinh": (
+      <DemoTable
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "bang-tong-quat": (
+      <DemoTable
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
 
-    "ho-chieu-quoc-te": <DemoHoChieuQuocTe />,
-    "id-card-myanmar": <DemoMyanmar />,
-    "id-card-cambodia": <DemoCambodia />,
-    "id-card-philippines": <DemoPhilippines />,
+    "ho-chieu-quoc-te": (
+      <DemoHoChieuQuocTe result={result} setResult={setResult} />
+    ),
+    "id-card-myanmar": <DemoMyanmar result={result} setResult={setResult} />,
+    "id-card-cambodia": <DemoCambodia result={result} setResult={setResult} />,
+    "id-card-philippines": (
+      <DemoPhilippines result={result} setResult={setResult} />
+    ),
 
-    "van-ban-tong-quat": <DemoVanBan currentType={currentType} />,
-    "hoa-don-xe": <DemoVanBan currentType={currentType} />,
-    "bang-ke": <DemoVanBan currentType={currentType} />,
-    "phieu-kham-benh": <DemoVanBan currentType={currentType} />,
-    "boi-thuong-bao-hiem": <DemoVanBan currentType={currentType} />,
-    "bvcare-claim": <DemoVanBan currentType={currentType} />
+    "van-ban-tong-quat": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "hoa-don-xe": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "bang-ke": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "phieu-kham-benh": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "boi-thuong-bao-hiem": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "bvcare-claim": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    )
   };
 
   return (
@@ -96,7 +170,7 @@ export default function DemoPage() {
                 type={key === currentType ? "primary" : "default"}
                 onClick={() => {
                   setCurrentType(key);
-                  // setResult(null);
+                  setResult(null);
                 }}
               >
                 {name}

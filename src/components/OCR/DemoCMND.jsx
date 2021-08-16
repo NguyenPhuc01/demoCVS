@@ -10,13 +10,12 @@ import ExamImage from './ExamImage';
 
 const url = 'https://demo.computervision.com.vn/backend/api/v1/request/ocr/cmt/get_infor_all'
 
-export default function DemoCMND() {
+export default function DemoCMND({ result, setResult }) {
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
   const [imageUrl, setImageUrl] = useState(null)
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
-  const [result, setResult] = useState(null)
 
   const hasData = file && result?.data
 

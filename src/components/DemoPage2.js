@@ -12,12 +12,14 @@ const types = [
 
 export default function DemoPage2() {
   const [currentType, setCurrentType] = useState("face-matching");
-  // const [result, setResult] = useState(null);
+  const [result, setResult] = useState(null);
 
   const demoOptions = {
-    "face-matching": <DemoFaceMatching />,
-    "face-search": <DemoFaceSearch />,
-    "tao-anh-dai-dien": <DemoSmartCrop cropPerson={true} />
+    "face-matching": <DemoFaceMatching result={result} setResult={setResult} />,
+    "face-search": <DemoFaceSearch result={result} setResult={setResult} />,
+    "tao-anh-dai-dien": (
+      <DemoSmartCrop cropPerson={true} result={result} setResult={setResult} />
+    )
   };
 
   return (
@@ -40,7 +42,7 @@ export default function DemoPage2() {
                 type={key === currentType ? "primary" : "default"}
                 onClick={() => {
                   setCurrentType(key);
-                  // setResult(null);
+                  setResult(null);
                 }}
               >
                 {name}

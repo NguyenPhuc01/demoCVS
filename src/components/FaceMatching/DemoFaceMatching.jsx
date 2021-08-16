@@ -9,7 +9,7 @@ import ExamImage from './ExamImage';
 
 const url = 'https://demo.computervision.com.vn/api/v2/ekyc/face_matching'
 
-export default function DemoFaceMatching() {
+export default function DemoFaceMatching({ result, setResult }) {
 
 
     const [loading, setLoading] = useState(false)
@@ -21,7 +21,6 @@ export default function DemoFaceMatching() {
     const [imageUrl2, setImageUrl2] = useState(null)
     const [input2, setInput2] = useState('')
     const [error2, setError2] = useState('')
-    const [result, setResult] = useState(null)
 
     const hasData = result?.data
     const hasData1 = file1 && result?.data

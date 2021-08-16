@@ -9,7 +9,7 @@ import ViewApiButton from '../ViewApiButton';
 
 const url = 'https://dev.computervision.com.vn/api/celeb/get_name'
 
-export default function DemoFaceSearch() {
+export default function DemoFaceSearch({ result, setResult }) {
 
 
     const [loading, setLoading] = useState(false)
@@ -17,7 +17,6 @@ export default function DemoFaceSearch() {
     const [imageUrl, setImageUrl] = useState(null)
     const [input, setInput] = useState('')
     const [error, setError] = useState('')
-    const [result, setResult] = useState(null)
 
     const hasData = file && result?.data
 
