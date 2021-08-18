@@ -39,7 +39,8 @@ const types = [
   { id: 20, name: "Bảng kê", key: "bang-ke" },
   { id: 21, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
   { id: 22, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" },
-  { id: 23, name: "BVCare Claim", key: "bvcare-claim" }
+  { id: 23, name: "BVCare Claim", key: "bvcare-claim" },
+  { id: 24, name: "PVI Hóa đơn", key: "pvi-hoa-don" }
 ];
 
 export default function DemoPage() {
@@ -142,6 +143,13 @@ export default function DemoPage() {
       />
     ),
     "bvcare-claim": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "pvi-hoa-don": (
       <DemoVanBan
         currentType={currentType}
         result={result}

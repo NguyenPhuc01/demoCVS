@@ -16,6 +16,7 @@ export default function Result({ result, type }) {
     const resultOptions = {
         'van-ban-tong-quat': <VanBanScan data={data || data2[currentPage]} />,
         'hoa-don-xe': <HoaDonXe data={data2[currentPage].info} />,
+        'pvi-hoa-don': <HoaDonXe data={data2[currentPage].info} />,
         'bang-ke': <BangKe data={data2[currentPage].info} />,
         'phieu-kham-benh': <PhieuKhamBenh data={data2[currentPage].info} />,
         'boi-thuong-bao-hiem': <BoiThuongBH data={data2[currentPage].info} />,
@@ -181,7 +182,7 @@ function HoaDonXe({ data }) {
                         return (
                             <div key={account_no} style={{ marginBottom: 8 }}>
                                 {account_no} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(account_no_confidence)}<br />
-                                {bank} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(bank_confidence)}<br />
+                                {bank && <>{bank} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(bank_confidence)}<br /></>}
                             </div>
                         )
                     })}
