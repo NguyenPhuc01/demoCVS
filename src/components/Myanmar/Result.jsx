@@ -64,6 +64,7 @@ function Myanmar({ data }) {
     const { blood, blood_confidence, religion, religion_confidence, height, height_confidence,
         id, id_confidence, name, name_confidence, father_name, father_name_confidence,
         dob, dob_confidence, issue_date, issue_date_confidence,
+        id_english, id_english_confidence, name_english, name_english_confidence, father_name_english, father_name_english_confidence
     } = data || {}
 
     return (
@@ -71,6 +72,9 @@ function Myanmar({ data }) {
             <Field name='ID' value={id} confidence={id_confidence} />
             <Field name='Name' value={name} confidence={name_confidence} />
             <Field name='Father name' value={father_name} confidence={father_name_confidence} />
+            <Field name='English ID' value={id_english} confidence={id_english_confidence} />
+            <Field name='English name' value={name_english} confidence={name_english_confidence} />
+            <Field name='English father name' value={father_name_english} confidence={father_name_english_confidence} />
             <Field name='Date of birth' value={dob} confidence={dob_confidence} />
             <Field name='Blood' value={blood} confidence={blood_confidence} />
             <Field name='Religion' value={religion} confidence={religion_confidence} />
