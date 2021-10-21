@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import TweenOne from "rc-tween-one";
 import { Menu, Select, Button, Space } from "antd";
+import { PlusOutlined, UserOutlined } from "@ant-design/icons";
 import { OutboundLink } from "gatsby-plugin-google-gtag";
 import { trackEvent } from "../components/utils";
 import { IntlContextConsumer, changeLocale, Link } from "gatsby-plugin-intl";
@@ -47,16 +48,6 @@ class Header extends React.Component {
     return (
       <header className={wrapper.className}>
         <div className={`${page.className}${phoneOpen ? " open" : ""}`}>
-          <div {...dataSource.logo}>
-            <Link to="/" onClick={() => trackEvent("/")}>
-              <img
-                src={dataSource.logo.children}
-                alt="img"
-                width={277}
-                height={48.8}
-              />
-            </Link>
-          </div>
           {isMobile && (
             <div
               {...dataSource.mobileMenu}
@@ -96,114 +87,53 @@ class Header extends React.Component {
           >
             <MenuTop>
               {!isMobile && (
-                <Space size={24}>
-                  <OutboundLink
-                    href="tel:+84886625220"
-                    target="_blank"
-                    style={{ color: "#000" }}
-                    rel="noopener noreferrer"
-                  >
-                    +84 886625220
-                  </OutboundLink>
-                  <OutboundLink
-                    href="mailto:sales@computervision.com.vn"
-                    target="_blank"
-                    style={{ color: "#000" }}
-                    rel="noopener noreferrer"
-                  >
-                    sales@computervision.com.vn
-                  </OutboundLink>
-                  <div
+                <OutboundLink
+                  href="https://computervision.com.vn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button type="text" style={{ fontSize: 13, color: "red" }}>
+                    <img
+                      src="globe-outline.png "
+                      alt="image"
+                      style={{ marginRight: 10 }}
+                    />
+                    www.computervision.com.vn
+                  </Button>
+                </OutboundLink>
+              )}
+              {!isMobile && (
+                <>
+                  <Button
+                    type="default"
                     style={{
-                      height: 20,
-                      width: 1,
-                      background: "rgba(0,0,0,0.2)"
+                      height: 36,
+                      fontSize: 12,
+                      borderColor: "red",
+                      color: "red"
                     }}
-                  />
-                  <OutboundLink
-                    href="https://computervision.com.vn"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={this.showDrawer}
                   >
-                    <Button type="text" style={{ fontSize: 13, color: "#000" }}>
-                      https://computervision.com.vn
-                    </Button>
-                  </OutboundLink>
-                </Space>
+                    LIÊN HỆ DÙNG THỬ
+                  </Button>
+                  <Drawer
+                    title="Liên hệ dùng thử"
+                    width={572}
+                    onClose={this.onClose}
+                    visible={this.state.visible}
+                    bodyStyle={{ paddingBottom: 80 }}
+                    extra={
+                      <Space>
+                        <Button onClick={this.onClose}>Cancel</Button>
+                        <Button onClick={this.onClose} type="primary">
+                          Submit
+                        </Button>
+                      </Space>
+                    }
+                  ></Drawer>
+                </>
               )}
             </MenuTop>
-            <Menu mode={isMobile ? "inline" : "horizontal"} theme="light">
-              {(isMobile ? navData2 : navData).children.map(item => {
-                if (item.subItem) {
-                  const { subItem } = item;
-                  return (
-                    <SubMenu
-                      title={
-                        <div className="header3-item-block">{item.title}</div>
-                      }
-                      key={item.name}
-                      className={item.className}
-                      popupClassName="header3-sub-item"
-                    >
-                      {subItem.map($item => {
-                        return (
-                          <Item key={$item.name}>
-                            {$item.to ? (
-                              <Link
-                                to={$item.to}
-                                onClick={() => trackEvent($item.to)}
-                              >
-                                {$item.text}
-                              </Link>
-                            ) : (
-                              <OutboundLink
-                                href={$item.href}
-                                target={$item.target}
-                                rel="noopener noreferrer"
-                              >
-                                {$item.text}
-                              </OutboundLink>
-                            )}
-                          </Item>
-                        );
-                      })}
-                    </SubMenu>
-                  );
-                }
-                return (
-                  <Item key={item.name} className={item.className}>
-                    {item.to ? (
-                      <Link
-                        to={item.to}
-                        className="header3-item-block"
-                        onClick={() => trackEvent(item.to)}
-                      >
-                        {item.title}
-                      </Link>
-                    ) : (
-                      <OutboundLink
-                        href={item.href}
-                        className="header3-item-block"
-                        target={item.target}
-                        rel="noopener noreferrer"
-                      >
-                        {item.title}
-                      </OutboundLink>
-                    )}
-                  </Item>
-                );
-              })}
-              {/* <Item key="select-language" className="header3-select-language">
-                <IntlContextConsumer>
-                  {({ languages, language: currentLocale }) =>
-                    <Select defaultValue={currentLocale} onChange={value => changeLocale(value)} className="select-language">
-                      <Option value="vi">Tiếng Việt</Option>
-                      <Option value="en">English</Option>
-                    </Select>
-                  }
-                </IntlContextConsumer>
-              </Item> */}
-            </Menu>
           </TweenOne>
         </div>
       </header>
@@ -214,9 +144,7 @@ class Header extends React.Component {
 export default Header;
 
 const MenuTop = styled.div`
-  text-align: right;
   padding: 8px 20px;
   font-size: 13px;
   position: relative;
-  top: 12px;
 `;

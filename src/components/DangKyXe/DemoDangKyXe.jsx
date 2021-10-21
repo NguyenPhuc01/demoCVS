@@ -37,7 +37,7 @@ export default function DemoDangKyXe({ result, setResult }) {
             }
         } else {
             setError(null)
-        }
+        } 
     }
 
     const onSubmit = () => {

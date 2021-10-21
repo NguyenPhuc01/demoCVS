@@ -12,6 +12,7 @@ const urlOptions = {
   'van-ban-tong-quat': 'https://demo.computervision.com.vn/api/v2/ocr/document/general?get_thumb=false',
   'hoa-don-xe': 'https://demo.computervision.com.vn/api/v2/ocr/document/invoice_vehicle?get_thumb=false',
   'pvi-hoa-don': 'https://demo.computervision.com.vn/api/v2/ocr/document/pvi_invoice?get_thumb=false',
+  'hoa-don-vat': 'https://demo.computervision.com.vn/api/v2/ocr/document/pvi_invoice?get_thumb=false',
   'bang-ke': 'https://demo.computervision.com.vn/api/v2/ocr/document/list_expense?get_thumb=false',
   'phieu-kham-benh': 'https://demo.computervision.com.vn/api/v2/ocr/document/examination_form?get_thumb=false',
   'boi-thuong-bao-hiem': 'https://demo.computervision.com.vn/api/v2/ocr/document/claim_form?get_thumb=false',

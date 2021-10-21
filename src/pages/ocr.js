@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { enquireScreen } from "enquire-js";
 import { injectIntl } from "gatsby-plugin-intl";
 import loadable from "@loadable/component";
+import queryString from "query-string";
 
-import { Feature100DataSource } from "../data/home.data";
 import DemoPage from "../components/DemoPage";
 
 const Layout = loadable(() => import("../components/Layout"));
@@ -31,6 +31,9 @@ class IndexPage extends Component {
 
   render() {
     const { intl } = this.props;
+    let url = this.props.location.search;
+    let params = queryString.parse(url);
+    console.log(params);
 
     return (
       <>

@@ -17,6 +17,7 @@ export default function Result({ result, type }) {
         'van-ban-tong-quat': <VanBanScan data={data || data2[currentPage]} />,
         'hoa-don-xe': <HoaDonXe data={data2[currentPage].info} />,
         'pvi-hoa-don': <HoaDonXe data={data2[currentPage].info} />,
+        'hoa-don-vat': <HoaDonVAT data={data2[currentPage].info} />,
         'bang-ke': <BangKe data={data2[currentPage].info} />,
         'phieu-kham-benh': <PhieuKhamBenh data={data2[currentPage].info} />,
         'boi-thuong-bao-hiem': <BoiThuongBH data={data2[currentPage].info} />,
@@ -170,6 +171,64 @@ function HoaDonXe({ data }) {
             <Field name='Tiền trước thuế' value={sub_total} confidence={sub_total_confidence} />
             <Field name='Tiền thuế' value={vat_amount} confidence={vat_amount_confidence} />
             <Field name='Tên đơn vị' value={purchaser_name} confidence={purchaser_name_confidence} />
+            {info_goods?.length ? <TableWrapper>
+                <Table dataSource={info_goods} columns={columns} pagination={false} />
+            </TableWrapper> : null}
+            <Field name='Tổng cộng' value={total_amount} confidence={total_amount_confidence} />
+            <div className='field'>
+                <div className='field-name'>Tài khoản ngân hàng:</div>
+                <div className='field-value'>
+                    {account_bank.map(item => {
+                        const { account_no, account_no_box, account_no_confidence, bank, bank_box, bank_confidence } = item
+                        return (
+                            <div key={account_no} style={{ marginBottom: 8 }}>
+                                {account_no} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(account_no_confidence)}<br />
+                                {bank && <>{bank} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(bank_confidence)}<br /></>}
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+
+        </>
+    )
+}
+
+
+function HoaDonVAT({ data }) {
+    const { date, form, invoice_no, serial_no, supplier, tax_code, total_amount, info_goods,
+        date_confidence, form_confidence, invoice_no_confidence, serial_no_confidence, supplier_confidence,
+        tax_code_confidence, total_amount_confidence,
+        payment_method, payment_method_box, payment_method_confidence,
+        sub_total, sub_total_box, sub_total_confidence,
+        vat_amount, vat_amount_box, vat_amount_confidence,
+        purchaser_name, purchaser_name_box, purchaser_name_confidence,
+        account_bank
+    } = data || {}
+
+    const columns = [
+        {
+            title: 'Tên hàng hóa, dịch vụ',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Thành tiền',
+            dataIndex: 'coin',
+            key: 'coin',
+        },
+    ];
+
+
+    return (
+        <>
+            <Field name='Ngày hóa đơn' value={date} confidence={date_confidence} />
+            <Field name='Mẫu số' value={form} confidence={form_confidence} />
+            <Field name='Số hóa đơn' value={invoice_no} confidence={invoice_no_confidence} />
+            <Field name='Số ký hiệu hóa đơn' value={serial_no} confidence={serial_no_confidence} />
+            <Field name='Nhà cung cấp' value={supplier} confidence={supplier_confidence} />
+            <Field name='Mã số thuế nhà cung cấp' value={tax_code} confidence={tax_code_confidence} />
+            <Field name='Hình thức thanh toán' value={payment_method} confidence={payment_method_confidence} />
             {info_goods?.length ? <TableWrapper>
                 <Table dataSource={info_goods} columns={columns} pagination={false} />
             </TableWrapper> : null}

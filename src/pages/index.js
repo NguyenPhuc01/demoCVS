@@ -3,7 +3,7 @@ import { enquireScreen } from "enquire-js";
 import { injectIntl } from "gatsby-plugin-intl";
 import loadable from "@loadable/component";
 
-import { Feature100DataSource } from "../data/home.data";
+import { Feature100DataSource, SidebarDataSource } from "../data/home.data";
 
 const Layout = loadable(() => import("../components/Layout"));
 const SEO = loadable(() => import("../components/SEO"));

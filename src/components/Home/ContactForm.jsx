@@ -82,7 +82,7 @@ export default function ContactForm(props) {
                             style={{ maxWidth: 800, margin: '0 auto' }}
                         >
                             <Row gutter={[30, 16]}>
-                                <Col md={12} xs={24}>
+                                <Col md={24} xs={24}>
                                     <Form.Item
                                         name="name"
                                         rules={[
@@ -97,12 +97,12 @@ export default function ContactForm(props) {
                                         <Input placeholder={intl.formatMessage({ id: "contact.name" })} />
                                     </Form.Item>
                                 </Col>
-                                <Col md={12} xs={24}><Form.Item
+                                <Col md={24} xs={24}><Form.Item
                                     name="company"
                                 >
                                     <Input placeholder={intl.formatMessage({ id: "contact.company_name" })} />
                                 </Form.Item></Col>
-                                <Col md={12} xs={24}> <Form.Item
+                                <Col md={24} xs={24}> <Form.Item
                                     name="email"
                                     rules={[
                                         {
@@ -116,7 +116,7 @@ export default function ContactForm(props) {
                                     <Input placeholder={intl.formatMessage({ id: "contact.email" })} />
                                 </Form.Item>
                                 </Col>
-                                <Col md={12} xs={24}> <Form.Item
+                                <Col md={24} xs={24}> <Form.Item
                                     name="phone"
                                     rules={[
                                         {

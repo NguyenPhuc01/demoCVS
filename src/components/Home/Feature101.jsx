@@ -49,19 +49,14 @@ export default function Feature101(props) {
                                                 }
                                             </div>
                                         </div>
-
-
                                     )
                                 })}
-
                             </TabPane>
                         )
                     })}
                 </Tabs>
-
             </div>
         </div>
     );
-
 }
 

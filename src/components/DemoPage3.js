@@ -1,4 +1,4 @@
-import { Button, Space } from "antd";
+import { Button, Space, Divider } from "antd";
 import React, { useState } from "react";
 import DemoSmartCrop from "./SmartCrop/DemoSmartCrop";
 import DemoTagging from "./Tagging/DemoTagging";
@@ -20,31 +20,46 @@ export default function DemoPage3() {
   return (
     <div className="home-page-wrapper demo-wrapper">
       <div className="home-page demo">
-        <div className="title-wrapper">
-          Tải lên hình ảnh của bạn hoặc chọn một mẫu thử có sẵn và xem kết quả
-        </div>
-        <Space
-          size={[8, 8]}
-          wrap
-          align="center"
-          style={{ justifyContent: "center", width: "100%", marginBottom: 50 }}
+        <div className="title-wrapper">Xử lý hình ảnh</div>
+        <Divider
+          style={{
+            fontSize: 14,
+            lineHeight: "22px",
+            color: "rgba(0, 0, 0, 0.45)"
+          }}
+          orientation="left"
         >
-          {types.map(type => {
-            const { id, name, key } = type;
-            return (
-              <Button
-                key={id}
-                type={key === currentType ? "primary" : "default"}
-                onClick={() => {
-                  setCurrentType(key);
-                  setResult(null);
-                }}
-              >
-                {name}
-              </Button>
-            );
-          })}
-        </Space>
+          Chọn loại giấy tờ
+        </Divider>
+        <div className="content-wrapper">
+          <Space
+            size={[8, 8]}
+            wrap
+            align="center"
+            style={{
+              justifyContent: "flex-startr",
+              width: "100%",
+              marginBottom: 50
+            }}
+          >
+            <p style={{ width: 150 }}>Sản phẩm:</p>
+            {types.map(type => {
+              const { id, name, key } = type;
+              return (
+                <Button
+                  key={id}
+                  type={key === currentType ? "primary" : "default"}
+                  onClick={() => {
+                    setCurrentType(key);
+                    setResult(null);
+                  }}
+                >
+                  {name}
+                </Button>
+              );
+            })}
+          </Space>
+        </div>
         {demoOptions[currentType]}
       </div>
     </div>

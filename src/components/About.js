@@ -18,7 +18,7 @@ const Styled = styled.p`
   padding: 0 10px;
 `;
 
-export default function About() {
+export default function() {
   return (
     <div>
       <Styled>

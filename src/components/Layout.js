@@ -5,8 +5,13 @@ import loadable from "@loadable/component";
 import { Nav40DataSource, Footer10DataSource } from "../data/home.data.js";
 import "../less/antMotionStyle.less";
 // import ZaloCustomerChat from "./ZaloCustomerChat"
+import { Layout } from "antd";
+import Sidebar from "./Sidebar/Sidebar.js";
+import Footer2 from "./Footer2.js";
 
-const Header = loadable(() => import("./Header"));
+const { Sider, Content } = Layout;
+
+const Header2 = loadable(() => import("./Header2"));
 const Footer = loadable(() => import("./Footer"));
 const CustomerChat = loadable(() => import("./CustomerChat"));
 
@@ -15,7 +20,7 @@ enquireScreen(b => {
   isMobile = b;
 });
 
-class Layout extends Component {
+class LayoutComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,18 +35,21 @@ class Layout extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div>
-        <Header dataSource={Nav40DataSource} isMobile={this.state.isMobile} />
-        {children}
-        <CustomerChat />
-        {/* <ZaloCustomerChat /> */}
-        <Footer
-          dataSource={Footer10DataSource}
-          isMobile={this.state.isMobile}
-        />
-      </div>
+      <Layout>
+        <Sidebar />
+        <Layout>
+          {/* <Header isMobile={this.state.isMobile} /> */}
+          <Header2 isMobile={this.state.isMobile} />
+          <Content>{children}</Content>
+          {/* <Footer
+            dataSource={Footer10DataSource}
+            isMobile={this.state.isMobile}
+          /> */}
+          <Footer2 />
+        </Layout>
+      </Layout>
     );
   }
 }
 
-export default Layout;
+export default LayoutComponent;

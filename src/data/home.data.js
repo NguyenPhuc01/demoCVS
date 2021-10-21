@@ -16,27 +16,29 @@ export const Nav40DataSource = {
     className: "header3-logo",
     children: "/computervision-logo.svg"
   },
-  Menu: {
-    className: "header3-menu",
-    children: [
-      {
-        name: "item4",
-        className: "header3-item",
-        to: "/company/contact",
-        title: (
-          <Button
-            type="primary"
-            style={{
-              height: 36,
-              fontSize: 12
-            }}
-          >
-            DÙNG THỬ MIỄN PHÍ
-          </Button>
-        )
-      }
-    ]
-  },
+  // Menu: {
+  //   className: "header3-menu",
+  //   children: [
+  //     {
+  //       name: "item4",
+  //       className: "header3-item",
+  //       to: "/company/contact",
+  //       title: (
+  // <Button
+  //   type="default"
+  //   style={{
+  //     height: 36,
+  //     fontSize: 12,
+  //     borderColor: "red",
+  //     color: "red"
+  //   }}
+  // >
+  //   LIÊN HỆ DÙNG THỬ
+  // </Button>
+  //       )
+  //     }
+  //   ]
+  // },
   MenuMobile: {
     className: "header3-menu",
     children: [
@@ -182,18 +184,18 @@ export const ContactFormDataSource = {
     children: [
       {
         name: "content",
-        className: "contact-form-content",
-        children: <p>Liên hệ ngay với chúng tôi</p>
+        className: "contact-form-content"
+        // children: <p>Liên hệ ngay với chúng tôi</p>
       },
-      {
-        name: "content",
-        className: "underline"
-      },
+      // {
+      //   name: "content",
+      //   className: "underline"
+      // },
       {
         name: "content",
         className: "contact-form-description",
         children: (
-          <p>
+          <p style={{ textAlign: "left" }}>
             Computer Vision Vietnam luôn sẵn sàng lắng nghe yêu cầu từ quý khách
             hàng. Liên hệ với chúng tôi để nhận được hỗ trợ.
           </p>
@@ -330,18 +332,59 @@ export const CustomersDataSource = {
     }
   ]
 };
+
+export const SidebarDataSource = {
+  wrapper: { className: "home-page-wrapper sidebar-wrapper" },
+  page: { className: "home-page sidebar" },
+  content: [
+    {
+      key: "1",
+      tab: "Trang chủ"
+    },
+    {
+      key: "2",
+      tab: "Nhận diện ký tự",
+      link: "/ocr"
+    },
+    {
+      key: "3",
+      tab: "eKYC",
+      link: "/solutions/e-kyc"
+    },
+    {
+      key: "4",
+      tab: "Nhận diện khuôn mặt",
+      link: "/facial-recognition"
+    },
+    {
+      key: "5",
+      tab: "Xử lý hình ảnh",
+      link: "/image-recognition"
+    }
+  ]
+};
+
 export const Feature100DataSource = {
   wrapper: { className: "home-page-wrapper feature100-wrapper" },
   page: { className: "home-page feature100" },
   titleWrapper: {
     className: "title-wrapper",
-    children: "Trải nghiệm ngay các sản phẩm của CVS"
+    children: "Trang chủ"
   },
   content: [
     {
       key: "1",
       tab: "Nhận diện ký tự",
       children: [
+        // {
+        //   img: <img src="Frame6.png" alt="image" />
+        // },
+        // {
+        //   img: <img src="Frame7.png" alt="image" />
+        // },
+        // {
+        //   img: <img src="Frame8.png" alt="image" />
+        // }
         {
           img: <img src="/app0.svg" alt="img" width={48} height={48} />,
           title: "Chứng minh nhân dân",
