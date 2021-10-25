@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 export class Footer2 extends Component {
   render() {
     return (
@@ -10,9 +9,9 @@ export class Footer2 extends Component {
           background: "#ffffff"
         }}
       >
-        <div style={{ textAlign: "center", lineHeight: 5 }}>
-          <p>Copyright ©2020 by Computer Vision Vietnam. All Rights Reserved</p>
-        </div>
+        <p style={{ textAlign: "center", lineHeight: 5 }}>
+          Copyright ©2020 by Computer Vision Vietnam. All Rights Reserved
+        </p>
       </footer>
     );
   }

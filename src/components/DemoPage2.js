@@ -1,5 +1,6 @@
 import { Button, Space, Divider } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
 import DemoFaceMatching from "./FaceMatching/DemoFaceMatching";
 import DemoFaceSearch from "./FaceSearch/DemoFaceSearch";
 import DemoSmartCrop from "./SmartCrop/DemoSmartCrop";
@@ -13,6 +14,19 @@ const types = [
 export default function DemoPage2() {
   const [currentType, setCurrentType] = useState("face-matching");
   const [result, setResult] = useState(null);
+
+  let test = () => {
+    // console.log(location.search);
+  };
+
+  let location = useLocation();
+  useEffect(() => {
+    let regex = /\?type=([^&]*)/;
+    console.log(regex.test(location.search));
+    if (regex.test(location.search)) {
+      setCurrentType(location.search.match(regex)[1]);
+    }
+  });
 
   const demoOptions = {
     "face-matching": <DemoFaceMatching result={result} setResult={setResult} />,
@@ -51,16 +65,19 @@ export default function DemoPage2() {
             {types.map(type => {
               const { id, name, key } = type;
               return (
-                <Button
-                  key={id}
-                  type={key === currentType ? "primary" : "default"}
-                  onClick={() => {
-                    setCurrentType(key);
-                    setResult(null);
-                  }}
-                >
-                  {name}
-                </Button>
+                <Link to={{ search: `?type=${key}` }} key={key}>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                      test();
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
               );
             })}
           </Space>

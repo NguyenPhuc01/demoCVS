@@ -1,5 +1,6 @@
 import { Button, Space, Divider } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
 import DemoBSX from "./BSX/DemoBSX";
 import DemoCambodia from "./Cambodia/DemoCambodia";
 import DemoDangKiemXe from "./DangKiemXe/DemoDangKiemXe";
@@ -59,6 +60,19 @@ const types6 = [
 export default function DemoPage() {
   const [currentType, setCurrentType] = useState("CMND/CCCD");
   const [result, setResult] = useState(null);
+
+  let test = () => {
+    // console.log(location.search);
+  };
+
+  let location = useLocation();
+  useEffect(() => {
+    let regex = /\?type=([^&]*)/;
+    console.log(regex.test(location.search));
+    if (regex.test(location.search)) {
+      setCurrentType(location.search.match(regex)[1]);
+    }
+  });
 
   const demoOptions = {
     "CMND/CCCD": <DemoCMND result={result} setResult={setResult} />,
@@ -207,16 +221,19 @@ export default function DemoPage() {
             {types1.map(type => {
               const { id, name, key } = type;
               return (
-                <Button
-                  key={id}
-                  type={key === currentType ? "primary" : "default"}
-                  onClick={() => {
-                    setCurrentType(key);
-                    setResult(null);
-                  }}
-                >
-                  {name}
-                </Button>
+                <Link to={{ search: `?type=${key}` }} key={key}>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                      test();
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
               );
             })}
           </Space>
@@ -234,16 +251,19 @@ export default function DemoPage() {
             {types2.map(type => {
               const { id, name, key } = type;
               return (
-                <Button
-                  key={id}
-                  type={key === currentType ? "primary" : "default"}
-                  onClick={() => {
-                    setCurrentType(key);
-                    setResult(null);
-                  }}
-                >
-                  {name}
-                </Button>
+                <Link to={{ search: `?type=${key}` }} key={key}>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                      test();
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
               );
             })}
           </Space>
@@ -261,16 +281,19 @@ export default function DemoPage() {
             {types3.map(type => {
               const { id, name, key } = type;
               return (
-                <Button
-                  key={id}
-                  type={key === currentType ? "primary" : "default"}
-                  onClick={() => {
-                    setCurrentType(key);
-                    setResult(null);
-                  }}
-                >
-                  {name}
-                </Button>
+                <Link to={{ search: `?type=${key}` }} key={key}>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                      test();
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
               );
             })}
           </Space>
@@ -288,16 +311,19 @@ export default function DemoPage() {
             {types4.map(type => {
               const { id, name, key } = type;
               return (
-                <Button
-                  key={id}
-                  type={key === currentType ? "primary" : "default"}
-                  onClick={() => {
-                    setCurrentType(key);
-                    setResult(null);
-                  }}
-                >
-                  {name}
-                </Button>
+                <Link to={{ search: `?type=${key}` }} key={key}>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                      test();
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
               );
             })}
           </Space>
@@ -315,16 +341,19 @@ export default function DemoPage() {
             {types5.map(type => {
               const { id, name, key } = type;
               return (
-                <Button
-                  key={id}
-                  type={key === currentType ? "primary" : "default"}
-                  onClick={() => {
-                    setCurrentType(key);
-                    setResult(null);
-                  }}
-                >
-                  {name}
-                </Button>
+                <Link to={{ search: `?type=${key}` }} key={key}>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                      test();
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
               );
             })}
           </Space>
@@ -342,16 +371,19 @@ export default function DemoPage() {
             {types6.map(type => {
               const { id, name, key } = type;
               return (
-                <Button
-                  key={id}
-                  type={key === currentType ? "primary" : "default"}
-                  onClick={() => {
-                    setCurrentType(key);
-                    setResult(null);
-                  }}
-                >
-                  {name}
-                </Button>
+                <Link to={{ search: `?type=${key}` }} key={key}>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                      test();
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
               );
             })}
           </Space>

@@ -35,16 +35,11 @@ class LayoutComponent extends Component {
   render() {
     const { children } = this.props;
     return (
-      <Layout>
+      <Layout style={{ minHeight: "100vh" }}>
         <Sidebar />
-        <Layout>
-          {/* <Header isMobile={this.state.isMobile} /> */}
+        <Layout style={{ background: "#ffffff" }}>
           <Header2 isMobile={this.state.isMobile} />
           <Content>{children}</Content>
-          {/* <Footer
-            dataSource={Footer10DataSource}
-            isMobile={this.state.isMobile}
-          /> */}
           <Footer2 />
         </Layout>
       </Layout>

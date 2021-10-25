@@ -1,5 +1,6 @@
 import { Button, Space, Divider } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
 import DemoSmartCrop from "./SmartCrop/DemoSmartCrop";
 import DemoTagging from "./Tagging/DemoTagging";
 
@@ -11,6 +12,19 @@ const types = [
 export default function DemoPage3() {
   const [currentType, setCurrentType] = useState("smart-crop");
   const [result, setResult] = useState(null);
+
+  let test = () => {
+    // console.log(location.search);
+  };
+
+  let location = useLocation();
+  useEffect(() => {
+    let regex = /\?type=([^&]*)/;
+    console.log(regex.test(location.search));
+    if (regex.test(location.search)) {
+      setCurrentType(location.search.match(regex)[1]);
+    }
+  });
 
   const demoOptions = {
     "smart-crop": <DemoSmartCrop result={result} setResult={setResult} />,
@@ -46,16 +60,19 @@ export default function DemoPage3() {
             {types.map(type => {
               const { id, name, key } = type;
               return (
-                <Button
-                  key={id}
-                  type={key === currentType ? "primary" : "default"}
-                  onClick={() => {
-                    setCurrentType(key);
-                    setResult(null);
-                  }}
-                >
-                  {name}
-                </Button>
+                <Link to={{ search: `?type=${key}` }} key={key}>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                      test();
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
               );
             })}
           </Space>
