@@ -3,7 +3,6 @@ import { enquireScreen } from "enquire-js";
 import { injectIntl } from "gatsby-plugin-intl";
 import loadable from "@loadable/component";
 import queryString from "query-string";
-import { BrowserRouter as Router } from "react-router-dom";
 
 import DemoPage from "../components/DemoPage";
 
@@ -38,12 +37,10 @@ class IndexPage extends Component {
 
     return (
       <>
-        <Router>
-          <SEO title="Computer Vision Vietnam" />
-          <Layout>
-            <DemoPage />
-          </Layout>
-        </Router>
+        <SEO title="Computer Vision Vietnam" />
+        <Layout>
+          <DemoPage />
+        </Layout>
       </>
     );
   }
