@@ -20,8 +20,10 @@ export default function DemoPage3() {
   let query = useQuery();
 
   useEffect(() => {
-    console.log(query.get("type"));
-    setCurrentType(query.get("type"));
+    let params = query.get("type");
+    if (params) {
+      setCurrentType(params);
+    }
   }, []);
 
   const demoOptions = {
