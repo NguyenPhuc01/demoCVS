@@ -9,17 +9,19 @@ const types = [
   { id: 2, name: "Tagging", key: "tagging" }
 ];
 
+function useQuery() {
+  return new URLSearchParams(window.location.search);
+}
+
 export default function DemoPage3() {
   const [currentType, setCurrentType] = useState("smart-crop");
   const [result, setResult] = useState(null);
 
+  let query = useQuery();
+
   useEffect(() => {
-    let regex = /\?type=([^&]*)/;
-    let locationType = window.location.search;
-    if (regex.test(locationType)) {
-      console.log(locationType.match(regex));
-      setCurrentType(locationType.match(regex)[1]);
-    }
+    console.log(query.get("type"));
+    setCurrentType(query.get("type"));
   }, []);
 
   const demoOptions = {

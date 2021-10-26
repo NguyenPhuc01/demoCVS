@@ -11,17 +11,19 @@ const types = [
   { id: 3, name: "Tạo ảnh đại diện", key: "tao-anh-dai-dien" }
 ];
 
+function useQuery() {
+  return new URLSearchParams(window.location.search);
+}
+
 export default function DemoPage2() {
   const [currentType, setCurrentType] = useState("face-matching");
   const [result, setResult] = useState(null);
 
+  let query = useQuery();
+
   useEffect(() => {
-    let regex = /\?type=([^&]*)/;
-    let locationType = window.location.search;
-    if (regex.test(locationType)) {
-      console.log(locationType.match(regex));
-      setCurrentType(locationType.match(regex)[1]);
-    }
+    console.log(query.get("type"));
+    setCurrentType(query.get("type"));
   }, []);
 
   const demoOptions = {

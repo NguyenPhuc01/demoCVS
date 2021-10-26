@@ -1,7 +1,6 @@
 import { Button, Space, Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby-plugin-intl";
-import { useLocation } from "react-router-dom";
 import DemoBSX from "./BSX/DemoBSX";
 import DemoCambodia from "./Cambodia/DemoCambodia";
 import DemoDangKiemXe from "./DangKiemXe/DemoDangKiemXe";
