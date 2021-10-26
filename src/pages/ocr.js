@@ -31,9 +31,6 @@ class IndexPage extends Component {
 
   render() {
     const { intl } = this.props;
-    let url = this.props.location.search;
-    let params = queryString.parse(url);
-    console.log(params);
 
     return (
       <>

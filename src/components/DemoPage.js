@@ -1,6 +1,7 @@
 import { Button, Space, Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby-plugin-intl";
+import { useLocation } from "react-router-dom";
 import DemoBSX from "./BSX/DemoBSX";
 import DemoCambodia from "./Cambodia/DemoCambodia";
 import DemoDangKiemXe from "./DangKiemXe/DemoDangKiemXe";
@@ -57,6 +58,10 @@ const types6 = [
   { id: 25, name: "Hóa đơn VAT", key: "hoa-don-vat" }
 ];
 
+function useQuery() {
+  return new URLSearchParams(window.location.search);
+}
+
 export default function DemoPage() {
   const [currentType, setCurrentType] = useState("CMND/CCCD");
   const [result, setResult] = useState(null);
@@ -65,13 +70,20 @@ export default function DemoPage() {
   //   console.log(window.location.search);
   // };
 
+  // useEffect(() => {
+  //   let regex = /\?type=([^&]*)/;
+  //   let locationType = window.location.search;
+  //   if (regex.test(locationType)) {
+  //     console.log(locationType.match(regex));
+  //     setCurrentType(locationType.match(regex)[1]);
+  //   }
+  // }, []);
+
+  let query = useQuery();
+
   useEffect(() => {
-    let regex = /\?type=([^&]*)/;
-    let locationType = window.location.search;
-    if (regex.test(locationType)) {
-      console.log(locationType.match(regex));
-      setCurrentType(locationType.match(regex)[1]);
-    }
+    console.log(query.get("type"));
+    setCurrentType(query.get("type"));
   }, []);
 
   const demoOptions = {
