@@ -31,7 +31,7 @@ class Sidebar2 extends React.Component {
               alt="img"
               width="100%"
               height="auto"
-              style={{ padding: "24px 5px 20px 5px" }}
+              style={{ padding: "24px 12px 20px" }}
             />
           </Link>
         </div>
@@ -40,6 +40,7 @@ class Sidebar2 extends React.Component {
             key="1"
             icon={<img src="/Vector1.png" alt="img" />}
             className="sidebar"
+            style={{ height: 56 }}
           >
             <Link to="/" onClick={() => trackEvent("/")}>
               Trang chủ
@@ -49,6 +50,7 @@ class Sidebar2 extends React.Component {
             key="2"
             icon={<img src="/Vector2.png" alt="img" />}
             className="sidebar"
+            style={{ height: 56 }}
           >
             <Link to="/ocr" onClick={() => trackEvent("/")}>
               Nhận diện ký tự
@@ -58,6 +60,7 @@ class Sidebar2 extends React.Component {
             key="3"
             icon={<img src="/Vector4.png" alt="img" />}
             className="sidebar"
+            style={{ height: 56 }}
           >
             <Link to="/facial-recognition" onClick={() => trackEvent("/")}>
               Nhận diện khuôn mặt
@@ -67,6 +70,7 @@ class Sidebar2 extends React.Component {
             key="4"
             icon={<img src="/Vector5.png" alt="img" />}
             className="sidebar"
+            style={{ height: 56 }}
           >
             <Link to="/image-recognition" onClick={() => trackEvent("/")}>
               Xử lý hình ảnh
