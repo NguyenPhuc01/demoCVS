@@ -10,7 +10,7 @@ class Sidebar2 extends React.Component {
     super(props);
     this.state = {
       collapsed:
-        localStorage.getItem("stateCollapsed") === "true" ? true : false
+        localStorage.getItem("stateCollapsed") === "false" ? false : true
     };
   }
 
