@@ -14,7 +14,9 @@ export default function ViewApiButton() {
         block
         style={{ height: 48, marginTop: 24, background: "transparent" }}
       >
-        XEM TÀI LIỆU API DÀNH CHO LẬP TRÌNH VIÊN
+        <span style={{ whiteSpace: "normal" }}>
+          XEM TÀI LIỆU API DÀNH CHO LẬP TRÌNH VIÊN
+        </span>
       </Button>
     </OutboundLink>
   );

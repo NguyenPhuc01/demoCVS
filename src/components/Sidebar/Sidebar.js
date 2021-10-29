@@ -6,13 +6,18 @@ import { Link } from "gatsby-plugin-intl";
 const { Sider } = Layout;
 
 class Sidebar2 extends React.Component {
-  state = {
-    collapsed: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapsed:
+        localStorage.getItem("stateCollapsed") === "true" ? true : false
+    };
+  }
 
   onCollapse = collapsed => {
     console.log(collapsed);
     this.setState({ collapsed });
+    localStorage.setItem("stateCollapsed", collapsed);
   };
 
   render() {
@@ -42,7 +47,7 @@ class Sidebar2 extends React.Component {
             className="sidebar"
             style={{ height: 56 }}
           >
-            <Link to="/" onClick={() => trackEvent("/")}>
+            <Link to="/" onClick={this.handle}>
               Trang chủ
             </Link>
           </Menu.Item>

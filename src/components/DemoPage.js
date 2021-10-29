@@ -221,182 +221,209 @@ export default function DemoPage() {
           Chọn loại giấy tờ
         </Divider>
         <div className="content-wrapper">
-          <Space
-            size={[8, 8]}
-            wrap
-            align="center"
-            style={{
-              justifyContent: "flex-start",
-              width: "100%",
-              marginBottom: 10
-            }}
-          >
+          <div className="content-layout">
             <p style={{ width: 150 }}>Giấy tờ tuỳ thân: </p>
-            {types1.map(type => {
-              const { id, name, key } = type;
-              return (
-                <Link to={`?type=${key}`} key={key}>
-                  <Button
-                    key={id}
-                    type={key === currentType ? "primary" : "default"}
-                    onClick={() => {
-                      setCurrentType(key);
-                      setResult(null);
-                    }}
-                  >
-                    {name}
-                  </Button>
-                </Link>
-              );
-            })}
-          </Space>
-          <Space
-            size={[8, 8]}
-            wrap
-            align="center"
-            style={{
-              justifyContent: "flex-start",
-              width: "100%",
-              marginBottom: 10
-            }}
-          >
+            <Space
+              size={[8, 8]}
+              wrap
+              align="center"
+              style={{
+                justifyContent: "flex-start",
+                width: "100%",
+                marginBottom: 10
+              }}
+            >
+              {types1.map(type => {
+                const { id, name, key } = type;
+                return (
+                  <Link to={`?type=${key}`} key={key}>
+                    <Button
+                      key={id}
+                      type={key === currentType ? "primary" : "default"}
+                      onClick={() => {
+                        setCurrentType(key);
+                        setResult(null);
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </Space>
+          </div>
+
+          <div className="content-layout">
             <p style={{ width: 150 }}>Giấy tờ xe: </p>
-            {types2.map(type => {
-              const { id, name, key } = type;
-              return (
-                <Link to={`?type=${key}`} key={key}>
-                  <Button
-                    key={id}
-                    type={key === currentType ? "primary" : "default"}
-                    onClick={() => {
-                      setCurrentType(key);
-                      setResult(null);
-                    }}
-                  >
-                    {name}
-                  </Button>
-                </Link>
-              );
-            })}
-          </Space>
-          <Space
-            size={[8, 8]}
-            wrap
-            align="center"
-            style={{
-              justifyContent: "flex-startr",
-              width: "100%",
-              marginBottom: 10
-            }}
-          >
+            <Space
+              size={[8, 8]}
+              wrap
+              align="center"
+              style={{
+                justifyContent: "flex-start",
+                width: "100%",
+                marginBottom: 10
+              }}
+            >
+              {types2.map(type => {
+                const { id, name, key } = type;
+                return (
+                  <Link to={`?type=${key}`} key={key}>
+                    <Button
+                      key={id}
+                      type={key === currentType ? "primary" : "default"}
+                      onClick={() => {
+                        setCurrentType(key);
+                        setResult(null);
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </Space>
+          </div>
+
+          <div className="content-layout">
             <p style={{ width: 150 }}>Hoá đơn: </p>
-            {types3.map(type => {
-              const { id, name, key } = type;
-              return (
-                <Link to={`?type=${key}`} key={key}>
-                  <Button
-                    key={id}
-                    type={key === currentType ? "primary" : "default"}
-                    onClick={() => {
-                      setCurrentType(key);
-                      setResult(null);
-                    }}
-                  >
-                    {name}
-                  </Button>
-                </Link>
-              );
-            })}
-          </Space>
-          <Space
-            size={[8, 8]}
-            wrap
-            align="center"
-            style={{
-              justifyContent: "flex-start",
-              width: "100%",
-              marginBottom: 10
-            }}
-          >
+            <Space
+              size={[8, 8]}
+              wrap
+              align="center"
+              style={{
+                justifyContent: "flex-startr",
+                width: "100%",
+                marginBottom: 10
+              }}
+            >
+              {types3.map(type => {
+                const { id, name, key } = type;
+                return (
+                  <Link to={`?type=${key}`} key={key}>
+                    <Button
+                      key={id}
+                      type={key === currentType ? "primary" : "default"}
+                      onClick={() => {
+                        setCurrentType(key);
+                        setResult(null);
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </Space>
+          </div>
+
+          <div className="content-layout">
             <p style={{ width: 150 }}>SEA ID Card: </p>
-            {types4.map(type => {
-              const { id, name, key } = type;
-              return (
-                <Link to={`?type=${key}`} key={key}>
-                  <Button
-                    key={id}
-                    type={key === currentType ? "primary" : "default"}
-                    onClick={() => {
-                      setCurrentType(key);
-                      setResult(null);
-                    }}
-                  >
-                    {name}
-                  </Button>
-                </Link>
-              );
-            })}
-          </Space>
-          <Space
-            size={[8, 8]}
-            wrap
-            align="center"
-            style={{
-              justifyContent: "flex-start",
-              width: "100%",
-              marginBottom: 10
-            }}
-          >
+            <Space
+              size={[8, 8]}
+              wrap
+              align="center"
+              style={{
+                justifyContent: "flex-start",
+                width: "100%",
+                marginBottom: 10
+              }}
+            >
+              {types4.map(type => {
+                const { id, name, key } = type;
+                return (
+                  <Link to={`?type=${key}`} key={key}>
+                    <Button
+                      key={id}
+                      type={key === currentType ? "primary" : "default"}
+                      onClick={() => {
+                        setCurrentType(key);
+                        setResult(null);
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </Space>
+          </div>
+
+          <div className="content-layout">
             <p style={{ width: 150 }}>Dữ liệu bảng: </p>
-            {types5.map(type => {
-              const { id, name, key } = type;
-              return (
-                <Link to={`?type=${key}`} key={key}>
-                  <Button
-                    key={id}
-                    type={key === currentType ? "primary" : "default"}
-                    onClick={() => {
-                      setCurrentType(key);
-                      setResult(null);
-                    }}
-                  >
-                    {name}
-                  </Button>
-                </Link>
-              );
-            })}
-          </Space>
-          <Space
-            size={[8, 8]}
-            wrap
-            align="center"
-            style={{
-              justifyContent: "flex-startr",
-              width: "100%",
-              marginBottom: 10
-            }}
-          >
+            <Space
+              size={[8, 8]}
+              wrap
+              align="center"
+              style={{
+                justifyContent: "flex-start",
+                width: "100%",
+                marginBottom: 10
+              }}
+            >
+              {types5.map(type => {
+                const { id, name, key } = type;
+                return (
+                  <Link to={`?type=${key}`} key={key}>
+                    <Button
+                      key={id}
+                      type={key === currentType ? "primary" : "default"}
+                      onClick={() => {
+                        setCurrentType(key);
+                        setResult(null);
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </Space>
+          </div>
+
+          <div className="content-layout">
             <p style={{ width: 150 }}>Khác: </p>
-            {types6.map(type => {
-              const { id, name, key } = type;
-              return (
-                <Link to={`?type=${key}`} key={key}>
-                  <Button
-                    key={id}
-                    type={key === currentType ? "primary" : "default"}
-                    onClick={() => {
-                      setCurrentType(key);
-                      setResult(null);
-                    }}
-                  >
-                    {name}
-                  </Button>
-                </Link>
-              );
-            })}
-          </Space>
+            <Space
+              size={[8, 8]}
+              wrap
+              align="center"
+              style={{
+                justifyContent: "flex-startr",
+                width: "100%",
+                marginBottom: 10
+              }}
+            >
+              {types6.map(type => {
+                const { id, name, key } = type;
+                return (
+                  <Link to={`?type=${key}`} key={key}>
+                    <Button
+                      key={id}
+                      type={key === currentType ? "primary" : "default"}
+                      onClick={() => {
+                        setCurrentType(key);
+                        setResult(null);
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </Space>
+          </div>
         </div>
-        {demoOptions[currentType]}
+        <Divider
+          style={{
+            fontSize: 14,
+            lineHeight: "22px",
+            color: "rgba(0, 0, 0, 0.45)"
+          }}
+          orientation="left"
+        >
+          Vui lòng chọn ảnh demo bên dưới hoặc tải ảnh từ máy của bạn lên
+        </Divider>
+        <div className="upload-wrapper">{demoOptions[currentType]}</div>
       </div>
     </div>
   );

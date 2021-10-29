@@ -51,37 +51,49 @@ export default function DemoPage2() {
           Chọn loại giấy tờ
         </Divider>
         <div className="content-wrapper">
-          <Space
-            size={[8, 8]}
-            wrap
-            align="center"
-            style={{
-              justifyContent: "flex-startr",
-              width: "100%",
-              marginBottom: 50
-            }}
-          >
+          <div className="content-layout">
             <p style={{ width: 150 }}>Sản phẩm:</p>
-            {types.map(type => {
-              const { id, name, key } = type;
-              return (
-                <Link to={`?type=${key}`} key={key}>
-                  <Button
-                    key={id}
-                    type={key === currentType ? "primary" : "default"}
-                    onClick={() => {
-                      setCurrentType(key);
-                      setResult(null);
-                    }}
-                  >
-                    {name}
-                  </Button>
-                </Link>
-              );
-            })}
-          </Space>
+            <Space
+              size={[8, 8]}
+              wrap
+              align="center"
+              style={{
+                justifyContent: "flex-startr",
+                width: "100%",
+                marginBottom: 50
+              }}
+            >
+              {types.map(type => {
+                const { id, name, key } = type;
+                return (
+                  <Link to={`?type=${key}`} key={key}>
+                    <Button
+                      key={id}
+                      type={key === currentType ? "primary" : "default"}
+                      onClick={() => {
+                        setCurrentType(key);
+                        setResult(null);
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </Space>
+          </div>
         </div>
-        {demoOptions[currentType]}
+        <Divider
+          style={{
+            fontSize: 14,
+            lineHeight: "22px",
+            color: "rgba(0, 0, 0, 0.45)"
+          }}
+          orientation="left"
+        >
+          Vui lòng chọn ảnh demo bên dưới hoặc tải ảnh từ máy của bạn lên
+        </Divider>
+        <div className="upload-wrapper">{demoOptions[currentType]}</div>
       </div>
     </div>
   );
