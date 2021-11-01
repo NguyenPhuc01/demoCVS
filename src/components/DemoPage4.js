@@ -2,13 +2,11 @@ import { Button, Space, Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby-plugin-intl";
 import DemoFaceMatching from "./FaceMatching/DemoFaceMatching";
-import DemoFaceSearch from "./FaceSearch/DemoFaceSearch";
-import DemoSmartCrop from "./SmartCrop/DemoSmartCrop";
+import DemoCMND from "./OCR/DemoCMND";
 
 const types = [
-  { id: 1, name: "So khớp khuôn mặt", key: "face-matching" },
-  { id: 2, name: "Tìm kiếm khuôn mặt", key: "face-search" },
-  { id: 3, name: "Tạo ảnh đại diện", key: "tao-anh-dai-dien" }
+  { id: 1, name: "Nhận diện GTTTT", key: "CMND/CCCD" },
+  { id: 2, name: "So khớp khuôn mặt", key: "face-matching" }
 ];
 
 function useQuery() {
@@ -16,7 +14,7 @@ function useQuery() {
 }
 
 export default function DemoPage2() {
-  const [currentType, setCurrentType] = useState("face-matching");
+  const [currentType, setCurrentType] = useState("CMND/CCCD");
   const [result, setResult] = useState(null);
 
   let query = useQuery();
@@ -29,17 +27,14 @@ export default function DemoPage2() {
   }, []);
 
   const demoOptions = {
-    "face-matching": <DemoFaceMatching result={result} setResult={setResult} />,
-    "face-search": <DemoFaceSearch result={result} setResult={setResult} />,
-    "tao-anh-dai-dien": (
-      <DemoSmartCrop cropPerson={true} result={result} setResult={setResult} />
-    )
+    "CMND/CCCD": <DemoCMND result={result} setResult={setResult} />,
+    "face-matching": <DemoFaceMatching result={result} setResult={setResult} />
   };
 
   return (
     <div className="home-page-wrapper demo-wrapper">
       <div className="home-page demo">
-        <div className="title-wrapper">Nhận diện khuôn mặt</div>
+        <div className="title-wrapper">eKYC</div>
         <Divider
           style={{
             fontSize: 14,

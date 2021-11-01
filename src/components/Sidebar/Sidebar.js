@@ -62,6 +62,16 @@ class Sidebar2 extends React.Component {
             </Link>
           </Menu.Item>
           <Menu.Item
+            key="2"
+            icon={<img src="/Vector3.png" alt="img" />}
+            className="sidebar"
+            style={{ height: 56 }}
+          >
+            <Link to="/ekyc" onClick={() => trackEvent("/")}>
+              eKYC
+            </Link>
+          </Menu.Item>
+          <Menu.Item
             key="3"
             icon={<img src="/Vector4.png" alt="img" />}
             className="sidebar"

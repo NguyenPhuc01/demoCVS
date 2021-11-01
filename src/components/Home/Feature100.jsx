@@ -22,10 +22,6 @@ export default function Feature100(props) {
     <div {...rest} {...wrapper}>
       <div {...page}>
         <div {...titleWrapper} />
-        {/* <div style={{ textAlign: 'center' }} >Nền tảng Computer Vision đa dạng, dễ dàng sử dụng và tối ưu cho doanh nghiệp</div>
-        <div style={{ textAlign: 'center', margin: '40px 0' }} >
-          <img alt='img' src={DemoImage} style={{ width: '100%', maxWidth: 382 }} />
-        </div> */}
     <div >
       <Row gutter={[30, 16]}>
         <Col md={8} xs={24}>
@@ -33,11 +29,10 @@ export default function Feature100(props) {
               <div style={{width:"100%", maxWidth:"370px"}}>
                 <img src="Frame6.png" alt="image" style={{maxWidth: "100%"}} />
               </div>
-                  <div>
-                    <Styled>Nhận Diện Ký Tự</Styled>
-                    <p style={{marginLeft:"16px", fontSize:"12px", color:"#000000D9"}}>Giấy tờ tùy thân, Giấy tờ xe, Hóa đơn, Dữ liệu bảng, ...</p>
-                  </div>
-
+              <div>
+                <Styled>Nhận Diện Ký Tự</Styled>
+                <p style={{marginLeft:"16px", fontSize:"12px", color:"#000000D9"}}>Giấy tờ tùy thân, Giấy tờ xe, Hóa đơn, Dữ liệu bảng, ...</p>
+              </div>
           </Link>
         </Col>
         <Col md={8} xs={24}>
@@ -59,6 +54,17 @@ export default function Feature100(props) {
               <div>
                 <Styled>Xử Lý Hình Ảnh</Styled>
                 <p style={{marginLeft:"16px", fontSize:"12px", color:"#000000D9"}}>Smart Crop, Tagging</p>
+              </div>
+          </Link>
+        </Col>
+        <Col md={8} xs={24}>
+          <Link to="/ekyc" onClick={() => trackEvent("/")}>
+              <div style={{width:"100%", maxWidth:"370px"}}>
+                <img src="Frame9.png" alt="image" style={{maxWidth: "100%"}} />
+              </div>
+              <div>
+                <Styled>eKYC</Styled>
+                <p style={{marginLeft:"16px", fontSize:"12px", color:"#000000D9"}}>Định danh khách hàng trực tuyến</p>
               </div>
           </Link>
         </Col>
