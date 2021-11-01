@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Button } from "antd";
+import { Layout, Menu, Breadcrumb } from "antd";
 import { trackEvent } from "../utils";
 import { Link } from "gatsby-plugin-intl";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";

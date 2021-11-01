@@ -52,7 +52,7 @@ export default function Feature100(props) {
         </Col>
         <Col md={8} xs={24}>
           <Link to="/image-recognition" onClick={() => trackEvent("/")}>
-            <div style={{border:"1px solid #E9E9E9", boxSizing:"border-box", borderRadius: 8}}>
+            <div style={{border:"1px solid #E9E9E9", boxSizing:"border-box", borderRadius: 8, overflow:"hidden"}}>
               <div>
                 <img src="Frame8.png" alt="image" style={{maxWidth: "100%"}} />
               </div>
@@ -65,7 +65,7 @@ export default function Feature100(props) {
         </Col>
         <Col md={8} xs={24}>
           <Link to="/ekyc" onClick={() => trackEvent("/")}>
-            <div style={{border:"1px solid #E9E9E9", boxSizing:"border-box", borderRadius: 8}}>
+            <div style={{border:"1px solid #E9E9E9", boxSizing:"border-box", borderRadius: 8, overflow:"hidden"}}>
               <div>
                 <img src="Frame9.png" alt="image" style={{maxWidth: "100%"}} />
               </div>
