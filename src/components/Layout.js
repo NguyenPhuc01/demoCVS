@@ -40,7 +40,6 @@ class LayoutComponent extends Component {
         <Layout style={{ background: "#ffffff" }}>
           <Header2 isMobile={this.state.isMobile} />
           <Content>{children}</Content>
-          <Footer2 />
         </Layout>
       </Layout>
     );

@@ -1,7 +1,8 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb, Button } from "antd";
 import { trackEvent } from "../utils";
 import { Link } from "gatsby-plugin-intl";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 const { Sider } = Layout;
 
@@ -28,6 +29,18 @@ class Sidebar2 extends React.Component {
         collapsed={collapsed}
         onCollapse={this.onCollapse}
         width={240}
+        trigger={
+          this.state.collapsed ? (
+            <div className="sidebar">
+              <MenuUnfoldOutlined />
+            </div>
+          ) : (
+            <div className="sidebar">
+              <MenuFoldOutlined style={{ marginRight: 10 }} />
+              Thu gọn
+            </div>
+          )
+        }
       >
         <div className="logo">
           <Link to="/" onClick={() => trackEvent("/")}>
