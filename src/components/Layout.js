@@ -35,9 +35,9 @@ class LayoutComponent extends Component {
   render() {
     const { children } = this.props;
     return (
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ height: "100vh" }}>
         <Sidebar />
-        <Layout style={{ background: "#ffffff" }}>
+        <Layout style={{ background: "#ffffff", overflowY: "scroll" }}>
           <Header2 isMobile={this.state.isMobile} />
           <Content>{children}</Content>
         </Layout>
