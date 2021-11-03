@@ -60,7 +60,6 @@ export default function DemoPage2() {
               style={{
                 justifyContent: "flex-startr",
                 width: "100%",
-                marginBottom: 50
               }}
             >
               {types.map(type => {

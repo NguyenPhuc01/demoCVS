@@ -17,44 +17,40 @@ import DemoVanBan from "./VanBan/DemoVanBan";
 const types1 = [
   { id: 1, name: "CMND/CCCD", key: "CMND/CCCD" },
   { id: 2, name: "Hộ chiếu Việt Nam", key: "ho-chieu-vn" },
-  { id: 3, name: "Hộ chiếu quốc tế", key: "ho-chieu-quoc-te" },
-  { id: 4, name: "Giấy khai sinh", key: "giay-khai-sinh" }
+  { id: 3, name: "Giấy phép lái xe", key: "giay-phep-lai-xe-1" },
+  { id: 4, name: "Universal Passport", key: "ho-chieu-quoc-te" },
+  { id: 5, name: "Giấy khai sinh", key: "giay-khai-sinh" }
 ];
 
 const types2 = [
-  { id: 5, name: "Giấy phép lái xe", key: "giay-phep-lai-xe" },
-  { id: 6, name: "Đăng ký xe", key: "dang-ky-xe" },
-  { id: 7, name: "Đăng kiểm xe", key: "dang-kiem-xe" },
-  { id: 8, name: "Biển số xe", key: "bien-so-xe" }
+  { id: 6, name: "Giấy phép lái xe", key: "giay-phep-lai-xe-2" },
+  { id: 7, name: "Đăng ký xe", key: "dang-ky-xe" },
+  { id: 8, name: "Đăng kiểm xe", key: "dang-kiem-xe" },
+  { id: 9, name: "Biển số xe", key: "bien-so-xe" }
 ];
 
 const types3 = [
-  { id: 9, name: "Hóa đơn xe", key: "hoa-don-xe" },
-  { id: 10, name: "PVI Hóa đơn", key: "pvi-hoa-don" }
+  { id: 10, name: "Hoá đơn tổng quát", key: "hoa-don-full" },
+  { id: 11, name: "Giấy đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" }
 ];
 
 const types4 = [
-  { id: 11, name: "ID Card Myanmar", key: "id-card-myanmar" },
-  { id: 12, name: "ID Card Cambodia", key: "id-card-cambodia" },
-  { id: 13, name: "ID Card Philippines", key: "id-card-philippines" }
+  { id: 12, name: "Giấy ra viện", key: "giay-ra-vien" },
+  { id: 13, name: "Báo giá xe", key: "bao-gia-xe" },
+  { id: 14, name: "BVCare Claim", key: "bvcare-claim" },
+  { id: 15, name: "Hoá đơn xe", key: "hoa-don-xe" },
+  { id: 16, name: "Hóa đơn viện phí", key: "pvi-hoa-don" }
 ];
 
 const types5 = [
-  { id: 14, name: "Bảng điểm", key: "bang-diem" },
-  { id: 15, name: "Sao kê ngân hàng", key: "sao-ke-ngan-hang" },
-  { id: 16, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
-  { id: 17, name: "Bảng tổng quát", key: "bang-tong-quat" },
-  { id: 18, name: "Bảng kê", key: "bang-ke" },
-  { id: 19, name: "Bảng kê viện phí", key: "bang-ke-vien-phi" }
+  { id: 17, name: "ID Card Myanmar", key: "id-card-myanmar" },
+  { id: 18, name: "ID Card Cambodia", key: "id-card-cambodia" },
+  { id: 19, name: "ID Card Philippines", key: "id-card-philippines" }
 ];
 
 const types6 = [
-  { id: 20, name: "Đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" },
-  { id: 21, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
-  { id: 22, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" },
-  { id: 23, name: "BVCare Claim", key: "bvcare-claim" },
-  { id: 24, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
-  { id: 25, name: "Hóa đơn VAT", key: "hoa-don-vat" }
+  { id: 20, name: "Bảng tổng quát", key: "bang-tong-quat" },
+  { id: 21, name: "Văn bản tổng quát", key: "van-ban-tong-quat" }
 ];
 
 function useQuery() {
@@ -91,7 +87,8 @@ export default function DemoPage() {
   const demoOptions = {
     "CMND/CCCD": <DemoCMND result={result} setResult={setResult} />,
     "ho-chieu-vn": <DemoCMND result={result} setResult={setResult} />,
-    "giay-phep-lai-xe": <DemoCMND result={result} setResult={setResult} />,
+    "giay-phep-lai-xe-1": <DemoCMND result={result} setResult={setResult} />,
+    "giay-phep-lai-xe-2": <DemoCMND result={result} setResult={setResult} />,
 
     "dang-ky-xe": <DemoDangKyXe result={result} setResult={setResult} />,
     "dang-kiem-xe": <DemoDangKiemXe result={result} setResult={setResult} />,
@@ -169,6 +166,13 @@ export default function DemoPage() {
         setResult={setResult}
       />
     ),
+    "hoa-don-full": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
     "bang-ke": (
       <DemoVanBan
         currentType={currentType}
@@ -191,6 +195,20 @@ export default function DemoPage() {
       />
     ),
     "bvcare-claim": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "giay-ra-vien": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "bao-gia-xe": (
       <DemoVanBan
         currentType={currentType}
         result={result}
@@ -285,8 +303,8 @@ export default function DemoPage() {
             </Space>
           </div>
 
-          <div className="content-layout">
-            <p style={{ width: 150 }}>Hoá đơn: </p>
+          <div className="content-layout" style={{ marginBottom: 6 }}>
+            <p style={{ width: 150 }}>Tài liệu doanh nghiệp: </p>
             <Space
               size={[8, 8]}
               wrap
@@ -318,7 +336,7 @@ export default function DemoPage() {
           </div>
 
           <div className="content-layout">
-            <p style={{ width: 150 }}>SEA ID Card: </p>
+            <p style={{ width: 150 }}>Giấy tờ bảo hiểm: </p>
             <Space
               size={[8, 8]}
               wrap
@@ -350,7 +368,7 @@ export default function DemoPage() {
           </div>
 
           <div className="content-layout">
-            <p style={{ width: 150 }}>Dữ liệu bảng: </p>
+            <p style={{ width: 150 }}> SEA ID Card: </p>
             <Space
               size={[8, 8]}
               wrap

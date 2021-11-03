@@ -17,6 +17,9 @@ const urlOptions = {
   'phieu-kham-benh': 'https://demo.computervision.com.vn/api/v2/ocr/document/examination_form?get_thumb=false',
   'boi-thuong-bao-hiem': 'https://demo.computervision.com.vn/api/v2/ocr/document/claim_form?get_thumb=false',
   'bvcare-claim': 'https://demo.computervision.com.vn/api/v2/ocr/bvcareclaim?get_thumb=true',
+  'hoa-don-full': 'https://demo.computervision.com.vn/api/v2/ocr/document/invoice_full?get_thumb=true',
+  'giay-ra-vien': 'https://demo.computervision.com.vn/api/v2/ocr/document/hospital_discharge_paper?get_thumb=true',
+  'bao-gia-xe': 'https://demo.computervision.com.vn/api/v2/ocr/document/price_quotation?get_thumb=true',
 }
 
 export default function DemoVanBan({ currentType, result, setResult }) {

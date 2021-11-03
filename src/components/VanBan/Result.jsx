@@ -22,6 +22,9 @@ export default function Result({ result, type }) {
         'phieu-kham-benh': <PhieuKhamBenh data={data2[currentPage].info} />,
         'boi-thuong-bao-hiem': <BoiThuongBH data={data2[currentPage].info} />,
         'bvcare-claim': <BVCare data={data2[currentPage].info} type={data2[currentPage].type} />,
+        'giay-ra-vien': <GiayRaVien data={data2[currentPage]?.info} />,
+        'bao-gia-xe': <BaoGiaXe data={data2[currentPage]?.info} />,
+        'hoa-don-full': <HoaDonFull data={data2[currentPage]?.info} />
     }
 
     return (
@@ -265,6 +268,151 @@ function PhieuKhamBenh({ data }) {
             <Field name='Giới tính' value={patient_gender} confidence={patient_gender_confidence} />
             <Field name='Quốc tịch' value={patient_nationality} confidence={patient_nationality_confidence} />
             <Field name='Địa chỉ' value={patient_address} confidence={patient_address_confidence} />
+        </>
+    )
+}
+
+function GiayRaVien({ data }) {
+    const {
+        address, address_confidence,
+        department, department_confidence,
+        diagnose, diagnose_confidence,
+        gender, gender_confidence,
+        year_of_birth, year_of_birth_confidence,
+        treatments, treatments_confidence,
+        pid, pid_confidence,
+        patient_name, patient_name_confidence,
+        medical_facility, medical_facility_confidence,
+        hospital_discharge_date, hospital_discharge_date_confidence,
+        hospitalization_date, hospitalization_date_confidence,
+    } = data || {}
+
+    return (
+        <>
+            <Field name='Cơ sở y tế' value={medical_facility} confidence={medical_facility_confidence} />
+            <Field name='Khoa' value={department} confidence={department_confidence} />
+            <Field name='Họ và tên' value={patient_name} confidence={patient_name_confidence} />
+            <Field name='Năm sinh/Tuổi' value={year_of_birth} confidence={year_of_birth_confidence} />
+            <Field name='Giới tính' value={gender} confidence={gender_confidence} />
+            <Field name='Mã y tế' value={pid} confidence={pid_confidence} />
+            <Field name='Địa chỉ' value={address} confidence={address_confidence} />
+            <Field name='Ngày vào viện' value={hospitalization_date} confidence={hospitalization_date_confidence} />
+            <Field name='Ngày ra viện' value={hospital_discharge_date} confidence={hospital_discharge_date_confidence} />
+            <Field name='Chẩn đoán' value={diagnose} confidence={diagnose_confidence} />
+            <Field name='Phương pháp điều trị' value={treatments} confidence={treatments_confidence} />
+        </>
+    )
+}
+
+function BaoGiaXe({ data }) {
+    const { name_of_garage, name_of_garage_confidence, quotation_date, quotation_date_confidence,
+        estimated_delivery_date, estimated_delivery_date_confidence,
+        total_amount, total_amount_confidence, sub_total, sub_total_confidence, vat_amount, vat_amount_confidence, table,
+    } = data || {}
+
+    const columns = [
+        {
+            title: 'Tên phụ tùng, vật tư',
+            key: 'description',
+            dataIndex: 'description'
+        },
+        {
+            title: 'Số lượng',
+            key: 'quantity',
+            dataIndex: 'quantity'
+        },
+        {
+            title: 'Đơn giá',
+            key: 'unit_price',
+            dataIndex: 'unit_price'
+        },
+        {
+            title: 'Phần trăm giảm giá',
+            key: 'percent_discount',
+            dataIndex: 'percent_discount'
+        },
+        {
+            title: 'Giảm giá',
+            key: 'discount',
+            dataIndex: 'discount'
+        },
+    ]
+
+    return (
+        <>
+            <Field name='Tên gara, xưởng sửa chữa' value={name_of_garage} confidence={name_of_garage_confidence} />
+            <Field name='Ngày báo giá' value={quotation_date} confidence={quotation_date_confidence} />
+            <Field name='Ngày dự kiến giao xe' value={estimated_delivery_date} confidence={estimated_delivery_date_confidence} />
+            <Field name='Tổng tiền sau thuế' value={total_amount} confidence={total_amount_confidence} />
+            <Field name='Tổng tiền trước thuế' value={sub_total} confidence={sub_total_confidence} />
+            <Field name='Tiền thuế' value={vat_amount} confidence={vat_amount_confidence} />
+            {table?.length ? <TableWrapper>
+                <Table dataSource={table} columns={columns} pagination={false}
+                    scroll={{ x: 513 }}
+                />
+            </TableWrapper> : null}
+        </>
+    )
+}
+
+function HoaDonFull({ data }) {
+    const { date, form, invoice_no, serial_no, supplier, tax_code, total_amount, info_goods,
+        date_confidence, form_confidence, invoice_no_confidence, serial_no_confidence, supplier_confidence,
+        tax_code_confidence, total_amount_confidence,
+        payment_method, payment_method_box, payment_method_confidence,
+        sub_total, sub_total_box, sub_total_confidence,
+        vat_amount, vat_amount_box, vat_amount_confidence,
+        purchaser_name, purchaser_name_box, purchaser_name_confidence,
+        account_bank, table
+    } = data || {}
+
+    const columns = table?.[0].map((item, index) => {
+        const { value, box } = item
+        return { title: value, key: index, dataIndex: index }
+    })
+
+    const dataSource = table?.slice(1).map(row => {
+        let obj = {}
+        row.forEach((e, index) => {
+            obj[index] = e.value
+        });
+        return obj
+    })
+
+
+    return (
+        <>
+            <Field name='Ngày hóa đơn' value={date} confidence={date_confidence} />
+            <Field name='Mẫu số' value={form} confidence={form_confidence} />
+            <Field name='Số hóa đơn' value={invoice_no} confidence={invoice_no_confidence} />
+            <Field name='Số ký hiệu hóa đơn' value={serial_no} confidence={serial_no_confidence} />
+            <Field name='Nhà cung cấp' value={supplier} confidence={supplier_confidence} />
+            <Field name='Mã số thuế nhà cung cấp' value={tax_code} confidence={tax_code_confidence} />
+            <Field name='Hình thức thanh toán' value={payment_method} confidence={payment_method_confidence} />
+            <Field name='Tiền trước thuế' value={sub_total} confidence={sub_total_confidence} />
+            <Field name='Tiền thuế' value={vat_amount} confidence={vat_amount_confidence} />
+            <Field name='Tên đơn vị' value={purchaser_name} confidence={purchaser_name_confidence} />
+            {table?.length ? <TableWrapper>
+                <Table dataSource={dataSource} columns={columns} pagination={false}
+                    scroll={{ x: 513 }}
+                />
+            </TableWrapper> : null}
+            <Field name='Tổng cộng' value={total_amount} confidence={total_amount_confidence} />
+            <div className='field'>
+                <div className='field-name'>Tài khoản ngân hàng:</div>
+                <div className='field-value'>
+                    {account_bank.map(item => {
+                        const { account_no, account_no_box, account_no_confidence, bank, bank_box, bank_confidence } = item
+                        return (
+                            <div key={account_no} style={{ marginBottom: 8 }}>
+                                {account_no} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(account_no_confidence)}<br />
+                                {bank && <>{bank} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(bank_confidence)}<br /></>}
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+
         </>
     )
 }
