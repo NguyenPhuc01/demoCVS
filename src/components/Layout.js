@@ -39,7 +39,10 @@ class LayoutComponent extends Component {
         <Sidebar />
         <Layout style={{ background: "#ffffff", overflowY: "scroll" }}>
           <Header2 isMobile={this.state.isMobile} />
-          <Content>{children}</Content>
+          <Content>
+            {children}
+            <Footer2 />
+          </Content>
         </Layout>
       </Layout>
     );

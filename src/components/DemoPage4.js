@@ -1,4 +1,4 @@
-import { Button, Space, Divider } from "antd";
+import { Button, Space, Divider, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby-plugin-intl";
 import DemoFaceMatching from "./FaceMatching/DemoFaceMatching";
@@ -31,6 +31,12 @@ export default function DemoPage2() {
     "face-matching": <DemoFaceMatching result={result} setResult={setResult} />
   };
 
+  const { TabPane } = Tabs;
+
+  function callback(key) {
+    console.log(key);
+  }
+
   return (
     <div className="home-page-wrapper demo-wrapper">
       <div className="home-page demo">
@@ -46,36 +52,38 @@ export default function DemoPage2() {
           Chọn loại giấy tờ
         </Divider>
         <div className="content-wrapper">
-          <div className="content-layout">
-            <p style={{ width: 150 }}>Sản phẩm:</p>
-            <Space
-              size={[8, 8]}
-              wrap
-              align="center"
-              style={{
-                justifyContent: "flex-startr",
-                width: "100%"
-              }}
-            >
-              {types.map(type => {
-                const { id, name, key } = type;
-                return (
-                  <Link to={`?type=${key}`} key={key}>
-                    <Button
-                      key={id}
-                      type={key === currentType ? "primary" : "default"}
-                      onClick={() => {
-                        setCurrentType(key);
-                        setResult(null);
-                      }}
-                    >
-                      {name}
-                    </Button>
-                  </Link>
-                );
-              })}
-            </Space>
-          </div>
+          <Tabs defaultActiveKey="1" onChange={callback}>
+            <TabPane tab="Sản phẩm" key="1">
+              <Space
+                size={[8, 8]}
+                wrap
+                align="center"
+                style={{
+                  justifyContent: "center",
+                  width: "100%",
+                  marginBottom: 10
+                }}
+              >
+                {types.map(type => {
+                  const { id, name, key } = type;
+                  return (
+                    <Link to={`?type=${key}`} key={key}>
+                      <Button
+                        key={id}
+                        type={key === currentType ? "primary" : "default"}
+                        onClick={() => {
+                          setCurrentType(key);
+                          setResult(null);
+                        }}
+                      >
+                        {name}
+                      </Button>
+                    </Link>
+                  );
+                })}
+              </Space>
+            </TabPane>
+          </Tabs>
         </div>
         <Divider
           style={{

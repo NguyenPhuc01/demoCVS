@@ -56,7 +56,7 @@ class Sidebar2 extends React.Component {
         <Menu theme="dark" mode="inline" selectedKeys={[]} className="sidebar">
           <Menu.Item
             key="1"
-            icon={<img src="/Vector1.png" alt="img" />}
+            icon={<img src="/Vector1.svg" alt="img" />}
             className="sidebar"
             style={{ height: 56 }}
           >
@@ -66,7 +66,7 @@ class Sidebar2 extends React.Component {
           </Menu.Item>
           <Menu.Item
             key="2"
-            icon={<img src="/Vector2.png" alt="img" />}
+            icon={<img src="/Vector2.svg" alt="img" />}
             className="sidebar"
             style={{ height: 56 }}
           >
@@ -75,18 +75,8 @@ class Sidebar2 extends React.Component {
             </Link>
           </Menu.Item>
           <Menu.Item
-            key="2"
-            icon={<img src="/Vector3.png" alt="img" />}
-            className="sidebar"
-            style={{ height: 56 }}
-          >
-            <Link to="/ekyc" onClick={() => trackEvent("/")}>
-              eKYC
-            </Link>
-          </Menu.Item>
-          <Menu.Item
             key="3"
-            icon={<img src="/Vector4.png" alt="img" />}
+            icon={<img src="/Vector3.svg" alt="img" />}
             className="sidebar"
             style={{ height: 56 }}
           >
@@ -95,8 +85,18 @@ class Sidebar2 extends React.Component {
             </Link>
           </Menu.Item>
           <Menu.Item
+            key="2"
+            icon={<img src="/Vector4.svg" alt="img" />}
+            className="sidebar"
+            style={{ height: 56 }}
+          >
+            <Link to="/ekyc" onClick={() => trackEvent("/")}>
+              eKYC
+            </Link>
+          </Menu.Item>
+          <Menu.Item
             key="4"
-            icon={<img src="/Vector5.png" alt="img" />}
+            icon={<img src="/Vector5.svg" alt="img" />}
             className="sidebar"
             style={{ height: 56 }}
           >
