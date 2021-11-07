@@ -7,12 +7,11 @@ import "../less/antMotionStyle.less";
 // import ZaloCustomerChat from "./ZaloCustomerChat"
 import { Layout } from "antd";
 import Sidebar from "./Sidebar/Sidebar.js";
-import Footer2 from "./Footer2.js";
+import Footer from "./Footer.js";
 
-const { Sider, Content } = Layout;
+const { Content } = Layout;
 
 const Header2 = loadable(() => import("./Header2"));
-const Footer = loadable(() => import("./Footer"));
 const CustomerChat = loadable(() => import("./CustomerChat"));
 
 let isMobile;
@@ -41,7 +40,7 @@ class LayoutComponent extends Component {
           <Header2 isMobile={this.state.isMobile} />
           <Content>
             {children}
-            <Footer2 />
+            <Footer />
           </Content>
         </Layout>
       </Layout>
