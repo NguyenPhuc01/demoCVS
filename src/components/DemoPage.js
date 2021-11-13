@@ -237,12 +237,14 @@ export default function DemoPage() {
         <Divider
           style={{
             fontSize: 14,
+            fontWeight: 600,
             lineHeight: "22px",
-            color: "rgba(0, 0, 0, 0.45)"
+            fontFamily: "SFProDisplay",
+            color: "rgba(0, 0, 0, 0.85)"
           }}
           orientation="left"
         >
-          Chọn loại giấy tờ
+          Chọn loại tài liệu
         </Divider>
         <div className="content-wrapper">
           <Tabs defaultActiveKey="1" onChange={callback}>
@@ -431,8 +433,10 @@ export default function DemoPage() {
         <Divider
           style={{
             fontSize: 14,
+            fontWeight: 600,
             lineHeight: "22px",
-            color: "rgba(0, 0, 0, 0.45)"
+            fontFamily: "SFProDisplay",
+            color: "rgba(0, 0, 0, 0.85)"
           }}
           orientation="left"
         >

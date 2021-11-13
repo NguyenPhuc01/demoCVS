@@ -42,69 +42,94 @@ class Sidebar2 extends React.Component {
           )
         }
       >
-        <div className="logo">
-          <Link to="/" onClick={() => trackEvent("/")}>
-            <img
-              src="/Web_logo.png"
-              alt="img"
-              width="100%"
-              height="auto"
-              style={{ padding: "24px 12px 20px" }}
-            />
-          </Link>
+        <div
+          style={
+            this.state.collapsed ? { position: "" } : { position: "fixed" }
+          }
+        >
+          {this.state.collapsed ? (
+            <div className="logo_mini">
+              <Link to="/" onClick={() => trackEvent("/")}>
+                <img
+                  src="/Web_logo_mini.svg"
+                  alt="img"
+                  width="100%"
+                  height="85px"
+                  style={{ padding: "20px 8px" }}
+                />
+              </Link>
+            </div>
+          ) : (
+            <div className="logo">
+              <Link to="/" onClick={() => trackEvent("/")}>
+                <img
+                  src="/Web_logo.svg"
+                  alt="img"
+                  width="100%"
+                  height="85px"
+                  style={{ padding: "24px 12px 20px" }}
+                />
+              </Link>
+            </div>
+          )}
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={[]}
+            className="sidebar"
+          >
+            <Menu.Item
+              key="1"
+              icon={<img src="/Vector1.svg" alt="img" />}
+              className="sidebar"
+              style={{ height: 56 }}
+            >
+              <Link to="/" onClick={this.handle}>
+                Trang chủ
+              </Link>
+            </Menu.Item>
+            <Menu.Item
+              key="2"
+              icon={<img src="/Vector2.svg" alt="img" />}
+              className="sidebar"
+              style={{ height: 56 }}
+            >
+              <Link to="/ocr" onClick={() => trackEvent("/")}>
+                Nhận diện ký tự
+              </Link>
+            </Menu.Item>
+            <Menu.Item
+              key="3"
+              icon={<img src="/Vector3.svg" alt="img" />}
+              className="sidebar"
+              style={{ height: 56 }}
+            >
+              <Link to="/facial-recognition" onClick={() => trackEvent("/")}>
+                Nhận diện khuôn mặt
+              </Link>
+            </Menu.Item>
+            <Menu.Item
+              key="2"
+              icon={<img src="/Vector4.svg" alt="img" />}
+              className="sidebar"
+              style={{ height: 56 }}
+            >
+              <Link to="/ekyc" onClick={() => trackEvent("/")}>
+                eKYC
+              </Link>
+            </Menu.Item>
+            <Menu.Item
+              key="4"
+              icon={<img src="/Vector5.svg" alt="img" />}
+              className="sidebar"
+              style={{ height: 56 }}
+            >
+              <Link to="/image-recognition" onClick={() => trackEvent("/")}>
+                Xử lý hình ảnh
+              </Link>
+            </Menu.Item>
+          </Menu>
         </div>
-        <Menu theme="dark" mode="inline" selectedKeys={[]} className="sidebar">
-          <Menu.Item
-            key="1"
-            icon={<img src="/Vector1.svg" alt="img" />}
-            className="sidebar"
-            style={{ height: 56 }}
-          >
-            <Link to="/" onClick={this.handle}>
-              Trang chủ
-            </Link>
-          </Menu.Item>
-          <Menu.Item
-            key="2"
-            icon={<img src="/Vector2.svg" alt="img" />}
-            className="sidebar"
-            style={{ height: 56 }}
-          >
-            <Link to="/ocr" onClick={() => trackEvent("/")}>
-              Nhận diện ký tự
-            </Link>
-          </Menu.Item>
-          <Menu.Item
-            key="3"
-            icon={<img src="/Vector3.svg" alt="img" />}
-            className="sidebar"
-            style={{ height: 56 }}
-          >
-            <Link to="/facial-recognition" onClick={() => trackEvent("/")}>
-              Nhận diện khuôn mặt
-            </Link>
-          </Menu.Item>
-          <Menu.Item
-            key="2"
-            icon={<img src="/Vector4.svg" alt="img" />}
-            className="sidebar"
-            style={{ height: 56 }}
-          >
-            <Link to="/ekyc" onClick={() => trackEvent("/")}>
-              eKYC
-            </Link>
-          </Menu.Item>
-          <Menu.Item
-            key="4"
-            icon={<img src="/Vector5.svg" alt="img" />}
-            className="sidebar"
-            style={{ height: 56 }}
-          >
-            <Link to="/image-recognition" onClick={() => trackEvent("/")}>
-              Xử lý hình ảnh
-            </Link>
-          </Menu.Item>
-        </Menu>
       </Sider>
     );
   }
