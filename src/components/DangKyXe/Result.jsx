@@ -53,7 +53,6 @@ function Field({ name, value, confidence, en }) {
                 </> : null}
             </div>
         </div>
-
     )
 }
 

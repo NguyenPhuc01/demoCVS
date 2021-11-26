@@ -54,13 +54,13 @@ export default function DemoPage2() {
         </Divider>
         <div className="content-wrapper">
           <div className="content-layout">
-            <p style={{ width: 150 }}>Sản phẩm:</p>
+            {/* <p style={{ width: 150 }}>Sản phẩm:</p> */}
             <Space
               size={[8, 8]}
               wrap
               align="center"
               style={{
-                justifyContent: "flex-startr",
+                justifyContent: "center",
                 width: "100%"
               }}
             >

@@ -1,6 +1,6 @@
 import { Button, Space, Divider, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
-import { Link } from "gatsby-plugin-intl";
+import { Link, navigate } from "gatsby-plugin-intl";
 import DemoBSX from "./BSX/DemoBSX";
 import DemoCambodia from "./Cambodia/DemoCambodia";
 import DemoDangKiemXe from "./DangKiemXe/DemoDangKiemXe";
@@ -59,6 +59,7 @@ function useQuery() {
 
 export default function DemoPage() {
   const [currentType, setCurrentType] = useState("CMND/CCCD");
+  const [currentTab, setCurrentTab] = useState("1");
   const [result, setResult] = useState(null);
 
   // let test = () => {
@@ -82,7 +83,7 @@ export default function DemoPage() {
     if (params) {
       setCurrentType(params);
     }
-  }, []);
+  }, [query]);
 
   const demoOptions = {
     "CMND/CCCD": <DemoCMND result={result} setResult={setResult} />,
@@ -227,7 +228,30 @@ export default function DemoPage() {
   const { TabPane } = Tabs;
 
   function callback(key) {
+    setCurrentTab(key);
     console.log(key);
+    switch (key) {
+      case "1":
+        navigate("/ocr?type=CMND/CCCD", { replace: true });
+        return;
+      case "2":
+        navigate("/ocr?type=giay-phep-lai-xe-2", { replace: true });
+        return;
+      case "3":
+        navigate("/ocr/?type=hoa-don-full", { replace: true });
+        return;
+      case "4":
+        navigate("/ocr/?type=giay-ra-vien", { replace: true });
+        return;
+      case "5":
+        navigate("/ocr/?type=id-card-myanmar", { replace: true });
+        return;
+      case "6":
+        navigate("/ocr/?type=bang-tong-quat", { replace: true });
+        return;
+      default:
+        break;
+    }
   }
 
   return (
@@ -247,7 +271,7 @@ export default function DemoPage() {
           Chọn loại tài liệu
         </Divider>
         <div className="content-wrapper">
-          <Tabs defaultActiveKey="1" onChange={callback}>
+          <Tabs defaultActiveKey="1" onChange={callback} activeKey={currentTab}>
             <TabPane tab="Giấy tờ tuỳ thân" key="1">
               <Space
                 size={[8, 8]}
@@ -267,7 +291,6 @@ export default function DemoPage() {
                         key={id}
                         type={key === currentType ? "primary" : "default"}
                         onClick={() => {
-                          setCurrentType(key);
                           setResult(null);
                         }}
                       >
@@ -297,7 +320,6 @@ export default function DemoPage() {
                         key={id}
                         type={key === currentType ? "primary" : "default"}
                         onClick={() => {
-                          setCurrentType(key);
                           setResult(null);
                         }}
                       >
@@ -327,7 +349,6 @@ export default function DemoPage() {
                         key={id}
                         type={key === currentType ? "primary" : "default"}
                         onClick={() => {
-                          setCurrentType(key);
                           setResult(null);
                         }}
                       >
@@ -357,7 +378,6 @@ export default function DemoPage() {
                         key={id}
                         type={key === currentType ? "primary" : "default"}
                         onClick={() => {
-                          setCurrentType(key);
                           setResult(null);
                         }}
                       >
@@ -387,7 +407,6 @@ export default function DemoPage() {
                         key={id}
                         type={key === currentType ? "primary" : "default"}
                         onClick={() => {
-                          setCurrentType(key);
                           setResult(null);
                         }}
                       >
@@ -417,7 +436,6 @@ export default function DemoPage() {
                         key={id}
                         type={key === currentType ? "primary" : "default"}
                         onClick={() => {
-                          setCurrentType(key);
                           setResult(null);
                         }}
                       >
