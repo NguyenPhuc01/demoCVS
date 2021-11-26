@@ -45,7 +45,7 @@ export default function Feature100(props) {
               </div>
               <div>
                 <Styled>Nhận Diện Khuôn Mặt</Styled>
-                <Title>So khớp khuông mặt, Tìm kiếm khuôn mặt, Tạo ảnh đại diện</Title>
+                <Title>So khớp khuôn mặt, Tìm kiếm khuôn mặt, Tạo ảnh đại diện</Title>
               </div>
             </div>
           </Link>
