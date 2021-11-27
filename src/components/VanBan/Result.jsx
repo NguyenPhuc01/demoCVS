@@ -24,7 +24,9 @@ export default function Result({ result, type }) {
         'bvcare-claim': <BVCare data={data2[currentPage].info} type={data2[currentPage].type} />,
         'giay-ra-vien': <GiayRaVien data={data2[currentPage]?.info} />,
         'bao-gia-xe': <BaoGiaXe data={data2[currentPage]?.info} />,
-        'hoa-don-full': <HoaDonFull data={data2[currentPage]?.info} />
+        'hoa-don-full': <HoaDonFull data={data2[currentPage]?.info} />,
+        'so-khai-sinh': <SoKhaiSinh data={data2[currentPage]?.info} />,
+        'de-nghi-thanh-toan': <DeNghiThanhToan data={data2[currentPage]?.info} />,
     }
 
     return (
@@ -603,6 +605,87 @@ function BVCare({ data, type }) {
             {type === 'claim_form' && <BoiThuongBH data={data} />}
             {type === 'bvcard' && <BVCard data={data} />}
             {!type && null}
+        </>
+    )
+}
+
+function SoKhaiSinh({ data }) {
+    const { date, dob, ethnicity, father_address, father_dob, father_ethnicity, father_name, father_nationality, gender, id,
+        mother_name, mother_dob, mother_address, name, nationality, number, place_of_birth, registrant_id, registrant_name, sign_name,
+        mother_ethnicity, mother_nationality
+    } = data || {}
+
+    return (
+        <>
+            <Field name='Số' value={number} />
+            <Field name='Người được đăng ký khai sinh' value={name} />
+            <Field name='Ngày đăng ký' value={date} />
+            <Field name='Ngày sinh' value={dob} />
+            <Field name='Giới tính' value={gender} />
+            <Field name='Dân tộc' value={ethnicity} />
+            <Field name='Quốc tịch' value={nationality} />
+            <Field name='Nơi sinh' value={place_of_birth} />
+            <Field name='Số định danh cá nhân' value={id} />
+            <Field name='Họ tên mẹ' value={mother_name} />
+            <Field name='Năm sinh mẹ' value={mother_dob} />
+            <Field name='Dân tộc mẹ' value={mother_ethnicity} />
+            <Field name='Quốc tịch mẹ' value={mother_nationality} />
+            <Field name='Nơi cu trú mẹ' value={mother_address} />
+            <Field name='Họ tên cha' value={father_name} />
+            <Field name='Năm sinh cha' value={father_dob} />
+            <Field name='Dân tộc cha' value={father_ethnicity} />
+            <Field name='Quốc tịch cha' value={father_nationality} />
+            <Field name='Nơi cu trú cha' value={father_address} />
+            <Field name='Người đi khai sinh' value={registrant_name} />
+            <Field name='Giấy tờ tùy thân' value={registrant_id} />
+            <Field name='Người ký giấy khai sinh' value={sign_name} />
+        </>
+    )
+}
+
+function DeNghiThanhToan({ data }) {
+    const {
+        chu_dau_tu, de_nghi_so, de_nghi_so_ngay, hop_dong_so, hop_dong_so_ngay,
+        kinh_gui, luy_ke, ma_du_an, ma_so_dvsdns, nh_ngoai_nuoc, nh_trong_nuoc,
+        phu_luc_so, phu_luc_so_ngay, so, so_du_tam_ung, stk_ngoai_nuoc,
+        stk_trong_nuoc, ten_du_an, thuoc_ke_hoach_von, thuoc_nguon_von,
+        tong_tien_de_nghi, von_trong_nuoc_tt, von_ngoai_nuoc_tt,
+        thue, chuyen_tien_bao_hanh, so_tra_dvth,
+        von_trong_nuoc_dvth, von_ngoai_nuoc_dvth, ten_dvth, stk_dvth
+    } = data || {}
+
+    return (
+        <>
+            <Field name='Chủ đầu tư' value={chu_dau_tu} />
+            <Field name='Đề nghị số' value={de_nghi_so} />
+            <Field name='Đề nghị số ngày' value={de_nghi_so_ngay} />
+            <Field name='Hợp đồng số' value={hop_dong_so} />
+            <Field name='Hợp đồng số ngày' value={hop_dong_so_ngay} />
+            <Field name='Kính gửi' value={kinh_gui} />
+            <Field name='Lũy kế' value={luy_ke} />
+            <Field name='Mã dự án' value={ma_du_an} />
+            <Field name='Mã số ĐVSDNS' value={ma_so_dvsdns} />
+            <Field name='Vốn ngoài nước tại' value={nh_ngoai_nuoc} />
+            <Field name='Vốn trong nước tại' value={nh_trong_nuoc} />
+            <Field name='Phụ lục số' value={phu_luc_so} />
+            <Field name='Phụ lục số ngày' value={phu_luc_so_ngay} />
+            <Field name='Số' value={so} />
+            <Field name='Số dư tạm ứng' value={so_du_tam_ung} />
+            <Field name='Số tài khoản ngoài nước' value={stk_ngoai_nuoc} />
+            <Field name='Số tài khoản trong nước' value={stk_trong_nuoc} />
+            <Field name='Tên dự án' value={ten_du_an} />
+            <Field name='Thuộc kế hoạch vốn' value={thuoc_ke_hoach_von} />
+            <Field name='Thuộc nguồn vốn' value={thuoc_nguon_von} />
+            <Field name='Tổng tiền đề nghị' value={tong_tien_de_nghi} />
+            <Field name='Vốn trong nước thanh toán' value={von_trong_nuoc_tt} />
+            <Field name='Vốn ngoài nước thanh toán' value={von_ngoai_nuoc_tt} />
+            <Field name='Thuế giá trị gia tăng' value={thue} />
+            <Field name='Chuyển tiền bảo hiểm' value={chuyen_tien_bao_hanh} />
+            <Field name='Số trả đơn vị thụ hưởng' value={so_tra_dvth} />
+            <Field name='Vốn trong nước đơn vị thụ hưởng' value={von_trong_nuoc_dvth} />
+            <Field name='Vốn ngoài nước đơn vị thụ hưởng' value={von_ngoai_nuoc_dvth} />
+            <Field name='Tên đơn vị thụ hưởng' value={ten_dvth} />
+            <Field name='Số tài khoản đơn bị thụ hưởng' value={stk_dvth} />
         </>
     )
 }

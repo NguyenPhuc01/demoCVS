@@ -39,18 +39,22 @@ const types4 = [
   { id: 13, name: "Báo giá xe", key: "bao-gia-xe" },
   { id: 14, name: "BVCare Claim", key: "bvcare-claim" },
   { id: 15, name: "Hoá đơn xe", key: "hoa-don-xe" },
-  { id: 16, name: "Hóa đơn viện phí", key: "pvi-hoa-don" }
+  { id: 16, name: "Hóa đơn viện phí", key: "pvi-hoa-don" },
+  { id: 17, name: "Sổ khai sinh", key: "so-khai-sinh" },
+  { id: 23, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
+  { id: 25, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" }
 ];
 
 const types5 = [
-  { id: 17, name: "ID Card Myanmar", key: "id-card-myanmar" },
-  { id: 18, name: "ID Card Cambodia", key: "id-card-cambodia" },
-  { id: 19, name: "ID Card Philippines", key: "id-card-philippines" }
+  { id: 18, name: "ID Card Myanmar", key: "id-card-myanmar" },
+  { id: 19, name: "ID Card Cambodia", key: "id-card-cambodia" },
+  { id: 20, name: "ID Card Philippines", key: "id-card-philippines" }
 ];
 
 const types6 = [
-  { id: 20, name: "Bảng tổng quát", key: "bang-tong-quat" },
-  { id: 21, name: "Văn bản tổng quát", key: "van-ban-tong-quat" }
+  { id: 21, name: "Bảng tổng quát", key: "bang-tong-quat" },
+  { id: 22, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
+  { id: 24, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" }
 ];
 
 function useQuery() {
@@ -217,6 +221,20 @@ export default function DemoPage() {
       />
     ),
     "pvi-hoa-don": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "so-khai-sinh": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "de-nghi-thanh-toan": (
       <DemoVanBan
         currentType={currentType}
         result={result}
