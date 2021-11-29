@@ -109,7 +109,7 @@ class Sidebar2 extends React.Component {
               </Link>
             </Menu.Item>
             <Menu.Item
-              key="2"
+              key="4"
               icon={<img src="/Vector4.svg" alt="img" />}
               className="sidebar"
               style={{ height: 56 }}
@@ -119,7 +119,7 @@ class Sidebar2 extends React.Component {
               </Link>
             </Menu.Item>
             <Menu.Item
-              key="4"
+              key="5"
               icon={<img src="/Vector5.svg" alt="img" />}
               className="sidebar"
               style={{ height: 56 }}

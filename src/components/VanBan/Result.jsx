@@ -8,13 +8,12 @@ const getConfidence = confidence => {
 }
 
 export default function Result({ result, type }) {
-
     const { result: data, time, data: data2, errorCode, errorMessage } = result || {}
     const [current, setCurrent] = useState('1')
     const [currentPage, setCurrentPage] = useState(0)
 
     const resultOptions = {
-        'van-ban-tong-quat': <VanBanScan data={data || data2[currentPage]} />,
+        'van-ban-tong-quat': <VanBanScan data={data || data2[currentPage]?.result} />,
         'hoa-don-xe': <HoaDonXe data={data2[currentPage].info} />,
         'pvi-hoa-don': <HoaDonXe data={data2[currentPage].info} />,
         'hoa-don-vat': <HoaDonVAT data={data2[currentPage].info} />,
@@ -27,14 +26,14 @@ export default function Result({ result, type }) {
         'hoa-don-full': <HoaDonFull data={data2[currentPage]?.info} />,
         'so-khai-sinh': <SoKhaiSinh data={data2[currentPage]?.info} />,
         'de-nghi-thanh-toan': <DeNghiThanhToan data={data2[currentPage]?.info} />,
+        'dang-ky-du-tuyen' : <DangKyDuTuyen data={data2[currentPage].info} />
     }
-
     return (
         <>
             {(data || data2) ? (
                 <>
                     <div className='result-wrapper' style={{ overflowX: type === 'van-ban-tong-quat' ? 'auto' : 'inherit', padding: current === '2' && 0 }}>
-                        {type === 'bvcare-claim' && <div className='menu'>
+                        {/* {type === 'bvcare-claim' && <div className='menu'>
                             <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]}>
                                 <Menu.Item key="1" >
                                     Thông tin
@@ -43,7 +42,7 @@ export default function Result({ result, type }) {
                                     Hình ảnh
                                 </Menu.Item>
                             </Menu>
-                        </div>}
+                        </div>} */}
                         {current === '1' ?
                             <>
                                 {resultOptions[type]}
@@ -67,7 +66,6 @@ export default function Result({ result, type }) {
 }
 
 function VanBanScan({ data }) {
-
     return (
         <>
             {data.map(item => {
@@ -686,6 +684,27 @@ function DeNghiThanhToan({ data }) {
             <Field name='Vốn ngoài nước đơn vị thụ hưởng' value={von_ngoai_nuoc_dvth} />
             <Field name='Tên đơn vị thụ hưởng' value={ten_dvth} />
             <Field name='Số tài khoản đơn bị thụ hưởng' value={stk_dvth} />
+        </>
+    )
+}
+
+function DangKyDuTuyen({ data }) {
+    const {da_tot_nghiep, dan_toc, dia_chi, gioi_tinh, ho_khau_tt, ho_ten, nganh, nganh_tot_nghiep, ngay_sinh, noi_sinh, sdt, socmnd} = data || {}
+
+    return(
+        <>
+            <Field name="Tốt nghiệp" value={da_tot_nghiep} />
+            <Field name="Dân tộc" value={dan_toc} />
+            <Field name="Địa chỉ" value={dia_chi} />
+            <Field name="Giới tính" value={gioi_tinh} />
+            <Field name="Hộ khẩu thường trú" value={ho_khau_tt} />
+            <Field name="Họ tên" value={ho_ten} />
+            <Field name="Ngành" value={nganh} />
+            <Field name="Ngành tốt nghiệp" value={nganh_tot_nghiep} />
+            <Field name="Ngày sinh" value={ngay_sinh} />
+            <Field name="Nơi sinh" value={noi_sinh} />
+            <Field name="Số điện thoại" value={sdt} />
+            <Field name="Số CMND" value={socmnd} />
         </>
     )
 }

@@ -41,20 +41,21 @@ const types4 = [
   { id: 15, name: "Hoá đơn xe", key: "hoa-don-xe" },
   { id: 16, name: "Hóa đơn viện phí", key: "pvi-hoa-don" },
   { id: 17, name: "Sổ khai sinh", key: "so-khai-sinh" },
-  { id: 23, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
-  { id: 25, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" }
+  { id: 18, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
+  { id: 19, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" }
 ];
 
 const types5 = [
-  { id: 18, name: "ID Card Myanmar", key: "id-card-myanmar" },
-  { id: 19, name: "ID Card Cambodia", key: "id-card-cambodia" },
-  { id: 20, name: "ID Card Philippines", key: "id-card-philippines" }
+  { id: 20, name: "ID Card Myanmar", key: "id-card-myanmar" },
+  { id: 21, name: "ID Card Cambodia", key: "id-card-cambodia" },
+  { id: 22, name: "ID Card Philippines", key: "id-card-philippines" }
 ];
 
 const types6 = [
-  { id: 21, name: "Bảng tổng quát", key: "bang-tong-quat" },
-  { id: 22, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
-  { id: 24, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" }
+  { id: 23, name: "Bảng tổng quát", key: "bang-tong-quat" },
+  { id: 24, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
+  { id: 25, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
+  { id: 26, name: "Giấy đăng ký dự tuyển", key: "dang-ky-du-tuyen" }
 ];
 
 function useQuery() {
@@ -235,6 +236,13 @@ export default function DemoPage() {
       />
     ),
     "de-nghi-thanh-toan": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "dang-ky-du-tuyen": (
       <DemoVanBan
         currentType={currentType}
         result={result}
