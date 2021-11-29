@@ -1,20 +1,20 @@
 var plugins = [{
-      plugin: require('D:/Computervision/cvs-demo-web/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
+      plugin: require('D:/CVS/cvs-demo-web/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
       options: {"plugins":[],"name":"Computer Vision Vietnam","short_name":"CVS","start_url":"/","icon":"static/favicon.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"102b0b762c272c67e3493810c10c9edb"},
     },{
-      plugin: require('D:/Computervision/cvs-demo-web/node_modules/gatsby-plugin-intl/gatsby-ssr'),
-      options: {"plugins":[],"path":"D:\\Computervision\\cvs-demo-web/src/intl","languages":["vi","en"],"defaultLanguage":"vi"},
+      plugin: require('D:/CVS/cvs-demo-web/node_modules/gatsby-plugin-intl/gatsby-ssr'),
+      options: {"plugins":[],"path":"D:\\CVS\\cvs-demo-web/src/intl","languages":["vi","en"],"defaultLanguage":"vi"},
     },{
-      plugin: require('D:/Computervision/cvs-demo-web/node_modules/gatsby-plugin-preload-fonts/gatsby-ssr'),
+      plugin: require('D:/CVS/cvs-demo-web/node_modules/gatsby-plugin-preload-fonts/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('D:/Computervision/cvs-demo-web/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
+      plugin: require('D:/CVS/cvs-demo-web/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
       options: {"plugins":[],"displayName":true,"fileName":true,"minify":true,"namespace":"","transpileTemplateLiterals":true,"pure":false},
     },{
-      plugin: require('D:/Computervision/cvs-demo-web/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
+      plugin: require('D:/CVS/cvs-demo-web/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('D:/Computervision/cvs-demo-web/node_modules/gatsby-plugin-sitemap/gatsby-ssr'),
+      plugin: require('D:/CVS/cvs-demo-web/node_modules/gatsby-plugin-sitemap/gatsby-ssr'),
       options: {"plugins":[],"output":"/sitemap.xml","createLinkInHead":true},
     }]
 // During bootstrap, we write requires at top of this file which looks like:

@@ -22,7 +22,8 @@ const urlOptions = {
   'bao-gia-xe': 'https://demo.computervision.com.vn/api/v2/ocr/document/price_quotation?get_thumb=true',
   'so-khai-sinh': 'https://demo.computervision.com.vn/api/v2/ocr/document/civil_registration?get_thumb=true',
   'de-nghi-thanh-toan': 'https://demo.computervision.com.vn/api/v2/nlpextract/denghithanhtoan?get_thumb=true',
-  'dang-ky-du-tuyen': 'https://demo.computervision.com.vn/api/v2/nlpextract/dangkydutuyen?format_type=file&get_thumb=false'
+  'dang-ky-du-tuyen': 'https://demo.computervision.com.vn/api/v2/nlpextract/dangkydutuyen?get_thumb=true',
+  'a4': 'https://demo.computervision.com.vn/backend/api/v1/request/ocr/v1/get_infor?get_thumb=true'
 }
 
 export default function DemoVanBan({ currentType, result, setResult }) {
@@ -73,7 +74,11 @@ export default function DemoVanBan({ currentType, result, setResult }) {
     const url = urlOptions[currentType]
     if (file) {
       let formData = new FormData()
-      formData.append('img', file)
+      if (currentType === 'a4') {
+        formData.append('file', file)
+      } else {
+        formData.append('img', file)
+      }
       setLoading(true)
       axios({
         method: "post",
@@ -137,21 +142,21 @@ export default function DemoVanBan({ currentType, result, setResult }) {
 
   return (
     <Row gutter={[30, 60]}>
-      <Col md={12} xs={24} style={{position:"relative"}}>
-      {(file || imageUrl) && <>{(currentType === 'van-ban-tong-quat' || currentType === 'bvcare-claim' || currentType === 'pvi-hoa-don' || currentType === 'hoa-don-xe' || currentType === 'so-khai-sinh' || currentType === 'hoa-don-full' || currentType === 'bao-gia-xe' || currentType === 'giay-ra-vien' || currentType === 'de-nghi-thanh-toan') && <div className='menu'>
-              <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]}>
-                <Menu.Item key="1" >
-                  Ảnh gốc
-                </Menu.Item>
-                {result && <Menu.Item key="2">
-                  Ảnh đã xử lý
-                </Menu.Item>}
-                {result?.data?.[pageNumber - 1].info?.image_table && <Menu.Item key="3">
-                  Ảnh bảng
-                </Menu.Item>}
-              </Menu>
-            </div>}
-            </>}
+      <Col md={12} xs={24} style={{ position: "relative" }}>
+        {(file || imageUrl) && <>{(currentType === 'van-ban-tong-quat' || currentType === 'bvcare-claim' || currentType === 'pvi-hoa-don' || currentType === 'hoa-don-xe' || currentType === 'so-khai-sinh' || currentType === 'hoa-don-full' || currentType === 'bao-gia-xe' || currentType === 'giay-ra-vien' || currentType === 'de-nghi-thanh-toan' || currentType === 'dang-ky-du-tuyen' || currentType === 'a4') && <div className='menu'>
+          <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]}>
+            <Menu.Item key="1" >
+              Ảnh gốc
+            </Menu.Item>
+            {result && <Menu.Item key="2">
+              Ảnh đã xử lý
+            </Menu.Item>}
+            {result?.data?.[pageNumber - 1].info?.image_table && <Menu.Item key="3">
+              Ảnh bảng
+            </Menu.Item>}
+          </Menu>
+        </div>}
+        </>}
         <Upload
           multiple={false}
           accept='image/*, application/pdf'
@@ -164,47 +169,52 @@ export default function DemoVanBan({ currentType, result, setResult }) {
           {(file || input) ?
             <div style={{ position: 'relative' }}>
               {error ? <div className='upload-area'>{error}</div> :
-                <> 
-                <div className="result-wrapper">
-                  {current === '3' && <img
-                    src={`data:image/png;base64,${result.data[pageNumber - 1].info.image_table}`}
-                    alt="avatar"
-                    style={{ width: '100%' }}
-                  />}  
-                  {current === '2' &&
-                    <>
-                      <img
-                        src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image : result.data[pageNumber - 1].info?.image}`}
-                        alt="avatar"
-                        style={{ width: '100%' }}
-                      />
-                      {isPDF && <div className='page-controls'>
-                        <Button icon={<LeftOutlined />}
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setPageNumber(page => page - 1)
-                          }}
-                          disabled={pageNumber === 1} />
-                        <span onClick={e => e.stopPropagation()}>{pageNumber} of {numPages}</span>
-                        <Button icon={<RightOutlined />}
-                          onClick={e => {
-                            e.stopPropagation()
-                            setPageNumber(page => page + 1)
-                          }}
-                          disabled={pageNumber === numPages} />
-                      </div>}
-                  </>}                             
-                  {current === '1' && (isPDF ?
+                <>
+                  <div className="result-wrapper">
+                    {current === '3' && <img
+                      src={`data:image/png;base64,${result.data[pageNumber - 1].info.image_table}`}
+                      alt="avatar"
+                      style={{ width: '100%' }}
+                    />}
+                    {current === '2' &&
+                      <>
+                        {currentType === 'a4' ? <img
+                          src={`data:image/png;base64,${result.data[pageNumber - 1]?.data?.image}`}
+                          alt="avatar"
+                          style={{ width: '100%' }}
+                        /> :
+                          <img
+                            src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image : result.data[pageNumber - 1].info?.image}`}
+                            alt="avatar"
+                            style={{ width: '100%' }}
+                          />}
+                        {isPDF && <div className='page-controls'>
+                          <Button icon={<LeftOutlined />}
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setPageNumber(page => page - 1)
+                            }}
+                            disabled={pageNumber === 1} />
+                          <span onClick={e => e.stopPropagation()}>{pageNumber} of {numPages}</span>
+                          <Button icon={<RightOutlined />}
+                            onClick={e => {
+                              e.stopPropagation()
+                              setPageNumber(page => page + 1)
+                            }}
+                            disabled={pageNumber === numPages} />
+                        </div>}
+                      </>}
+                    {current === '1' && (isPDF ?
                       <PreviewPDF file={file} numPages={numPages} setNumPages={setNumPages} pageNumber={pageNumber} setPageNumber={setPageNumber} /> :
                       <img
                         src={file ? URL.createObjectURL(file) : imageUrl}
                         alt="avatar"
                         style={{ width: '100%' }}
                       />)}
-                  <Button icon={<DeleteFilled />} style={{ position: 'absolute', top: 0, right: 0 }} type='primary' onClick={onDelete} />
-                </div>
+                    <Button icon={<DeleteFilled />} style={{ position: 'absolute', top: 0, right: 0 }} type='primary' onClick={onDelete} />
+                  </div>
                 </>
-                }
+              }
 
             </div>
             : <div className='upload-area' >
