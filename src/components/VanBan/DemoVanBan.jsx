@@ -165,7 +165,6 @@ export default function DemoVanBan({ currentType, result, setResult }) {
             <div style={{ position: 'relative' }}>
               {error ? <div className='upload-area'>{error}</div> :
                 <> 
-                <div className="result-wrapper">
                   {current === '3' && <img
                     src={`data:image/png;base64,${result.data[pageNumber - 1].info.image_table}`}
                     alt="avatar"
@@ -202,7 +201,6 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                         style={{ width: '100%' }}
                       />)}
                   <Button icon={<DeleteFilled />} style={{ position: 'absolute', top: 0, right: 0 }} type='primary' onClick={onDelete} />
-                </div>
                 </>
                 }
 
