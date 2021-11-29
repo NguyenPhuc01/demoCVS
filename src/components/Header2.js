@@ -30,7 +30,7 @@ export class Header2 extends Component {
             >
               <Button type="text" style={{ fontSize: 13, color: "red" }}>
                 <img
-                  src="globe-outline.svg"
+                  src="/globe-outline.svg"
                   alt="image"
                   style={{ marginRight: 10 }}
                 />
