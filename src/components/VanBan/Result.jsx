@@ -14,19 +14,20 @@ export default function Result({ result, type }) {
 
     const resultOptions = {
         'van-ban-tong-quat': <VanBanScan data={data || data2[currentPage]?.result} />,
-        'hoa-don-xe': <HoaDonXe data={data2[currentPage].info} />,
-        'pvi-hoa-don': <HoaDonXe data={data2[currentPage].info} />,
-        'hoa-don-vat': <HoaDonVAT data={data2[currentPage].info} />,
-        'bang-ke': <BangKe data={data2[currentPage].info} />,
-        'phieu-kham-benh': <PhieuKhamBenh data={data2[currentPage].info} />,
-        'boi-thuong-bao-hiem': <BoiThuongBH data={data2[currentPage].info} />,
-        'bvcare-claim': <BVCare data={data2[currentPage].info} type={data2[currentPage].type} />,
+        'hoa-don-xe': <HoaDonXe data={data2[currentPage]?.info} />,
+        'pvi-hoa-don': <HoaDonXe data={data2[currentPage]?.info} />,
+        'hoa-don-vat': <HoaDonVAT data={data2[currentPage]?.info} />,
+        'bang-ke': <BangKe data={data2[currentPage]?.info} />,
+        'phieu-kham-benh': <PhieuKhamBenh data={data2[currentPage]?.info} />,
+        'boi-thuong-bao-hiem': <BoiThuongBH data={data2[currentPage]?.info} />,
+        'bvcare-claim': <BVCare data={data2[currentPage]?.info} type={data2[currentPage]?.type} />,
         'giay-ra-vien': <GiayRaVien data={data2[currentPage]?.info} />,
         'bao-gia-xe': <BaoGiaXe data={data2[currentPage]?.info} />,
         'hoa-don-full': <HoaDonFull data={data2[currentPage]?.info} />,
         'so-khai-sinh': <SoKhaiSinh data={data2[currentPage]?.info} />,
         'de-nghi-thanh-toan': <DeNghiThanhToan data={data2[currentPage]?.info} />,
-        'dang-ky-du-tuyen' : <DangKyDuTuyen data={data2[currentPage].info} />
+        'dang-ky-du-tuyen': <DangKyDuTuyen data={data2[currentPage]?.info} />,
+        'a4': <A4 data={data2[currentPage]?.data} type={data2[currentPage]?.type} />
     }
     return (
         <>
@@ -602,7 +603,245 @@ function BVCare({ data, type }) {
             {type === 'passport' && <Passport data={data} />}
             {type === 'claim_form' && <BoiThuongBH data={data} />}
             {type === 'bvcard' && <BVCard data={data} />}
+            {type === 'hospital_discharge_paper' && <GiayRaVien data={data} />}
+            {type === 'invoice' && <HoaDonXe data={data} />}
+            {type === 'list_expense' && <BangKe data={data} />}
+            {type === 'id_doc' && <IdDoc data={data} />}
             {!type && null}
+        </>
+    )
+}
+
+function A4({ data, type, }) {
+    return (
+        <>
+            {type === 'tcc' && <TCC data={data} />}
+            {type === 'cmt' && <CMT data={data} />}
+            {type === 'matsautcc' && <MatSauTCC data={data} />}
+            {type === 'matsaucmt' && <MatSauCMT data={data} />}
+            {type === 'tcc_chip' && <ChipIdCardFrontOld data={data} />}
+            {type === 'matsautcc_chip' && <ChipIdCardBackOld data={data} />}
+            {type === 'blx' && <DrivingLicenseOld data={data} />}
+            {type === 'passport' && <PassportOld data={data} />}
+            {type === 'bvcard' && <BVCard data={data} />}
+            {!type && null}
+        </>
+    )
+}
+
+function DrivingLicenseOld({ data }) {
+    const { id, id_confidence, name, name_confidence, born, born_confidence, class: class_license, class_confidence, nation, nation_confidence,
+        dateissue,
+        dateissue_confidence, duedate, duedate_confidence, address, address_confidence } = data || {}
+
+    return (
+        <>
+            <Field name='Số thẻ' value={id} confidence={id_confidence} />
+            <Field name='Họ tên' value={name} confidence={name_confidence} />
+            <Field name='Ngày sinh' value={born} confidence={born_confidence} />
+            <Field name='Hạng' value={class_license} confidence={class_confidence} />
+            <Field name='Quốc tịch' value={nation} confidence={nation_confidence} />
+            <Field name='Ngày phát hành' value={dateissue} confidence={dateissue_confidence} />
+            <Field name='Giá trị đến ngày' value={duedate} confidence={duedate_confidence} />
+            <Field name='Nơi cư trú' value={address} confidence={address_confidence} />
+        </>
+    )
+}
+
+function ChipIdCardFrontOld({ data }) {
+    const { id, id_confidence, name, name_confidence, born, born_confidence, sex, sex_confidence, quoctich, quoctich_confidence,
+        country, country_confidence,
+        address, address_confidence, diachi_tinh, diachi_tinh_name, diachi_huyen, diachi_huyen_name, diachi_phuong, diachi_phuong_name, duedate, duedate_confidence,
+        quequan_tinh, quequan_tinh_name, quequan_huyen, quequan_huyen_name, quequan_phuong, quequan_phuong_name
+    } = data || {}
+
+    return (
+        <>
+            <Field name='Số thẻ' value={id} confidence={id_confidence} />
+            <Field name='Họ tên' value={name} confidence={name_confidence} />
+            <Field name='Ngày sinh' value={born} confidence={born_confidence} />
+            <Field name='Giới tính' value={sex} confidence={sex_confidence} />
+            <Field name='Quốc tịch' value={quoctich} confidence={quoctich_confidence} />
+            <div className='field'>
+                <div className='field-name'>Quê quán:</div>
+                <div className='field-value'>
+                    {country} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(country_confidence)} <br />
+                    Tỉnh/TP: {quequan_tinh} - {quequan_tinh_name}<br />
+                    Quận/Huyện: {quequan_huyen} - {quequan_huyen_name}<br />
+                    Phường/Xã: {quequan_phuong} - {quequan_phuong_name}
+                </div>
+            </div>
+            <div className='field'>
+                <div className='field-name'>Thường trú:</div>
+                <div className='field-value'>
+                    {address} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(address_confidence)} <br />
+                    Tỉnh/TP: {diachi_tinh} - {diachi_tinh_name}<br />
+                    Quận/Huyện: {diachi_huyen} - {diachi_huyen_name}<br />
+                    Phường/Xã: {diachi_phuong} - {diachi_phuong_name}
+                </div>
+            </div>
+            <Field name='Giá trị đến ngày' value={duedate} confidence={duedate_confidence} />
+        </>
+    )
+}
+
+function ChipIdCardBackOld({ data }) {
+    const { nationality,
+        checksum_final, checksum_final_validate, country, dob, dob_checksum, dob_checksum_validate, document_number, document_number_checksum, document_number_checksum_validate,
+        due_date, due_date_checksum, due_date_checksum_validate, gender, given_name, date, issue_date_confidence, noicap, issued_at_confidence, person_number, sur_name, mrz_confidence
+    } = data || {}
+
+    return (
+        <>
+            <Field name='Checksum final' value={checksum_final} />
+            <Field name='Checksum final validate' value={checksum_final_validate} />
+            <Field name='Country' value={country} />
+            <Field name='Dob' value={dob} />
+            <Field name='Dob checksum' value={dob_checksum} />
+            <Field name='Dob checksum validate' value={dob_checksum_validate} />
+            <Field name='Document number' value={document_number} />
+            <Field name='Document number checksum' value={document_number_checksum} />
+            <Field name='Document number checksum validate' value={document_number_checksum_validate} />
+            <Field name='Due date' value={due_date} />
+            <Field name='Due date checksum' value={due_date_checksum} />
+            <Field name='Due date checksum validate' value={due_date_checksum_validate} />
+            <Field name='Gender' value={gender} />
+            <Field name='Given name' value={given_name} />
+            <Field name='Issue date' value={date} en />
+            <Field name='Issued at' value={noicap} en />
+            <Field name='Nationality' value={nationality} />
+            <Field name='Person number' value={person_number} />
+            <Field name='Sur name' value={sur_name} />
+            {/* <Field name='Mrz confidence' value={`${(mrz_confidence * 100).toFixed(2)}%`} /> */}
+        </>
+    )
+}
+
+function MatSauCMT({ data }) {
+    const { date, issue_date_confidence, noicap, issued_at_confidence, dantoc, ethnicity_confidence, tongiao, religious_confidence } = data || {}
+
+    return (
+        <>
+            <Field name='Dân tộc' value={dantoc} confidence={ethnicity_confidence} />
+            <Field name='Tôn giáo' value={tongiao} confidence={religious_confidence} />
+            <Field name='Ngày cấp' value={date} confidence={issue_date_confidence} />
+            <Field name='Nơi cấp' value={noicap} confidence={issued_at_confidence} />
+        </>
+    )
+}
+
+function MatSauTCC({ data }) {
+    const { date, issue_date_confidence, noicap, issued_at_confidence } = data || {}
+
+    return (
+        <>
+            <Field name='Ngày cấp' value={date} confidence={issue_date_confidence} />
+            <Field name='Nơi cấp' value={noicap} confidence={issued_at_confidence} />
+        </>
+    )
+}
+
+function CMT({ data }) {
+    const { id, id_confidence, name, name_confidence, born, dob_confidence,
+        country, quequan_tinh, quequan_tinh_name, hometown_confidence, quequan_huyen, quequan_huyen_name, quequan_phuong, quequan_phuong_name,
+        address, address_confidence, diachi_tinh, diachi_tinh_name, diachi_huyen, diachi_huyen_name, diachi_phuong, diachi_phuong_name, } = data || {}
+
+    return (
+        <>
+            <Field name='Số thẻ' value={id} confidence={id_confidence} />
+            <Field name='Họ tên' value={name} confidence={name_confidence} />
+            <Field name='Ngày sinh' value={born} confidence={dob_confidence} />
+            <div className='field'>
+                <div className='field-name'>Quê quán:</div>
+                <div className='field-value'>
+                    {country} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(hometown_confidence)} <br />
+                    Tỉnh/TP: {quequan_tinh} - {quequan_tinh_name}<br />
+                    Quận/Huyện: {quequan_huyen} - {quequan_huyen_name}<br />
+                    Phường/Xã: {quequan_phuong} - {quequan_phuong_name}
+                </div>
+            </div>
+            <div className='field'>
+                <div className='field-name'>Thường trú:</div>
+                <div className='field-value'>
+                    {address} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(address_confidence)} <br />
+                    Tỉnh/TP: {diachi_tinh} - {diachi_tinh_name}<br />
+                    Quận/Huyện: {diachi_huyen} - {diachi_huyen_name}<br />
+                    Phường/Xã: {diachi_phuong} - {diachi_phuong_name}
+                </div>
+            </div>
+        </>
+    )
+}
+
+function TCC({ data }) {
+    const { id, id_confidence, name, name_confidence, born, dob_confidence, sex, gender_confidence, quoctich, nationality_confidence, dantoc, ethnicity_confidence,
+        country, quequan_tinh, quequan_tinh_name, hometown_confidence, quequan_huyen, quequan_huyen_name, quequan_phuong, quequan_phuong_name,
+        address, address_confidence, diachi_tinh, diachi_tinh_name, diachi_huyen, diachi_huyen_name, diachi_phuong, diachi_phuong_name, duedate, due_date_confidence } = data || {}
+
+    return (
+        <>
+            <Field name='Số thẻ' value={id} confidence={id_confidence} />
+            <Field name='Họ tên' value={name} confidence={name_confidence} />
+            <Field name='Ngày sinh' value={born} confidence={dob_confidence} />
+            <Field name='Giới tính' value={sex} confidence={gender_confidence} />
+            <Field name='Quốc tịch' value={quoctich} confidence={nationality_confidence} />
+            <Field name='Dân tộc' value={dantoc} confidence={ethnicity_confidence} />
+            <div className='field'>
+                <div className='field-name'>Quê quán:</div>
+                <div className='field-value'>
+                    {country} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(hometown_confidence)} <br />
+                    Tỉnh/TP: {quequan_tinh} - {quequan_tinh_name}<br />
+                    Quận/Huyện: {quequan_huyen} - {quequan_huyen_name}<br />
+                    Phường/Xã: {quequan_phuong} - {quequan_phuong_name}
+                </div>
+            </div>
+            <div className='field'>
+                <div className='field-name'>Thường trú:</div>
+                <div className='field-value'>
+                    {address} <span className='confidence-label'>- Độ tin cậy: </span>{getConfidence(address_confidence)} <br />
+                    Tỉnh/TP: {diachi_tinh} - {diachi_tinh_name}<br />
+                    Quận/Huyện: {diachi_huyen} - {diachi_huyen_name}<br />
+                    Phường/Xã: {diachi_phuong} - {diachi_phuong_name}
+                </div>
+            </div>
+            <Field name='Giá trị đến ngày' value={duedate} confidence={due_date_confidence} />
+        </>
+    )
+}
+
+function PassportOld({ data }) {
+    const { id, id_checksum, id_checksum_validate, person_number, surname, given_name, sex, born, nationality, dob_checksum, dob_checksum_validate,
+        country, duedate, duedate_checksum, duedate_checksum_validate, confidence } = data || {}
+
+    return (
+        <>
+            <Field name='ID' value={id} />
+            <Field name='ID card' value={person_number} />
+            <Field name='Surname' value={surname} />
+            <Field name='Given name' value={given_name} />
+            <Field name='Gender' value={sex} />
+            <Field name='Dob' value={born} />
+            <Field name='Country' value={country} />
+            <Field name='Due date' value={duedate} />
+            <Field name='Nationality' value={nationality} />
+        </>
+    )
+}
+
+
+function IdDoc({ data }) {
+    const { address, address_confidence, dob, dob_confidence, gender, gender_confidence,
+        name, name_confidence, nationality, nationality_confidence
+    } = data || {}
+
+    return (
+        <>
+            <Field name='Họ tên' value={name} confidence={name_confidence} />
+            <Field name='Ngày sinh' value={dob} confidence={dob_confidence} />
+            <Field name='Giới tính' value={gender} confidence={gender_confidence} />
+            <Field name='Quốc tịch' value={nationality} confidence={nationality_confidence} />
+            <Field name='Địa chỉ' value={address} confidence={address_confidence} />
+
         </>
     )
 }
@@ -689,9 +928,9 @@ function DeNghiThanhToan({ data }) {
 }
 
 function DangKyDuTuyen({ data }) {
-    const {da_tot_nghiep, dan_toc, dia_chi, gioi_tinh, ho_khau_tt, ho_ten, nganh, nganh_tot_nghiep, ngay_sinh, noi_sinh, sdt, socmnd} = data || {}
+    const { da_tot_nghiep, dan_toc, dia_chi, gioi_tinh, ho_khau_tt, ho_ten, nganh, nganh_tot_nghiep, ngay_sinh, noi_sinh, sdt, socmnd } = data || {}
 
-    return(
+    return (
         <>
             <Field name="Tốt nghiệp" value={da_tot_nghiep} />
             <Field name="Dân tộc" value={dan_toc} />
