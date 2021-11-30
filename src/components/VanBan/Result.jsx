@@ -754,7 +754,7 @@ function CMT({ data }) {
             <div className='field'>
                 <div className='field-name'>Quê quán:</div>
                 <div className='field-value'>
-                    {country} {getConfidence(hometown_confidence)} <br />
+                    {country} <br />
                     Tỉnh/TP: {quequan_tinh} - {quequan_tinh_name}<br />
                     Quận/Huyện: {quequan_huyen} - {quequan_huyen_name}<br />
                     Phường/Xã: {quequan_phuong} - {quequan_phuong_name}
@@ -763,7 +763,7 @@ function CMT({ data }) {
             <div className='field'>
                 <div className='field-name'>Thường trú:</div>
                 <div className='field-value'>
-                    {address} {getConfidence(address_confidence)} <br />
+                    {address} <br />
                     Tỉnh/TP: {diachi_tinh} - {diachi_tinh_name}<br />
                     Quận/Huyện: {diachi_huyen} - {diachi_huyen_name}<br />
                     Phường/Xã: {diachi_phuong} - {diachi_phuong_name}
