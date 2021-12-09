@@ -27,7 +27,8 @@ export default function Result({ result, type }) {
         'so-khai-sinh': <SoKhaiSinh data={data2[currentPage]?.info} />,
         'de-nghi-thanh-toan': <DeNghiThanhToan data={data2[currentPage]?.info} />,
         'dang-ky-du-tuyen': <DangKyDuTuyen data={data2[currentPage]?.info} />,
-        'a4': <A4 data={data2[currentPage]?.data} type={data2[currentPage]?.type} />
+        'a4': <A4 data={data2[currentPage]?.data} type={data2[currentPage]?.type} />,
+        'bang-tot-nghiep': <BangTotNghiep data={data2[currentPage]?.info} />,
     }
     return (
         <>
@@ -944,6 +945,21 @@ function DangKyDuTuyen({ data }) {
             <Field name="Nơi sinh" value={noi_sinh} />
             <Field name="Số điện thoại" value={sdt} />
             <Field name="Số CMND" value={socmnd} />
+        </>
+    )
+}
+
+function BangTotNghiep({ data }) {
+    const {
+        noi_cap_bang, ho_va_ten, ngay_sinh, nam_tot_nghiep
+    } = data || {}
+
+    return (
+        <>
+            <Field name='Nơi cấp bằng' value={noi_cap_bang} />
+            <Field name='Họ và tên' value={ho_va_ten} />
+            <Field name='Ngày sinh' value={ngay_sinh} />
+            <Field name='Năm tốt nghiệp' value={nam_tot_nghiep} />
         </>
     )
 }

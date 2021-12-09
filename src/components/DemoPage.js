@@ -56,7 +56,8 @@ const types6 = [
   { id: 24, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
   { id: 25, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
   { id: 26, name: "Giấy đăng ký dự tuyển", key: "dang-ky-du-tuyen" },
-  { id: 27, name: "A4", key: "a4" }
+  { id: 27, name: "A4", key: "a4" },
+  { id: 28, name: "Bằng tốt nghiệp ", key: "bang-tot-nghiep" }
 ];
 
 function useQuery() {
@@ -251,6 +252,13 @@ export default function DemoPage() {
       />
     ),
     a4: (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "bang-tot-nghiep": (
       <DemoVanBan
         currentType={currentType}
         result={result}

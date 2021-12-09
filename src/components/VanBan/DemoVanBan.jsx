@@ -23,7 +23,8 @@ const urlOptions = {
   'so-khai-sinh': 'https://demo.computervision.com.vn/api/v2/ocr/document/civil_registration?get_thumb=true',
   'de-nghi-thanh-toan': 'https://demo.computervision.com.vn/api/v2/nlpextract/denghithanhtoan?get_thumb=true',
   'dang-ky-du-tuyen': 'https://demo.computervision.com.vn/api/v2/nlpextract/dangkydutuyen?get_thumb=true',
-  'a4': 'https://demo.computervision.com.vn/backend/api/v1/request/ocr/v1/get_infor?get_thumb=true'
+  'a4': 'https://demo.computervision.com.vn/backend/api/v1/request/ocr/v1/get_infor?get_thumb=true',
+  "bang-tot-nghiep": "https://demo.computervision.com.vn/api/v2/nlpextract/bangtotnghiep?format_type=file&get_thumb=false"
 }
 
 export default function DemoVanBan({ currentType, result, setResult }) {
