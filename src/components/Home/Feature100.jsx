@@ -28,7 +28,7 @@ export default function Feature100(props) {
           <Link to="/ocr" onClick={() => trackEvent("/")}>
             <div className="feature100-content">
               <div>
-                <img src="Frame6.png" alt="image" style={{maxWidth: "100%"}} />
+                <img src="/Frame6.png" alt="image" style={{maxWidth: "100%"}} />
               </div>
               <div>
                 <Styled>Nhận Diện Ký Tự</Styled>
@@ -41,7 +41,7 @@ export default function Feature100(props) {
           <Link to="/facial-recognition" onClick={() => trackEvent("/")}>
             <div className="feature100-content">
               <div>
-                <img src="Frame7.png" alt="image" style={{maxWidth: "100%"}} />
+                <img src="/Frame7.png" alt="image" style={{maxWidth: "100%"}} />
               </div>
               <div>
                 <Styled>Nhận Diện Khuôn Mặt</Styled>
@@ -54,7 +54,7 @@ export default function Feature100(props) {
           <Link to="/ekyc" onClick={() => trackEvent("/")}>
             <div className="feature100-content">
               <div>
-                <img src="Frame9.png" alt="image" style={{maxWidth: "100%"}} />
+                <img src="/Frame9.png" alt="image" style={{maxWidth: "100%"}} />
               </div>
               <div>
                 <Styled>eKYC</Styled>
@@ -67,7 +67,7 @@ export default function Feature100(props) {
           <Link to="/image-recognition" onClick={() => trackEvent("/")}>
             <div className="feature100-content">
               <div>
-                <img src="Frame8.png" alt="image" style={{maxWidth: "100%"}} />
+                <img src="/Frame8.png" alt="image" style={{maxWidth: "100%"}} />
               </div>
               <div>
                 <Styled>Xử Lý Hình Ảnh</Styled>
