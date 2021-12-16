@@ -94,7 +94,7 @@ class Header extends React.Component {
                 >
                   <Button type="text" style={{ fontSize: 13, color: "red" }}>
                     <img
-                      src="globe-outline.png "
+                      src="/globe-outline.png"
                       alt="image"
                       style={{ marginRight: 10 }}
                     />
