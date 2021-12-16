@@ -20,15 +20,15 @@ module.exports = {
     defaultImage: `/site-image.png`
   },
   plugins: [
-    // {
-    //   resolve: `gatsby-plugin-google-gtag`,
-    //   options: {
-    //     trackingIds: ["G-KN187T7J22"],
-    //     pluginConfig: {
-    //       head: true
-    //     }
-    //   }
-    // },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ["AW-660981705"],
+        pluginConfig: {
+          head: true
+        }
+      }
+    },
     {
       resolve: "gatsby-plugin-antd",
       options: {

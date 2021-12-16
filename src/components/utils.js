@@ -71,9 +71,13 @@ const events = new Map([
 ]);
 
 export const trackEvent = key => {
-  // console.log(key);
-  // typeof window !== "undefined" &&
-  //   window.gtag("event", events.get(key), { send_to: "G-KN187T7J22" });
+  if (typeof window === "undefined") return;
+  if (key === "Gửi form liên hệ") {
+    window.gtag("event", "Gửi form liên hệ", {
+      send_to: "AW-660981705/8K4oCJSqkIYDEMmPl7sC"
+    });
+    return;
+  }
 };
 
 const trialEvents = new Map([
