@@ -31,7 +31,7 @@ class IndexPage extends Component {
 
     return (
       <>
-        <SEO title="Computer Vision Vietnam" />
+        <SEO title="eKYC | CVS" />
         <Layout>
           <DemoPage4 />
         </Layout>
