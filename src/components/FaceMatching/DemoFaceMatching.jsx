@@ -156,7 +156,7 @@ export default function DemoFaceMatching({ result, setResult }) {
 
     return (
         <>
-            <ExamImage onChangeFile1={onChangeFile1} onChangeFile2={onChangeFile2} file1={file1} file2={file2} />
+            {/* <ExamImage onChangeFile1={onChangeFile1} onChangeFile2={onChangeFile2} file1={file1} file2={file2} /> */}
             <Row gutter={[30, 60]}>
                 <Col md={12} xs={24}>
                     <Upload

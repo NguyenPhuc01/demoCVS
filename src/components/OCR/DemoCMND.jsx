@@ -108,7 +108,7 @@ export default function DemoCMND({ result, setResult }) {
 
   return (
     <>
-      <ExamImage onChangeFile={onChangeFile} />
+      {/* <ExamImage onChangeFile={onChangeFile} /> */}
       <Row gutter={[30, 60]}>
         <Col md={12} xs={24}>
           <Upload
