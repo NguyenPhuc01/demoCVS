@@ -53,7 +53,6 @@ const SEO = ({ title, description, url, pathname, image }) => {
   const site = results.allSite.edges[0].node.siteMetadata;
   // const twitter = site.social.find(option => option.name === 'twitter') || {};
 
-  console.log(site.siteUrl);
 
   const fullURL = path => (path ? `${site.siteUrl}${path}` : site.siteUrl);
 

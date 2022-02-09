@@ -280,7 +280,6 @@ export default function DemoPage() {
 
   function callback(key) {
     setCurrentTab(key);
-    console.log(key);
     switch (key) {
       case "1":
         navigate("/ocr?type=CMND/CCCD", { replace: true });
