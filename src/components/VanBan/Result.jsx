@@ -619,12 +619,12 @@ function HoaDonFull({ data }) {
     account_bank, table
   } = data || {}
 
-  const columns = table?.[0].map((item, index) => {
+  const columns = table?.[0]?.map((item, index) => {
     const { value, box } = item
     return { title: value, key: index, dataIndex: index }
   })
 
-  const dataSource = table?.slice(1).map(row => {
+  const dataSource = table?.slice(1)?.map(row => {
     let obj = {}
     row.forEach((e, index) => {
       obj[index] = e.value
