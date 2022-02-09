@@ -16,7 +16,7 @@ const urlOptions = {
   'bang-ke': 'https://demo.computervision.com.vn/api/v2/ocr/document/list_expense?get_thumb=false',
   'phieu-kham-benh': 'https://demo.computervision.com.vn/api/v2/ocr/document/examination_form?get_thumb=false',
   'boi-thuong-bao-hiem': 'https://demo.computervision.com.vn/api/v2/ocr/document/claim_form?get_thumb=false',
-  'bvcare-claim': 'https://demo.computervision.com.vn/api/v2/ocr/bvcareclaim?get_thumb=true',
+  'e-claim': 'https://demo.computervision.com.vn/api/v2/ocr/bvcareclaim?get_thumb=true',
   'hoa-don-full': 'https://demo.computervision.com.vn/api/v2/ocr/document/invoice_full?get_thumb=true',
   'giay-ra-vien': 'https://demo.computervision.com.vn/api/v2/ocr/document/hospital_discharge_paper?get_thumb=true',
   'bao-gia-xe': 'https://demo.computervision.com.vn/api/v2/ocr/document/price_quotation?get_thumb=true',
@@ -32,7 +32,7 @@ const urlOptions = {
 }
 
 const showMenuTypes = [
-  'van-ban-tong-quat', 'bvcare-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
+  'van-ban-tong-quat', 'e-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
   'bao-gia-xe', 'giay-ra-vien', 'de-nghi-thanh-toan', 'dang-ky-du-tuyen', 'a4', 'bang-tot-nghiep', 'giay-khai-tu',
   'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap'
 ]

@@ -20,7 +20,7 @@ export default function Result({ result, type }) {
     'bang-ke': <BangKe data={data2[currentPage]?.info} />,
     'phieu-kham-benh': <PhieuKhamBenh data={data2[currentPage]?.info} />,
     'boi-thuong-bao-hiem': <BoiThuongBH data={data2[currentPage]?.info} />,
-    'bvcare-claim': <BVCare data={data2[currentPage]?.info} type={data2[currentPage]?.type} />,
+    'e-claim': <BVCare data={data2[currentPage]?.info} type={data2[currentPage]?.type} />,
     'giay-ra-vien': <GiayRaVien data={data2[currentPage]?.info} />,
     'bao-gia-xe': <BaoGiaXe data={data2[currentPage]?.info} />,
     'hoa-don-full': <HoaDonFull data={data2[currentPage]?.info} />,
@@ -39,7 +39,7 @@ export default function Result({ result, type }) {
       {(data || data2) ? (
         <>
           <div className='result-wrapper' style={{ overflowX: type === 'van-ban-tong-quat' ? 'auto' : 'inherit', padding: current === '2' && 0 }}>
-            {/* {type === 'bvcare-claim' && <div className='menu'>
+            {/* {type === 'e-claim' && <div className='menu'>
                             <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]}>
                                 <Menu.Item key="1" >
                                     Thông tin

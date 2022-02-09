@@ -37,7 +37,7 @@ const types3 = [
 const types4 = [
   { id: 12, name: "Giấy ra viện", key: "giay-ra-vien" },
   { id: 13, name: "Báo giá xe", key: "bao-gia-xe" },
-  { id: 14, name: "eClaim", key: "bvcare-claim" },
+  { id: 14, name: "eClaim", key: "e-claim" },
   { id: 15, name: "Hoá đơn xe", key: "hoa-don-xe" },
   { id: 16, name: "Hóa đơn viện phí", key: "pvi-hoa-don" },
   { id: 17, name: "Sổ khai sinh", key: "so-khai-sinh" },
@@ -206,7 +206,7 @@ export default function DemoPage() {
         setResult={setResult}
       />
     ),
-    "bvcare-claim": (
+    "e-claim": (
       <DemoVanBan
         currentType={currentType}
         result={result}
