@@ -24,8 +24,18 @@ const urlOptions = {
   'de-nghi-thanh-toan': 'https://demo.computervision.com.vn/api/v2/nlpextract/denghithanhtoan?get_thumb=true',
   'dang-ky-du-tuyen': 'https://demo.computervision.com.vn/api/v2/nlpextract/dangkydutuyen?get_thumb=true',
   'a4': 'https://demo.computervision.com.vn/backend/api/v1/request/ocr/v1/get_infor?get_thumb=true',
-  "bang-tot-nghiep": "https://demo.computervision.com.vn/api/v2/nlpextract/bangtotnghiep?format_type=file&get_thumb=false"
+  'bang-tot-nghiep': 'https://demo.computervision.com.vn/api/v2/nlpextract/bangtotnghiep?get_thumb=true',
+  'giay-khai-tu': 'https://demo.computervision.com.vn/api/v2/nlpextract/khaitu?get_thumb=true',
+  'dang-ky-thue': 'https://demo.computervision.com.vn/api/v2/nlpextract/dangkythue?get_thumb=true',
+  'so-ho-khau': 'https://demo.computervision.com.vn/api/v2/ocr/shk?get_thumb=true',
+  'ly-lich-tu-phap': 'https://demo.computervision.com.vn/api/v2/nlpextract/lylichtuphap?get_thumb=true',
 }
+
+const showMenuTypes = [
+  'van-ban-tong-quat', 'bvcare-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
+  'bao-gia-xe', 'giay-ra-vien', 'de-nghi-thanh-toan', 'dang-ky-du-tuyen', 'a4', 'bang-tot-nghiep', 'giay-khai-tu',
+  'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap'
+]
 
 export default function DemoVanBan({ currentType, result, setResult }) {
 
@@ -140,11 +150,10 @@ export default function DemoVanBan({ currentType, result, setResult }) {
     onReset()
   }
 
-
   return (
     <Row gutter={[30, 60]}>
       <Col md={12} xs={24} style={{ position: "relative" }}>
-        {(file || imageUrl) && <>{(currentType === 'van-ban-tong-quat' || currentType === 'bvcare-claim' || currentType === 'pvi-hoa-don' || currentType === 'hoa-don-xe' || currentType === 'so-khai-sinh' || currentType === 'hoa-don-full' || currentType === 'bao-gia-xe' || currentType === 'giay-ra-vien' || currentType === 'de-nghi-thanh-toan' || currentType === 'dang-ky-du-tuyen' || currentType === 'a4') && <div className='menu'>
+        {(file || imageUrl) && <>{(showMenuTypes.includes(currentType)) && <div className='menu'>
           <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]}>
             <Menu.Item key="1" >
               Ảnh gốc
@@ -188,14 +197,14 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                           alt="avatar"
                           style={{ width: '100%' }}
                         />}
-                      {isPDF && <div className='page-controls'>
+                      {(isPDF || result?.data?.length > 1) && <div className='page-controls'>
                         <Button icon={<LeftOutlined />}
                           onClick={(e) => {
                             e.stopPropagation()
                             setPageNumber(page => page - 1)
                           }}
                           disabled={pageNumber === 1} />
-                        <span onClick={e => e.stopPropagation()}>{pageNumber} of {numPages}</span>
+                        <span onClick={e => e.stopPropagation()}>{pageNumber} of {numPages || result?.data?.length}</span>
                         <Button icon={<RightOutlined />}
                           onClick={e => {
                             e.stopPropagation()

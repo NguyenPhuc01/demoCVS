@@ -57,7 +57,11 @@ const types6 = [
   { id: 25, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
   { id: 26, name: "Giấy đăng ký dự tuyển", key: "dang-ky-du-tuyen" },
   { id: 27, name: "A4", key: "a4" },
-  { id: 28, name: "Bằng tốt nghiệp ", key: "bang-tot-nghiep" }
+  { id: 28, name: "Bằng tốt nghiệp", key: "bang-tot-nghiep" },
+  { id: 29, name: "Giấy khai tử", key: "giay-khai-tu" },
+  { id: 30, name: "Đăng ký thuế", key: "dang-ky-thue" },
+  { id: 31, name: "Sổ hộ khẩu", key: "so-ho-khau" },
+  { id: 32, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" }
 ];
 
 function useQuery() {
@@ -264,7 +268,12 @@ export default function DemoPage() {
         result={result}
         setResult={setResult}
       />
-    )
+    ),
+    "giay-khai-tu": <DemoVanBan currentType={currentType} result={result} setResult={setResult} />,
+    "dang-ky-thue": <DemoVanBan currentType={currentType} result={result} setResult={setResult} />,
+    "so-ho-khau": <DemoVanBan currentType={currentType} result={result} setResult={setResult} />,
+    "ly-lich-tu-phap": <DemoVanBan currentType={currentType} result={result} setResult={setResult} />,
+
   };
 
   const { TabPane } = Tabs;
@@ -280,16 +289,16 @@ export default function DemoPage() {
         navigate("/ocr?type=giay-phep-lai-xe-2", { replace: true });
         return;
       case "3":
-        navigate("/ocr/?type=hoa-don-full", { replace: true });
+        navigate("/ocr?type=hoa-don-full", { replace: true });
         return;
       case "4":
-        navigate("/ocr/?type=giay-ra-vien", { replace: true });
+        navigate("/ocr?type=giay-ra-vien", { replace: true });
         return;
       case "5":
-        navigate("/ocr/?type=id-card-myanmar", { replace: true });
+        navigate("/ocr?type=id-card-myanmar", { replace: true });
         return;
       case "6":
-        navigate("/ocr/?type=bang-tong-quat", { replace: true });
+        navigate("/ocr?type=bang-tong-quat", { replace: true });
         return;
       default:
         break;

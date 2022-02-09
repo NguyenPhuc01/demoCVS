@@ -29,6 +29,10 @@ export default function Result({ result, type }) {
     'dang-ky-du-tuyen': <DangKyDuTuyen data={data2[currentPage]?.info} />,
     'a4': <A4 data={data2[currentPage]?.data} type={data2[currentPage]?.type} />,
     'bang-tot-nghiep': <BangTotNghiep data={data2[currentPage]?.info} />,
+    'giay-khai-tu': <GiayKhaiTu data={data2[currentPage]?.info} />,
+    'dang-ky-thue': <DangKyThue data={data2[currentPage]?.info} />,
+    'so-ho-khau': <SoHoKhau data={data2[currentPage]?.info} />,
+    'ly-lich-tu-phap': <LyLichTuPhap data={data2[currentPage]?.info} />,
   }
   return (
     <>
@@ -112,22 +116,9 @@ function BangKe({ data }) {
     patient_name_confidence,
     address_confidence,
     pid_confidence,
-    total_payment_confidence
+    total_payment_confidence,
+    table
   } = data || {}
-
-  const columns = [
-    {
-      title: 'Tên hàng hóa, dịch vụ',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Thành tiền',
-      dataIndex: 'coin',
-      key: 'coin',
-    },
-  ];
-
 
   return (
     <>
@@ -138,8 +129,34 @@ function BangKe({ data }) {
       <Field name='Địa chỉ' value={address} confidence={address_confidence} />
       <Field name='Mã y tế/Mã bệnh nhân' value={pid} confidence={pid_confidence} />
       <Field name='Tổng tiền thanh toán' value={total_payment} confidence={total_payment_confidence} />
-      {info_goods?.length ? <TableWrapper>
-        <Table dataSource={info_goods} columns={columns} pagination={false} />
+      {table?.length ? <>{table.map(item => <BangTongQuat data={item.json} />)}</> : null}
+    </>
+  )
+}
+
+
+function BangTongQuat({ data }) {
+
+  const columns = data?.[0].map((item, index) => {
+    const { value, box } = item
+    return { title: value, key: index, dataIndex: index }
+  })
+
+  const dataSource = data?.slice(1).map(row => {
+    let obj = {}
+    row.forEach((e, index) => {
+      obj[index] = e.value
+    });
+    return obj
+  })
+
+
+  return (
+    <>
+      {data?.length ? <TableWrapper>
+        <Table dataSource={dataSource} columns={columns} pagination={false}
+          scroll={{ x: 513 }}
+        />
       </TableWrapper> : null}
     </>
   )
@@ -263,6 +280,170 @@ function HoaDonVAT({ data }) {
   )
 }
 
+
+function GiayKhaiTu({ data }) {
+  const {
+    so_khai_tu,
+    ngay_khai_tu,
+    ho_va_ten,
+    ngay_sinh,
+    gioitinh,
+    dan_toc,
+    quoc_tich,
+    so_CCCD,
+    ngay_cap_CCCD,
+    nguoi_khai_tu,
+    nguyen_nhan_chet,
+    noi_cap_CCCD,
+    noi_chet,
+    noi_khai_tu,
+    thoi_gian_chet
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số khai tử' value={so_khai_tu} />
+      <Field name='Ngày khai tử' value={ngay_khai_tu} />
+      <Field name='Họ và tên' value={ho_va_ten} />
+      <Field name='Ngày sinh' value={ngay_sinh} />
+      <Field name='Giới tính' value={gioitinh} />
+      <Field name='Dân tộc' value={dan_toc} />
+      <Field name='Quốc tịch' value={quoc_tich} />
+      <Field name='Số CCCD' value={so_CCCD} />
+      <Field name='Ngày cấp CCCD' value={ngay_cap_CCCD} />
+      <Field name='Nơi cấp CCCD' value={noi_cap_CCCD} />
+      <Field name='Nơi chết' value={noi_chet} />
+      <Field name='Nguyên nhân chết' value={nguyen_nhan_chet} />
+      <Field name='Thời gian chết' value={thoi_gian_chet} />
+      <Field name='Người đi khai tử' value={nguoi_khai_tu} />
+      <Field name='Nơi khai tử' value={noi_khai_tu} />
+    </>
+  )
+}
+
+function DangKyThue({ data }) {
+  const {
+    CMND,
+    chung_nhan_DKKD,
+    co_quan_quan_ly,
+    ma_so_thue,
+    ngay_cap_MST,
+    quyet_dinh,
+    ten_nguoi_nop_thue
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Mã số thuế' value={ma_so_thue} />
+      <Field name='Tên người nộp thuế' value={ten_nguoi_nop_thue} />
+      <Field name='Ngày chứng nhận đăng ký kinh doanh' value={chung_nhan_DKKD} />
+      <Field name='Ngày quyết định thành lập' value={quyet_dinh} />
+      <Field name='Số CMND' value={CMND} />
+      <Field name='Ngày cấp mã số thuế' value={ngay_cap_MST} />
+      <Field name='Cơ quan quản lý' value={co_quan_quan_ly} />
+
+    </>
+  )
+}
+
+function SoHoKhau({ data }) {
+  const {
+    chu_ho,
+    chu_ho_confidence,
+    cmnd,
+    cmnd_confidence,
+    dan_toc,
+    dan_toc_confidence,
+    gioi_tinh,
+    gioi_tinh_confidence,
+    ho_va_ten,
+    ho_va_ten_confidence,
+    ngay_sinh,
+    ngay_sinh_confidence,
+    nguyen_quan,
+    nguyen_quan_confidence,
+    quan_he_chu_ho,
+    quan_he_chu_ho_confidence,
+    quoc_tich,
+    quoc_tich_confidence,
+    so,
+    so_confidence,
+    thuong_tru,
+    thuong_tru_confidence,
+    ton_giao,
+    ton_giao_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số' value={so} confidence={so_confidence} />
+      <Field name='Chủ hộ' value={chu_ho} confidence={chu_ho_confidence} />
+      <Field name='Địa chỉ thường trú' value={thuong_tru} confidence={thuong_tru_confidence} />
+      <Field name='Quan hệ với chủ hộ' value={quan_he_chu_ho} confidence={quan_he_chu_ho_confidence} />
+      <Field name='Họ và tên thành viên' value={ho_va_ten} confidence={ho_va_ten_confidence} />
+      <Field name='Ngày sinh của thành viên' value={ngay_sinh} confidence={ngay_sinh_confidence} />
+      <Field name='Giới tính của thành viên' value={gioi_tinh} confidence={gioi_tinh_confidence} />
+      <Field name='Nguyên quán của thành viên' value={nguyen_quan} confidence={nguyen_quan_confidence} />
+      <Field name='Dân tộc của thành viên' value={dan_toc} confidence={dan_toc_confidence} />
+      <Field name='Tôn giáo của thành viên' value={ton_giao} confidence={ton_giao_confidence} />
+      <Field name='Quốc tịch của thành viên' value={quoc_tich} confidence={quoc_tich_confidence} />
+      <Field name='Số CMND của thành viên' value={cmnd} confidence={cmnd_confidence} />
+
+    </>
+  )
+}
+
+function LyLichTuPhap({ data }) {
+  const {
+    an_tich,
+    an_tich_confidence,
+    ho_ten_cha,
+    ho_ten_cha_confidence,
+    ho_ten_me,
+    ho_ten_me_confidence,
+    gioitinh,
+    gioitinh_confidence,
+    ho_ten_vo_chong,
+    ho_ten_vo_chong_confidence,
+    ho_va_ten,
+    ho_va_ten_confidence,
+    nam_tot_nghiep,
+    nam_tot_nghiep_confidence,
+    noi_sinh,
+    noi_sinh_confidence,
+    quoc_tich,
+    quoc_tich_confidence,
+    so_CCCD,
+    so_CCCD_confidence,
+    tam_tru,
+    tam_tru_confidence,
+    thong_tin_CCCD,
+    thong_tin_CCCD_confidence,
+    thuong_tru,
+    thuong_tru_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Án tích' value={an_tich} confidence={an_tich_confidence} />
+      <Field name='Giới tính' value={gioitinh} confidence={gioitinh_confidence} />
+      <Field name='Họ tên cha' value={ho_ten_cha} confidence={ho_ten_cha_confidence} />
+      <Field name='Họ tên mẹ' value={ho_ten_me} confidence={ho_ten_me_confidence} />
+      <Field name='Họ tên vợ chồng' value={ho_ten_vo_chong} confidence={ho_ten_vo_chong_confidence} />
+      <Field name='Họ và tên' value={ho_va_ten} confidence={ho_va_ten_confidence} />
+      <Field name='Năm tốt nghiệp' value={nam_tot_nghiep} confidence={nam_tot_nghiep_confidence} />
+      <Field name='Nơi sinh' value={noi_sinh} confidence={noi_sinh_confidence} />
+      <Field name='Quốc tịch' value={quoc_tich} confidence={quoc_tich_confidence} />
+      <Field name='Số CCCD' value={so_CCCD} confidence={so_CCCD_confidence} />
+      <Field name='Tạm trú' value={tam_tru} confidence={tam_tru_confidence} />
+      <Field name='Thông tin CCCD' value={thong_tin_CCCD} confidence={thong_tin_CCCD_confidence} />
+      <Field name='Thường trú' value={thuong_tru} confidence={thuong_tru_confidence} />
+
+    </>
+  )
+}
+
+
 function PhieuKhamBenh({ data }) {
   const { patient_address, patient_dob, patient_gender, patient_name, patient_nationality,
     patient_address_confidence, patient_dob_confidence, patient_gender_confidence, patient_name_confidence, patient_nationality_confidence,
@@ -321,22 +502,22 @@ function HoaDon({ data }) {
     sub_total, sub_total_box, sub_total_confidence,
     vat_amount, vat_amount_box, vat_amount_confidence,
     purchaser_name, purchaser_name_box, purchaser_name_confidence,
-    account_bank
+    account_bank, table
   } = data || {}
 
-  const columns = [
-    {
-      title: 'Tên hàng hóa, dịch vụ',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Thành tiền',
-      dataIndex: 'coin',
-      key: 'coin',
-    },
-  ];
 
+  const columns = table?.[0]?.map((item, index) => {
+    const { value, box } = item
+    return { title: value, key: index, dataIndex: index }
+  })
+
+  const dataSource = table?.slice(1)?.map(row => {
+    let obj = {}
+    row.forEach((e, index) => {
+      obj[index] = e.value
+    });
+    return obj
+  })
 
   return (
     <>
@@ -350,8 +531,10 @@ function HoaDon({ data }) {
       <Field name='Tiền trước thuế' value={sub_total} confidence={sub_total_confidence} />
       <Field name='Tiền thuế' value={vat_amount} confidence={vat_amount_confidence} />
       <Field name='Tên đơn vị' value={purchaser_name} confidence={purchaser_name_confidence} />
-      {info_goods?.length ? <TableWrapper>
-        <Table dataSource={info_goods} columns={columns} pagination={false} />
+      {table?.length ? <TableWrapper>
+        <Table dataSource={dataSource} columns={columns} pagination={false}
+          scroll={{ x: 513 }}
+        />
       </TableWrapper> : null}
       <Field name='Tổng cộng' value={total_amount} confidence={total_amount_confidence} />
       <div className='field'>
@@ -372,6 +555,7 @@ function HoaDon({ data }) {
     </>
   )
 }
+
 
 function BaoGiaXe({ data }) {
   const { name_of_garage, name_of_garage_confidence, quotation_date, quotation_date_confidence,
