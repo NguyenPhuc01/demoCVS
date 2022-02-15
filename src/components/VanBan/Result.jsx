@@ -685,6 +685,10 @@ function BoiThuongBH({ data }) {
     account_number, account_number_confidence,
     cash, cash_confidence,
     id_card, id_card_confidence,
+    claimant, claimant_confidence,
+    claimant_phone, claimant_phone_confidence,
+    claimant_address, claimant_address_confidence,
+    claimant_email, claimant_email_confidence
 
 
   } = data || {}
@@ -705,6 +709,10 @@ function BoiThuongBH({ data }) {
       <Field name='Số tài khoản' value={account_number} confidence={account_number_confidence} />
       <Field name='Hình thức nhận tiền' value={cash} confidence={cash_confidence} />
       <Field name='Số CMND nhận tiền mặt' value={id_card} confidence={id_card_confidence} />
+      <Field name='Họ tên người yêu cầu' value={claimant} confidence={claimant_confidence} />
+      <Field name='Số điện thoại người yêu cầu' value={claimant_phone} confidence={claimant_phone_confidence} />
+      <Field name='Địa chỉ người yêu cầu' value={claimant_address} confidence={claimant_address_confidence} />
+      <Field name='Email người yêu cầu' value={claimant_email} confidence={claimant_email_confidence} />
     </>
   )
 }
