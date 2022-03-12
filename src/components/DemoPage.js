@@ -60,8 +60,9 @@ const types6 = [
   { id: 28, name: "Bằng tốt nghiệp", key: "bang-tot-nghiep" },
   { id: 29, name: "Giấy khai tử", key: "giay-khai-tu" },
   { id: 30, name: "Đăng ký thuế", key: "dang-ky-thue" },
-  { id: 31, name: "Sổ hộ khẩu", key: "so-ho-khau" },
-  { id: 32, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" }
+  // { id: 31, name: "Sổ hộ khẩu", key: "so-ho-khau" },
+  { id: 32, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" },
+  { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" }
 ];
 
 function useQuery() {
@@ -269,11 +270,41 @@ export default function DemoPage() {
         setResult={setResult}
       />
     ),
-    "giay-khai-tu": <DemoVanBan currentType={currentType} result={result} setResult={setResult} />,
-    "dang-ky-thue": <DemoVanBan currentType={currentType} result={result} setResult={setResult} />,
-    "so-ho-khau": <DemoVanBan currentType={currentType} result={result} setResult={setResult} />,
-    "ly-lich-tu-phap": <DemoVanBan currentType={currentType} result={result} setResult={setResult} />,
-
+    "giay-khai-tu": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "dang-ky-thue": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "so-ho-khau": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "ly-lich-tu-phap": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "ho-so-nhan-su": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    )
   };
 
   const { TabPane } = Tabs;
