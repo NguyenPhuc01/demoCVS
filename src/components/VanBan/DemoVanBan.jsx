@@ -30,13 +30,15 @@ const urlOptions = {
   'dang-ky-thue': 'https://demo.computervision.com.vn/api/v2/nlpextract/dangkythue?get_thumb=true',
   // 'so-ho-khau': 'https://demo.computervision.com.vn/api/v2/ocr/shk?get_thumb=true',
   'ly-lich-tu-phap': 'https://demo.computervision.com.vn/api/v2/nlpextract/lylichtuphap?get_thumb=true',
+  'dcttcn': 'https://demo.computervision.com.vn/api/v2/nlpextract/dcttcn?get_thumb=true',
+  'uy-nhiem-chi': 'https://demo.computervision.com.vn/api/v2/nlpextract/giay_uynhiemchi?get_thumb=true',
   'ho-so-nhan-su': 'https://demo.computervision.com.vn/api/v2/ocr/employee_profile?get_thumb=true',
 }
 
 const showMenuTypes = [
   'van-ban-tong-quat', 'e-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
   'bao-gia-xe', 'giay-ra-vien', 'de-nghi-thanh-toan', 'dang-ky-du-tuyen', 'a4', 'bang-tot-nghiep', 'giay-khai-tu',
-  'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap'
+  'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap', 'dcttcn', 'uy-nhiem-chi'
 ]
 
 export default function DemoVanBan({ currentType, result, setResult }) {

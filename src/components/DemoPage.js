@@ -63,6 +63,8 @@ const types6 = [
   { id: 30, name: "Đăng ký thuế", key: "dang-ky-thue" },
   // { id: 31, name: "Sổ hộ khẩu", key: "so-ho-khau" },
   { id: 32, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" },
+  { id: 35, name: "DCTTCN", key: "dcttcn" },
+  { id: 36, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" },
   { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" }
 ];
 
@@ -279,6 +281,20 @@ export default function DemoPage() {
       />
     ),
     "ly-lich-tu-phap": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    dcttcn: (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "uy-nhiem-chi": (
       <DemoVanBan
         currentType={currentType}
         result={result}

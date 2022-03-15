@@ -33,6 +33,8 @@ export default function Result({ result, type }) {
     'dang-ky-thue': <DangKyThue data={data2[currentPage]?.info} />,
     'so-ho-khau': <SoHoKhau data={data2[currentPage]?.info} />,
     'ly-lich-tu-phap': <LyLichTuPhap data={data2[currentPage]?.info} />,
+    'dcttcn': <DCTTCN data={data2[currentPage]?.info} />,
+    'uy-nhiem-chi': <UyNhiemChi data={data2[currentPage]?.info} />,
   }
   return (
     <>
@@ -443,6 +445,74 @@ function LyLichTuPhap({ data }) {
   )
 }
 
+function DCTTCN({ data }) {
+  const {
+    so_hdbh,
+    so_hdbh_confidence,
+    ten_bmbh,
+    ten_bmbh_confidence,
+    so_cmnd,
+    so_cmnd_confidence,
+    ten_ndbh,
+    ten_ndbh_confidence,
+    diachi,
+    diachi_confidence,
+    dt_nha_rieng,
+    dt_nha_rieng_confidence,
+    dt_di_dong,
+    dt_di_dong_confidence,
+    email,
+    email_confidence,
+    ngay_thang_nam,
+    ngay_thang_nam_confidence,
+    ten_dkkd,
+    ten_dkkd_confidence,
+    ma_so_dkkd,
+    ma_so_dkkd_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số hợp đồng bảo hiểm' value={so_hdbh} confidence={so_hdbh_confidence} />
+      <Field name='Tên bên mua bảo hiểm' value={ten_bmbh} confidence={ten_bmbh_confidence} />
+      <Field name='Số CMND/ CCCD/ Hộ chiếu' value={so_cmnd} confidence={so_cmnd_confidence} />
+      <Field name='Tên NĐBH 1' value={ten_ndbh} confidence={ten_ndbh_confidence} />
+      <Field name='Địa chỉ liên lạc' value={diachi} confidence={diachi_confidence} />
+      <Field name='ĐT nhà riêng' value={dt_nha_rieng} confidence={dt_nha_rieng_confidence} />
+      <Field name='ĐT di động' value={dt_di_dong} confidence={dt_di_dong_confidence} />
+      <Field name='Email' value={email} confidence={email_confidence} />
+      <Field name='Ngày/tháng/năm' value={ngay_thang_nam} confidence={ngay_thang_nam_confidence} />
+      <Field name='Tên ĐDKD' value={ten_dkkd} confidence={ten_dkkd_confidence} />
+      <Field name='Mã số ĐDKD' value={ma_so_dkkd} confidence={ma_so_dkkd_confidence} />
+    </>
+  )
+}
+
+function UyNhiemChi({ data }) {
+  const {
+    hotennguoitratien, hotennguoitratien_confidence,
+    diachinguoitratien, diachinguoitratien_confidence,
+    stk_nguoitratien, stk_nguoitratien_confidence,
+    hotennguoihuong, hotennguoihuong_confidence,
+    diachinguoihuong, diachinguoihuong_confidence,
+    stk_nguoihuong, stk_nguoihuong_confidence,
+    ngaylap, ngaylap_confidence,
+    sotien, sotien_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Họ tên người trả tiền' value={hotennguoitratien} confidence={hotennguoitratien_confidence} />
+      <Field name='Địa chỉ người trả tiền' value={diachinguoitratien} confidence={diachinguoitratien_confidence} />
+      <Field name='Số tài khoản người trả tiền' value={stk_nguoitratien} confidence={stk_nguoitratien_confidence} />
+      <Field name='Họ tên người hưởng' value={hotennguoihuong} confidence={hotennguoihuong_confidence} />
+      <Field name='Địa chỉ người hưởng' value={diachinguoihuong} confidence={diachinguoihuong_confidence} />
+      <Field name='Số tài khoản người hưởng' value={stk_nguoihuong} confidence={stk_nguoihuong_confidence} />
+      <Field name='Ngày lập' value={ngaylap} confidence={ngaylap_confidence} />
+      <Field name='Số tiền bằng số' value={sotien} confidence={sotien_confidence} />
+    </>
+  )
+}
 
 function PhieuKhamBenh({ data }) {
   const { patient_address, patient_dob, patient_gender, patient_name, patient_nationality,
@@ -492,7 +562,6 @@ function GiayRaVien({ data }) {
     </>
   )
 }
-
 
 function HoaDon({ data }) {
   const { date, form, invoice_no, serial_no, supplier, tax_code, total_amount, info_goods,
@@ -555,7 +624,6 @@ function HoaDon({ data }) {
     </>
   )
 }
-
 
 function BaoGiaXe({ data }) {
   const { name_of_garage, name_of_garage_confidence, quotation_date, quotation_date_confidence,
