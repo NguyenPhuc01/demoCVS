@@ -176,10 +176,10 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                 <Menu.Item key="1" >
                   Ảnh gốc
                 </Menu.Item>
-                {result && <Menu.Item key="2">
+                {result?.data && <Menu.Item key="2">
                   Ảnh đã xử lý
                 </Menu.Item>}
-                {result?.data?.[pageNumber - 1].info?.image_table && <Menu.Item key="3">
+                {result?.data?.[pageNumber - 1]?.info?.image_table && <Menu.Item key="3">
                   Ảnh bảng
                 </Menu.Item>}
               </Menu>
