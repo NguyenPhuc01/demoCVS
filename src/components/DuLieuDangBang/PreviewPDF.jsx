@@ -12,13 +12,7 @@ const options = {
     cMapPacked: true,
 };
 
-export default function PreviewPDF({ file, numPages, setNumPages }) {
-    const [pageNumber, setPageNumber] = useState(1);
-
-
-    useEffect(() => {
-        setPageNumber(1)
-    }, [file])
+export default function PreviewPDF({ file, numPages, setNumPages, pageNumber, setPageNumber }) {
 
 
     const onDocumentLoadSuccess = ({ numPages }) => {

@@ -654,7 +654,7 @@ function HoaDonFull({ data }) {
       <div className='field'>
         <div className='field-name'>Tài khoản ngân hàng:</div>
         <div className='field-value'>
-          {account_bank.map(item => {
+          {account_bank?.map(item => {
             const { account_no, account_no_box, account_no_confidence, bank, bank_box, bank_confidence } = item
             return (
               <div key={account_no} style={{ marginBottom: 8 }}>

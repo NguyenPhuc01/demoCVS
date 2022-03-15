@@ -53,6 +53,7 @@ const types5 = [
 
 const types6 = [
   { id: 23, name: "Bảng tổng quát", key: "bang-tong-quat" },
+  { id: 34, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
   { id: 24, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
   { id: 25, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
   { id: 26, name: "Giấy đăng ký dự tuyển", key: "dang-ky-du-tuyen" },
@@ -74,23 +75,9 @@ export default function DemoPage() {
   const [currentTab, setCurrentTab] = useState("1");
   const [result, setResult] = useState(null);
 
-  // let test = () => {
-  //   console.log(window.location.search);
-  // };
-
-  // useEffect(() => {
-  //   let regex = /\?type=([^&]*)/;
-  //   let locationType = window.location.search;
-  //   if (regex.test(locationType)) {
-  //     console.log(locationType.match(regex));
-  //     setCurrentType(locationType.match(regex)[1]);
-  //   }
-  // }, []);
-
   let query = useQuery();
 
   useEffect(() => {
-    // console.log(query.get("type"));
     let params = query.get("type");
     if (params) {
       setCurrentType(params);
@@ -311,6 +298,7 @@ export default function DemoPage() {
 
   function callback(key) {
     setCurrentTab(key);
+    setResult(null);
     switch (key) {
       case "1":
         navigate("/ocr?type=CMND/CCCD", { replace: true });

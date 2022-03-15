@@ -29,10 +29,11 @@ export default function HoSoNhanSuResult({ result }) {
   const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
-    const { id_card, curriculum_vitae, registration_book } = data
+    const { id_card, curriculum_vitae, registration_book, academic_degree } = data
     const initCurrent = id_card.length ? 'id_card' :
       curriculum_vitae.length ? 'curriculum_vitae' :
-        registration_book.length ? 'registration_book' : 'academic_degree'
+        registration_book.length ? 'registration_book' :
+          academic_degree.length ? 'academic_degree' : 'birth_certificate'
     setCurrent(initCurrent)
   }, [data])
 
@@ -41,6 +42,7 @@ export default function HoSoNhanSuResult({ result }) {
     'curriculum_vitae': <SoYeuLyLich data={data[current]?.[0]?.info} />,
     'registration_book': <SoHoKhau data={data[current]?.[0]?.info} />,
     'academic_degree': <BangDaiHoc data={data[current]} />,
+    'birth_certificate': <GiayKhaiSinh data={data[current]} />,
   }
 
   return (
@@ -223,6 +225,52 @@ function BangDaiHoc({ data = [] }) {
       <Field name='Năm tốt nghiệp' value={graduation_year} confidence={graduation_year_confidence} />
       <Field name='Xếp loại' value={award_classification} confidence={award_classification_confidence} />
       <Field name='Trình độ' value={academic_level} confidence={academic_level_confidence} />
+      {data.length > 1 && <div style={{ textAlign: 'center', marginTop: 12 }}>
+        <Space>
+          <Button type='text' style={{ color: '#fff' }} onClick={() => setPage(page => page - 1)} disabled={page === 0} >Trước</Button>
+          <span>{page + 1}/{data.length}</span>
+          <Button type='text' style={{ color: '#fff' }} onClick={() => setPage(page => page + 1)} disabled={page === data.length - 1} >Tiếp</Button>
+        </Space>
+      </div>
+      }
+    </>
+  )
+}
+
+
+function GiayKhaiSinh({ data = [] }) {
+
+  const [page, setPage] = useState(0)
+  const {
+    name, name_confidence,
+    dob, dob_confidence,
+    regis_place, regis_place_confidence,
+    number, number_confidence,
+    number_book, number_book_confidence,
+    father_name, father_name_confidence,
+    father_dob, father_dob_confidence,
+    father_address, father_address_confidence,
+    mother_name, mother_name_confidence,
+    mother_dob, mother_dob_confidence,
+    mother_address, mother_address_confidence,
+    place_of_birth, place_of_birth_confidence,
+    image
+  } = data[page]?.info || {}
+
+  return (
+    <>
+      <Field name='Họ tên' value={name} confidence={name_confidence} />
+      <Field name='Ngày sinh' value={dob} confidence={dob_confidence} />
+      <Field name='Nơi sinh' value={place_of_birth} confidence={place_of_birth_confidence} />
+      <Field name='Nơi Đăng ký' value={regis_place} confidence={regis_place_confidence} />
+      <Field name='Số' value={number} confidence={number_confidence} />
+      <Field name='Số quyển' value={number_book} confidence={number_book_confidence} />
+      <Field name='Họ và Tên Bố' value={father_name} confidence={father_name_confidence} />
+      <Field name='Ngày sinh Bố' value={father_dob} confidence={father_dob_confidence} />
+      <Field name='Nơi cư trú của Bố' value={father_address} confidence={father_address_confidence} />
+      <Field name='Họ và Tên Mẹ' value={mother_name} confidence={mother_name_confidence} />
+      <Field name='Ngày sinh Mẹ' value={mother_dob} confidence={mother_dob_confidence} />
+      <Field name='Nơi cư trú của Mẹ' value={mother_address} confidence={mother_address_confidence} />
       {data.length > 1 && <div style={{ textAlign: 'center', marginTop: 12 }}>
         <Space>
           <Button type='text' style={{ color: '#fff' }} onClick={() => setPage(page => page - 1)} disabled={page === 0} >Trước</Button>
