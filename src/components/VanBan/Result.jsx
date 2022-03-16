@@ -41,16 +41,6 @@ export default function Result({ result, type }) {
       {(data || data2) ? (
         <>
           <div className='result-wrapper' style={{ overflowX: type === 'van-ban-tong-quat' ? 'auto' : 'inherit', padding: current === '2' && 0 }}>
-            {/* {type === 'e-claim' && <div className='menu'>
-                            <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]}>
-                                <Menu.Item key="1" >
-                                    Thông tin
-                                </Menu.Item>
-                                <Menu.Item key="2">
-                                    Hình ảnh
-                                </Menu.Item>
-                            </Menu>
-                        </div>} */}
             {current === '1' ?
               <>
                 {resultOptions[type]}
@@ -285,40 +275,42 @@ function HoaDonVAT({ data }) {
 
 function GiayKhaiTu({ data }) {
   const {
-    so_khai_tu,
-    ngay_khai_tu,
-    ho_va_ten,
-    ngay_sinh,
-    gioitinh,
-    dan_toc,
-    quoc_tich,
-    so_CCCD,
-    ngay_cap_CCCD,
-    nguoi_khai_tu,
-    nguyen_nhan_chet,
-    noi_cap_CCCD,
-    noi_chet,
-    noi_khai_tu,
-    thoi_gian_chet
+    so_khai_tu, so_khai_tu_confidence,
+    ngay_khai_tu, ngay_khai_tu_confidence,
+    ho_va_ten, ho_va_ten_confidence,
+    ngay_sinh, ngay_sinh_confidence,
+    gioi_tinh, gioi_tinh_confidence,
+    dan_toc, dan_toc_confidence,
+    quoc_tich, quoc_tich_confidence,
+    so_dinh_danh, so_dinh_danh_confidence,
+    so_cmnd_nguoi_mat, so_cmnd_nguoi_mat_confidence,
+    noi_cap_cmnd_nguoi_mat, noi_cap_cmnd_nguoi_mat_confidence,
+    ngay_cap_cmnd_nguoi_mat, ngay_cap_cmnd_nguoi_mat_confidence,
+    nguyen_nhan_chet, nguyen_nhan_chet_confidence,
+    nguoi_khai_tu, nguoi_khai_tu_confidence,
+    so_cmnd_nguoi_khai_tu, so_cmnd_nguoi_khai_tu_confidence,
+    noi_cap_cmnd_nguoi_khai_tu, noi_cap_cmnd_nguoi_khai_tu_confidence,
+    ngay_cap_cmnd_nguoi_khai_tu, ngay_cap_cmnd_nguoi_khai_tu_confidence,
   } = data || {}
 
   return (
     <>
-      <Field name='Số khai tử' value={so_khai_tu} />
-      <Field name='Ngày khai tử' value={ngay_khai_tu} />
-      <Field name='Họ và tên' value={ho_va_ten} />
-      <Field name='Ngày sinh' value={ngay_sinh} />
-      <Field name='Giới tính' value={gioitinh} />
-      <Field name='Dân tộc' value={dan_toc} />
-      <Field name='Quốc tịch' value={quoc_tich} />
-      <Field name='Số CCCD' value={so_CCCD} />
-      <Field name='Ngày cấp CCCD' value={ngay_cap_CCCD} />
-      <Field name='Nơi cấp CCCD' value={noi_cap_CCCD} />
-      <Field name='Nơi chết' value={noi_chet} />
-      <Field name='Nguyên nhân chết' value={nguyen_nhan_chet} />
-      <Field name='Thời gian chết' value={thoi_gian_chet} />
-      <Field name='Người đi khai tử' value={nguoi_khai_tu} />
-      <Field name='Nơi khai tử' value={noi_khai_tu} />
+      <Field name='Số khai tử' value={so_khai_tu} confidence={so_khai_tu_confidence} />
+      <Field name='Ngày khai tử' value={ngay_khai_tu} confidence={ngay_khai_tu_confidence} />
+      <Field name='Họ và tên' value={ho_va_ten} confidence={ho_va_ten_confidence} />
+      <Field name='Ngày sinh' value={ngay_sinh} confidence={ngay_sinh_confidence} />
+      <Field name='Giới tính' value={gioi_tinh} confidence={gioi_tinh_confidence} />
+      <Field name='Dân tộc' value={dan_toc} confidence={dan_toc_confidence} />
+      <Field name='Quốc tịch' value={quoc_tich} confidence={quoc_tich_confidence} />
+      <Field name='Số định danh' value={so_dinh_danh} confidence={so_dinh_danh_confidence} />
+      <Field name='Số CMND người mất' value={so_cmnd_nguoi_mat} confidence={so_cmnd_nguoi_mat_confidence} />
+      <Field name='Nơi cấp CMND người mất' value={noi_cap_cmnd_nguoi_mat} confidence={noi_cap_cmnd_nguoi_mat_confidence} />
+      <Field name='Ngày cấp CMND người mất' value={ngay_cap_cmnd_nguoi_mat} confidence={ngay_cap_cmnd_nguoi_mat_confidence} />
+      <Field name='Nguyên nhân chết' value={nguyen_nhan_chet} confidence={nguyen_nhan_chet_confidence} />
+      <Field name='Người đi khai tử' value={nguoi_khai_tu} confidence={nguoi_khai_tu_confidence} />
+      <Field name='Số CMND người khai tử' value={so_cmnd_nguoi_khai_tu} confidence={so_cmnd_nguoi_khai_tu_confidence} />
+      <Field name='Nơi cấp CMND người khai tử' value={noi_cap_cmnd_nguoi_khai_tu} confidence={noi_cap_cmnd_nguoi_khai_tu_confidence} />
+      <Field name='Ngày cấp CMND người khai tử' value={ngay_cap_cmnd_nguoi_khai_tu} confidence={ngay_cap_cmnd_nguoi_khai_tu_confidence} />
     </>
   )
 }
@@ -397,50 +389,36 @@ function SoHoKhau({ data }) {
 
 function LyLichTuPhap({ data }) {
   const {
-    an_tich,
-    an_tich_confidence,
-    ho_ten_cha,
-    ho_ten_cha_confidence,
-    ho_ten_me,
-    ho_ten_me_confidence,
-    gioitinh,
-    gioitinh_confidence,
-    ho_ten_vo_chong,
-    ho_ten_vo_chong_confidence,
-    ho_va_ten,
-    ho_va_ten_confidence,
-    nam_tot_nghiep,
-    nam_tot_nghiep_confidence,
-    noi_sinh,
-    noi_sinh_confidence,
-    quoc_tich,
-    quoc_tich_confidence,
-    so_CCCD,
-    so_CCCD_confidence,
-    tam_tru,
-    tam_tru_confidence,
-    thong_tin_CCCD,
-    thong_tin_CCCD_confidence,
-    thuong_tru,
-    thuong_tru_confidence,
+    an_tich, an_tich_confidence,
+    gioitinh, gioitinh_confidence,
+    ho_va_ten, ho_va_ten_confidence,
+    nam_tot_nghiep, nam_tot_nghiep_confidence,
+    noi_sinh, noi_sinh_confidence,
+    quoc_tich, quoc_tich_confidence,
+    so_CCCD, so_CCCD_confidence,
+    tam_tru, tam_tru_confidence,
+    thuong_tru, thuong_tru_confidence,
+    so, so_confidence,
+    ngaycap, ngaycap_confidence,
+    ngaycap_cmnd, ngaycap_cmnd_confidence,
+    noicap_cmnd, noicap_cmnd_confidence,
   } = data || {}
 
   return (
     <>
+      <Field name='Số lý lịch tư pháp' value={so} confidence={so_confidence} />
+      <Field name='Ngày cấp lý lịch tư pháp' value={ngaycap} confidence={ngaycap_confidence} />
       <Field name='Án tích' value={an_tich} confidence={an_tich_confidence} />
       <Field name='Giới tính' value={gioitinh} confidence={gioitinh_confidence} />
-      <Field name='Họ tên cha' value={ho_ten_cha} confidence={ho_ten_cha_confidence} />
-      <Field name='Họ tên mẹ' value={ho_ten_me} confidence={ho_ten_me_confidence} />
-      <Field name='Họ tên vợ chồng' value={ho_ten_vo_chong} confidence={ho_ten_vo_chong_confidence} />
       <Field name='Họ và tên' value={ho_va_ten} confidence={ho_va_ten_confidence} />
       <Field name='Năm tốt nghiệp' value={nam_tot_nghiep} confidence={nam_tot_nghiep_confidence} />
       <Field name='Nơi sinh' value={noi_sinh} confidence={noi_sinh_confidence} />
       <Field name='Quốc tịch' value={quoc_tich} confidence={quoc_tich_confidence} />
       <Field name='Số CCCD' value={so_CCCD} confidence={so_CCCD_confidence} />
       <Field name='Tạm trú' value={tam_tru} confidence={tam_tru_confidence} />
-      <Field name='Thông tin CCCD' value={thong_tin_CCCD} confidence={thong_tin_CCCD_confidence} />
       <Field name='Thường trú' value={thuong_tru} confidence={thuong_tru_confidence} />
-
+      <Field name='Ngày cấp CMND/Hộ chiếu/TCC' value={ngaycap_cmnd} confidence={ngaycap_cmnd_confidence} />
+      <Field name='Nơi cấp CMND/Hộ chiếu/TCC' value={noicap_cmnd} confidence={noicap_cmnd_confidence} />
     </>
   )
 }
