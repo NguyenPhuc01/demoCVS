@@ -5,14 +5,14 @@ import styled from 'styled-components'
 
 export default function Result({ result }) {
 
-    const { data, errorCode, errorMessage } = result || {}
+    const { result: data, errorCode, errorMessage } = result || {}
 
     return (
         <>
             {data ? (
                 <>
-                    <div className='result-wrapper'>
-
+                    <div className='result-wrapper' style={{ textAlign: 'center' }} >
+                        {data.map(name => <div key={name} >{name}</div>)}
                     </div>
                 </>
             ) :
