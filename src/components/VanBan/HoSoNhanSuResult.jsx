@@ -180,6 +180,12 @@ function SoHoKhau({ data }) {
       // render: (dob, record) => <span>{dob}{renderConfidence(record.dob_confidence)}</span>
     },
     {
+      title: 'Giới tính',
+      dataIndex: 'gender',
+      key: 'gender',
+      // render: (dob, record) => <span>{dob}{renderConfidence(record.dob_confidence)}</span>
+    },
+    {
       title: 'CMT/Hộ chiếu',
       dataIndex: 'id_card',
       key: 'id_card',
