@@ -1196,7 +1196,22 @@ function DonThuoc({ data }) {
     prescription_date_confidence,
     diagnose,
     diagnose_confidence,
+    drug_info
   } = data || {}
+
+
+  const columns = [
+    {
+      title: 'Tên thuốc',
+      key: 'drug',
+      dataIndex: 'drug'
+    },
+    {
+      title: 'Số lượng',
+      key: 'quantity',
+      dataIndex: 'quantity'
+    },
+  ]
 
   return (
     <>
@@ -1208,6 +1223,11 @@ function DonThuoc({ data }) {
       <Field name='Mã y tế' value={pid} confidence={pid_confidence} />
       <Field name='Ngày kê đơn' value={prescription_date} confidence={prescription_date_confidence} />
       <Field name='Chẩn đoán' value={diagnose} confidence={diagnose_confidence} />
+      {drug_info?.length ? <TableWrapper>
+        <Table dataSource={drug_info} columns={columns} pagination={false}
+          scroll={{ x: 513 }}
+        />
+      </TableWrapper> : null}
     </>
   )
 }

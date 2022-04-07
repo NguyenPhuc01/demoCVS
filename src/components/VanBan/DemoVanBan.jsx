@@ -179,7 +179,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                 {result?.data && <Menu.Item key="2">
                   Ảnh đã xử lý
                 </Menu.Item>}
-                {result?.data?.[pageNumber - 1]?.info?.image_table && <Menu.Item key="3">
+                {(result?.data?.[pageNumber - 1]?.info?.image_table || result?.data?.[pageNumber - 1]?.info?.image_drug) && <Menu.Item key="3">
                   Ảnh bảng
                 </Menu.Item>}
               </Menu>
@@ -199,7 +199,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                   {error ? <div className='upload-area'>{error}</div> :
                     <>
                       {current === '3' && <img
-                        src={`data:image/png;base64,${result.data[pageNumber - 1].info.image_table}`}
+                        src={`data:image/png;base64,${result.data[pageNumber - 1].info.image_table || result?.data?.[pageNumber - 1]?.info?.image_drug}`}
                         alt="avatar"
                         style={{ width: '100%' }}
                       />}
