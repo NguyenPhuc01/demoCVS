@@ -1,6 +1,6 @@
 import { DeleteFilled, LoadingOutlined, PlusOutlined } from '@ant-design/icons'
 import { Col, Row, Upload, Button, Input } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { AuthKey } from '../AuthKey';
 import { isURL, trackTrialEvent } from '../utils';
@@ -22,6 +22,13 @@ export default function DemoDangKyDoanhNghiep({ result, setResult }) {
   const [imageUrl, setImageUrl] = useState(null)
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
+
+  const [pageNumber, setPageNumber] = useState(1)
+
+  useEffect(() => {
+    setPageNumber(1)
+  }, [file])
+
 
   const hasData = file && result?.data
 
@@ -102,8 +109,9 @@ export default function DemoDangKyDoanhNghiep({ result, setResult }) {
   const onReset = () => {
     setFile(null)
     setResult(null)
-    setImageUrl(null) 
+    setImageUrl(null)
     setInput('')
+    setPageNumber(1)
   }
 
   const onDelete = e => {
@@ -129,7 +137,7 @@ export default function DemoDangKyDoanhNghiep({ result, setResult }) {
               {error ? <div className='upload-area'>{error}</div> :
                 <>
                   {isPDF ?
-                    <PreviewPDF file={file} numPages={numPages} setNumPages={setNumPages} /> :
+                    <PreviewPDF file={file} numPages={numPages} setNumPages={setNumPages} pageNumber={pageNumber} setPageNumber={setPageNumber} /> :
                     <img src={file ? URL.createObjectURL(file) : imageUrl} alt="avatar" style={{ width: '100%' }} />}
                   <Button icon={<DeleteFilled />} style={{ position: 'absolute', top: 0, right: 0 }} type='primary' onClick={onDelete} />
                 </>
