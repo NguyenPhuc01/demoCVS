@@ -31,6 +31,7 @@ export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, l
     'registration_book': <AnhSoHoKhau data={result?.data[current]} />,
     'academic_degree': <AnhBangDaiHoc data={result?.data[current]} />,
     'birth_certificate': <AnhGiayKhaiSinh data={result?.data[current]} />,
+    'health_certification': <AnhGiayKhamSucKhoe data={result?.data[current]} />,
     'origin': null
   }
 
@@ -58,6 +59,9 @@ export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, l
                 </Menu.Item>}
                 {result?.data?.birth_certificate.length > 0 && <Menu.Item key="birth_certificate">
                   Ảnh giấy khai sinh
+                </Menu.Item>}
+                {result?.data?.health_certification.length > 0 && <Menu.Item key="health_certification">
+                  Ảnh giấy khám sức khỏe
                 </Menu.Item>}
               </Menu>
             </div>
@@ -223,6 +227,39 @@ function AnhGiayKhaiSinh({ data = [] }) {
       </div>}
     </>
   )
+}
+
+
+function AnhGiayKhamSucKhoe({ data = [] }) {
+
+  const [page, setPage] = useState(0)
+  const numPages = 3
+
+  return (
+    <>
+      <img
+        src={`data:image/png;base64,${data[0]['info'][`image_${page}`]}`}
+        alt="avatar"
+        style={{ width: '100%' }}
+      />
+      {<div className='page-controls'>
+        <Button icon={<LeftOutlined />}
+          onClick={(e) => {
+            e.stopPropagation()
+            setPage(page => page - 1)
+          }}
+          disabled={page === 0} />
+        <span onClick={e => e.stopPropagation()}>{page + 1} of {numPages}</span>
+        <Button icon={<RightOutlined />}
+          onClick={e => {
+            e.stopPropagation()
+            setPage(page => page + 1)
+          }}
+          disabled={page === numPages - 1} />
+      </div>}
+    </>
+  )
+
 }
 
 function AnhSoYeuLyLich({ data = [] }) {

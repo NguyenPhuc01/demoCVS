@@ -29,11 +29,13 @@ export default function HoSoNhanSuResult({ result }) {
   const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
-    const { id_card, curriculum_vitae, registration_book, academic_degree } = data
+    const { id_card, curriculum_vitae, registration_book, academic_degree, birth_certificate } = data
     const initCurrent = id_card.length ? 'id_card' :
       curriculum_vitae.length ? 'curriculum_vitae' :
         registration_book.length ? 'registration_book' :
-          academic_degree.length ? 'academic_degree' : 'birth_certificate'
+          academic_degree.length ? 'academic_degree' :
+            birth_certificate.length ? 'birth_certificate' :
+              'health_certification'
     setCurrent(initCurrent)
   }, [data])
 
@@ -43,6 +45,7 @@ export default function HoSoNhanSuResult({ result }) {
     'registration_book': <SoHoKhau data={data[current]?.[0]?.info} />,
     'academic_degree': <BangDaiHoc data={data[current]} />,
     'birth_certificate': <GiayKhaiSinh data={data[current]} />,
+    'health_certification': <GiayKhamSucKhoe data={data[current]} />,
   }
 
   return (
@@ -66,6 +69,12 @@ export default function HoSoNhanSuResult({ result }) {
                 </Menu.Item>}
                 {data['academic_degree'].length > 0 && <Menu.Item key="academic_degree">
                   Bằng đại học
+                </Menu.Item>}
+                {data['birth_certificate'].length > 0 && <Menu.Item key="birth_certificate">
+                  Giấy khai sinh
+                </Menu.Item>}
+                {data['health_certification'].length > 0 && <Menu.Item key="health_certification">
+                  Giấy khám sức khỏe
                 </Menu.Item>}
               </Menu>
             </div>
@@ -288,6 +297,38 @@ function GiayKhaiSinh({ data = [] }) {
     </>
   )
 }
+
+
+function GiayKhamSucKhoe({ data = [] }) {
+
+  const [page, setPage] = useState(0)
+  const {
+    name, name_confidence,
+    dob, dob_confidence,
+    height, height_confidence,
+    weight, weight_confidence,
+    health_condition, health_condition_confidence,
+  } = data[page]?.info || {}
+
+  return (
+    <>
+      <Field name='Họ tên' value={name} confidence={name_confidence} />
+      <Field name='Ngày sinh' value={dob} confidence={dob_confidence} />
+      <Field name='Chiều cao' value={height} confidence={height_confidence} />
+      <Field name='Cân nặng' value={weight} confidence={weight_confidence} />
+      <Field name='Điều kiện sức khỏe' value={health_condition} confidence={health_condition_confidence} />
+      {data.length > 1 && <div style={{ textAlign: 'center', marginTop: 12 }}>
+        <Space>
+          <Button type='text' style={{ color: '#fff' }} onClick={() => setPage(page => page - 1)} disabled={page === 0} >Trước</Button>
+          <span>{page + 1}/{data.length}</span>
+          <Button type='text' style={{ color: '#fff' }} onClick={() => setPage(page => page + 1)} disabled={page === data.length - 1} >Tiếp</Button>
+        </Space>
+      </div>
+      }
+    </>
+  )
+}
+
 
 
 const TableWrapper = styled.div`
