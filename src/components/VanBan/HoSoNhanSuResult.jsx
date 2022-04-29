@@ -135,25 +135,41 @@ function GiayToTuyThan({ data = [] }) {
 function SoYeuLyLich({ data }) {
   const {
     name, name_confidence,
-    dob, dob_confidence,
-    work_experience, work_experience_confidence,
-    father_name, father_name_confidence,
-    mother_name, mother_name_confidence,
-    academic_level, academic_level_confidence,
     name_id, name_id_confidence,
+    dob, dob_confidence,
     dob_id, dob_id_confidence,
+    work_experience, work_experience_confidence,
+    work_experience_id, work_experience_id_confidence,
+    father_name, father_name_confidence,
+    father_name_id, father_name_id_confidence,
+    father_dob, father_dob_confidence,
+    father_dob_id, father_dob_id_confidence,
+    mother_name, mother_name_confidence,
+    mother_name_id, mother_name_id_confidence,
+    mother_dob, mother_dob_confidence,
+    mother_dob_id, mother_dob_id_confidence,
+    academic_level, academic_level_confidence,
+    academic_level_id, academic_level_id_confidence,
   } = data || {}
 
   return (
     <>
       <Field name='Họ tên' value={name} confidence={name_confidence} />
-      <Field name='Trang đi kèm với họ tên được trích xuất' value={name_id} confidence={name_id_confidence} />
+      <Field name='Trang đi kèm với họ tên' value={name_id} confidence={name_id_confidence} />
       <Field name='Ngày sinh' value={dob} confidence={dob_confidence} />
-      <Field name='Trang đi kèm với ngày sinh được trích xuất' value={dob_id} confidence={dob_id_confidence} />
+      <Field name='Trang đi kèm với ngày sinh' value={dob_id} confidence={dob_id_confidence} />
       <Field name='Kinh nghiệm làm việc' value={work_experience} confidence={work_experience_confidence} />
+      <Field name='Trang đi kèm với kinh nghiệm làm việc' value={work_experience_id} confidence={work_experience_id_confidence} />
       <Field name='Họ tên bố' value={father_name} confidence={father_name_confidence} />
+      <Field name='Trang đi kèm với họ tên bố' value={father_name_id} confidence={father_name_id_confidence} />
+      <Field name='Ngày sinh bố' value={father_dob} confidence={father_dob_confidence} />
+      <Field name='Trang đi kèm với ngày sinh bố' value={father_dob_id} confidence={father_dob_id_confidence} />
       <Field name='Họ tên mẹ' value={mother_name} confidence={mother_name_confidence} />
+      <Field name='Trang đi kèm với họ tên mẹ' value={mother_name_id} confidence={mother_name_id_confidence} />
+      <Field name='Ngày sinh mẹ' value={mother_dob} confidence={mother_dob_confidence} />
+      <Field name='Trang đi kèm với ngày sinh mẹ' value={mother_dob_id} confidence={mother_dob_id_confidence} />
       <Field name='Trình độ học vấn' value={academic_level} confidence={academic_level_confidence} />
+      <Field name='Trang đi kèm trình độ học vấn' value={academic_level_id} confidence={academic_level_id_confidence} />
     </>
   )
 }
@@ -259,6 +275,7 @@ function GiayKhaiSinh({ data = [] }) {
   const {
     name, name_confidence,
     dob, dob_confidence,
+    gender, gender_confidence,
     regis_place, regis_place_confidence,
     number, number_confidence,
     number_book, number_book_confidence,
@@ -276,6 +293,7 @@ function GiayKhaiSinh({ data = [] }) {
     <>
       <Field name='Họ tên' value={name} confidence={name_confidence} />
       <Field name='Ngày sinh' value={dob} confidence={dob_confidence} />
+      <Field name='Giới tính' value={gender} confidence={gender_confidence} />
       <Field name='Nơi sinh' value={place_of_birth} confidence={place_of_birth_confidence} />
       <Field name='Nơi Đăng ký' value={regis_place} confidence={regis_place_confidence} />
       <Field name='Số' value={number} confidence={number_confidence} />
@@ -297,7 +315,6 @@ function GiayKhaiSinh({ data = [] }) {
     </>
   )
 }
-
 
 function GiayKhamSucKhoe({ data = [] }) {
 
