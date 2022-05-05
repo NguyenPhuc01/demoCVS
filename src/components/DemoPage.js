@@ -65,7 +65,8 @@ const types6 = [
   { id: 32, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" },
   { id: 35, name: "DCTTCN", key: "dcttcn" },
   { id: 36, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" },
-  { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" }
+  { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" },
+  { id: 37, name: "Giấy đăng ký bảo hiểm", key: "dang-ky-bao-hiem" }
 ];
 
 function useQuery() {
@@ -302,6 +303,13 @@ export default function DemoPage() {
       />
     ),
     "ho-so-nhan-su": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    "dang-ky-bao-hiem": (
       <DemoVanBan
         currentType={currentType}
         result={result}

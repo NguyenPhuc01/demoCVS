@@ -1,23 +1,23 @@
 var plugins = [{
-      plugin: require('E:/CVS/cvs-demo-web/node_modules/gatsby-plugin-google-gtag/gatsby-ssr'),
+      plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-google-gtag/gatsby-ssr'),
       options: {"plugins":[],"trackingIds":["G-KN187T7J22","AW-660981705"],"pluginConfig":{"head":true}},
     },{
-      plugin: require('E:/CVS/cvs-demo-web/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
+      plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
       options: {"plugins":[],"name":"Computer Vision Vietnam","short_name":"CVS","start_url":"/","icon":"static/favicon.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"102b0b762c272c67e3493810c10c9edb"},
     },{
-      plugin: require('E:/CVS/cvs-demo-web/node_modules/gatsby-plugin-intl/gatsby-ssr'),
-      options: {"plugins":[],"path":"E:\\CVS\\cvs-demo-web/src/intl","languages":["vi","en"],"defaultLanguage":"vi"},
+      plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-intl/gatsby-ssr'),
+      options: {"plugins":[],"path":"C:\\Code\\CVS\\cvs-demo-web/src/intl","languages":["vi","en"],"defaultLanguage":"vi"},
     },{
-      plugin: require('E:/CVS/cvs-demo-web/node_modules/gatsby-plugin-preload-fonts/gatsby-ssr'),
+      plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-preload-fonts/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('E:/CVS/cvs-demo-web/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
+      plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
       options: {"plugins":[],"displayName":true,"fileName":true,"minify":true,"namespace":"","transpileTemplateLiterals":true,"pure":false},
     },{
-      plugin: require('E:/CVS/cvs-demo-web/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
+      plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('E:/CVS/cvs-demo-web/node_modules/gatsby-plugin-sitemap/gatsby-ssr'),
+      plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-sitemap/gatsby-ssr'),
       options: {"plugins":[],"output":"/sitemap.xml","createLinkInHead":true},
     }]
 // During bootstrap, we write requires at top of this file which looks like:

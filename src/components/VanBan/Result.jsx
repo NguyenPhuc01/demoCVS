@@ -35,6 +35,7 @@ export default function Result({ result, type }) {
     'ly-lich-tu-phap': <LyLichTuPhap data={data2[currentPage]?.info} />,
     'dcttcn': <DCTTCN data={data2[currentPage]?.info} />,
     'uy-nhiem-chi': <UyNhiemChi data={data2[currentPage]?.info} />,
+    'dang-ky-bao-hiem': <DangKyBaoHiem data={data2[currentPage]?.info} />,
   }
   return (
     <>
@@ -488,6 +489,55 @@ function UyNhiemChi({ data }) {
       <Field name='Số tài khoản người hưởng' value={stk_nguoihuong} confidence={stk_nguoihuong_confidence} />
       <Field name='Ngày lập' value={ngaylap} confidence={ngaylap_confidence} />
       <Field name='Số tiền bằng số' value={sotien} confidence={sotien_confidence} />
+    </>
+  )
+}
+
+
+function DangKyBaoHiem({ data }) {
+  const {
+    MBH_Ten, MBH_Ten_confidence,
+    MBH_NgaySinh, MBH_NgaySinh_confidence,
+    MBH_ID, MBH_ID_confidence,
+    MBH_SDT, MBH_SDT_confidence,
+    MBH_Email, MBH_Email_confidence,
+    MBH_DiaChi, MBH_DiaChi_confidence,
+    DBH_QH, DBH_QH_confidence,
+    DBH_Ten, DBH_Ten_confidence,
+    DBH_NgaySinh, DBH_NgaySinh_confidence,
+    DBH_ID, DBH_ID_confidence,
+    CT_ABYV, CT_ABYV_confidence,
+    CT_ASHP, CT_ASHP_confidence,
+    KKSK_1, KKSK_1_confidence,
+    KKSK_2, KKSK_2_confidence,
+    TenBenh, TenBenh_confidence,
+    Ngay, Ngay_confidence,
+    MaDL, MaDL_confidence,
+    CongTy, CongTy_confidence,
+    Phong, Phong_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Tên người mua' value={MBH_Ten} confidence={MBH_Ten_confidence} />
+      <Field name='Ngày sinh người mua ' value={MBH_NgaySinh} confidence={MBH_NgaySinh_confidence} />
+      <Field name='Số CMND/CCCD/HS/GKS người mua ' value={MBH_ID} confidence={MBH_ID_confidence} />
+      <Field name='Số điện thoại người mua' value={MBH_SDT} confidence={MBH_SDT_confidence} />
+      <Field name='Email người mua' value={MBH_Email} confidence={MBH_Email_confidence} />
+      <Field name='Địa chỉ người mua' value={MBH_DiaChi} confidence={MBH_DiaChi_confidence} />
+      <Field name='Người được bảo hiểm là' value={DBH_QH} confidence={DBH_QH_confidence} />
+      <Field name='Họ tên người được bảo hiểm' value={DBH_Ten} confidence={DBH_Ten_confidence} />
+      <Field name='Ngày sinh người được bảo hiểm' value={DBH_NgaySinh} confidence={DBH_NgaySinh_confidence} />
+      <Field name='Số CMND/CCCD/HS/GKS người được bảo hiểm' value={DBH_ID} confidence={DBH_ID_confidence} />
+      <Field name='Gói ABYV' value={CT_ABYV} confidence={CT_ABYV_confidence} />
+      <Field name='Gói ASHP' value={CT_ASHP} confidence={CT_ASHP_confidence} />
+      <Field name='Kê khai sức khỏe 1' value={KKSK_1} confidence={KKSK_1_confidence} />
+      <Field name='Kê khai sức khỏe 2' value={KKSK_2} confidence={KKSK_2_confidence} />
+      <Field name='Tên bệnh nếu có' value={TenBenh} confidence={TenBenh_confidence} />
+      <Field name='Ngày viết yêu cầu bảo hiểm' value={Ngay} confidence={Ngay_confidence} />
+      <Field name='Mã đại lý' value={MaDL} confidence={MaDL_confidence} />
+      <Field name='Tên công ty' value={CongTy} confidence={CongTy_confidence} />
+      <Field name='Tên phòng' value={Phong} confidence={Phong_confidence} />
     </>
   )
 }
