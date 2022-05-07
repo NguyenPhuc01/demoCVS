@@ -29,13 +29,14 @@ export default function HoSoNhanSuResult({ result }) {
   const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
-    const { id_card, curriculum_vitae, registration_book, academic_degree, birth_certificate } = data
+    const { id_card, curriculum_vitae, registration_book, academic_degree, birth_certificate, health_certification } = data
     const initCurrent = id_card.length ? 'id_card' :
       curriculum_vitae.length ? 'curriculum_vitae' :
         registration_book.length ? 'registration_book' :
           academic_degree.length ? 'academic_degree' :
             birth_certificate.length ? 'birth_certificate' :
-              'health_certification'
+              health_certification.length ? 'health_certification' :
+                'confirm_residence'
     setCurrent(initCurrent)
   }, [data])
 
@@ -46,6 +47,7 @@ export default function HoSoNhanSuResult({ result }) {
     'academic_degree': <BangDaiHoc data={data[current]} />,
     'birth_certificate': <GiayKhaiSinh data={data[current]} />,
     'health_certification': <GiayKhamSucKhoe data={data[current]} />,
+    'confirm_residence': <XacNhanThongTinCuTru data={data[current]} />,
   }
 
   return (
@@ -75,6 +77,9 @@ export default function HoSoNhanSuResult({ result }) {
                 </Menu.Item>}
                 {data['health_certification'].length > 0 && <Menu.Item key="health_certification">
                   Giấy khám sức khỏe
+                </Menu.Item>}
+                {data['confirm_residence'].length > 0 && <Menu.Item key="confirm_residence">
+                  Xác nhận thông tin về cư trú
                 </Menu.Item>}
               </Menu>
             </div>
@@ -334,6 +339,95 @@ function GiayKhamSucKhoe({ data = [] }) {
       <Field name='Chiều cao' value={height} confidence={height_confidence} />
       <Field name='Cân nặng' value={weight} confidence={weight_confidence} />
       <Field name='Điều kiện sức khỏe' value={health_condition} confidence={health_condition_confidence} />
+      {data.length > 1 && <div style={{ textAlign: 'center', marginTop: 12 }}>
+        <Space>
+          <Button type='text' style={{ color: '#fff' }} onClick={() => setPage(page => page - 1)} disabled={page === 0} >Trước</Button>
+          <span>{page + 1}/{data.length}</span>
+          <Button type='text' style={{ color: '#fff' }} onClick={() => setPage(page => page + 1)} disabled={page === data.length - 1} >Tiếp</Button>
+        </Space>
+      </div>
+      }
+    </>
+  )
+}
+
+
+function XacNhanThongTinCuTru({ data = [] }) {
+
+  const [page, setPage] = useState(0)
+  const {
+    name, name_confidence,
+    dob, dob_confidence,
+    gender, gender_confidence,
+    id, id_confidence,
+    ethnicity, ethnicity_confidence,
+    religious, religious_confidence,
+    nationality, nationality_confidence,
+    hometown, hometown_confidence,
+    address, address_confidence,
+    registered_address, registered_address_confidence,
+    current_address, current_address_confidence,
+    head_name, head_name_confidence,
+    head_id, head_id_confidence,
+    relationship_to_head, relationship_to_head_confidence,
+    image,
+    member = []
+  } = data[page]?.info || {}
+
+  const columns = [
+    {
+      title: 'Mối quan hệ với chủ hộ',
+      dataIndex: 'relationship_to_head',
+      key: 'relationship_to_head',
+      // render: (relationship, record) => <span>{relationship}{renderConfidence(record.relationship_to_head_confidence)}</span>
+    },
+    {
+      title: 'Họ tên',
+      dataIndex: 'name',
+      key: 'name',
+      // render: (name, record) => <span>{name}{renderConfidence(record.name_confidence)}</span>
+    },
+    {
+      title: 'Ngày sinh',
+      dataIndex: 'dob',
+      key: 'dob',
+      // render: (dob, record) => <span>{dob}{renderConfidence(record.dob_confidence)}</span>
+    },
+    {
+      title: 'Giới tính',
+      dataIndex: 'gender',
+      key: 'gender',
+      // render: (name, record) => <span>{name}{renderConfidence(record.name_confidence)}</span>
+    },
+    {
+      title: 'CMT/Hộ chiếu',
+      dataIndex: 'id_card',
+      key: 'id_card',
+      // render: (id_card, record) => <span>{id_card}{renderConfidence(record.id_card_confidence)}</span>
+    },
+  ];
+
+  return (
+    <>
+      <Field name='Họ tên' value={name} confidence={name_confidence} />
+      <Field name='Ngày sinh' value={dob} confidence={dob_confidence} />
+      <Field name='Giới tính' value={gender} confidence={gender_confidence} />
+      <Field name='Số định danh' value={id} confidence={id_confidence} />
+      <Field name='Dân tộc' value={ethnicity} confidence={ethnicity_confidence} />
+      <Field name='Tôn giáo' value={religious} confidence={religious_confidence} />
+      <Field name='Quốc tịch' value={nationality} confidence={nationality_confidence} />
+      <Field name='Quê quán' value={hometown} confidence={hometown_confidence} />
+      <Field name='Thường trú' value={address} confidence={address_confidence} />
+      <Field name='Tạm trú' value={registered_address} confidence={registered_address_confidence} />
+      <Field name='Nơi ở hiện tại' value={current_address} confidence={current_address_confidence} />
+      <Field name='Tên chủ hộ' value={head_name} confidence={head_name_confidence} />
+      <Field name='Số định danh chủ hộ' value={head_id} confidence={head_id_confidence} />
+      <Field name='Quan hệ với chủ hộ' value={relationship_to_head} confidence={relationship_to_head_confidence} />
+      {member?.length ? <TableWrapper>
+        <Table dataSource={member} columns={columns} pagination={false}
+          scroll={{ x: 513 }}
+        />
+      </TableWrapper> : null}
       {data.length > 1 && <div style={{ textAlign: 'center', marginTop: 12 }}>
         <Space>
           <Button type='text' style={{ color: '#fff' }} onClick={() => setPage(page => page - 1)} disabled={page === 0} >Trước</Button>

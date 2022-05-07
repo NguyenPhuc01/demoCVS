@@ -32,6 +32,7 @@ export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, l
     'academic_degree': <AnhBangDaiHoc data={result?.data[current]} />,
     'birth_certificate': <AnhGiayKhaiSinh data={result?.data[current]} />,
     'health_certification': <AnhGiayKhamSucKhoe data={result?.data[current]} />,
+    'confirm_residence': <AnhXacNhanThongTinCuTru data={result?.data[current]} />,
     'origin': null
   }
 
@@ -62,6 +63,9 @@ export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, l
                 </Menu.Item>}
                 {result?.data?.health_certification.length > 0 && <Menu.Item key="health_certification">
                   Ảnh giấy khám sức khỏe
+                </Menu.Item>}
+                {result?.data?.confirm_residence.length > 0 && <Menu.Item key="confirm_residence">
+                  Ảnh xác nhận thông tin cư trú
                 </Menu.Item>}
               </Menu>
             </div>
@@ -299,6 +303,40 @@ function AnhSoHoKhau({ data = [] }) {
   const [page, setPage] = useState(0)
   const { image, member = [] } = data[0]?.info || {}
   const images = [image, ...member.map(m => m.image_member)]
+  const numPages = images.length
+
+  return (
+    <>
+      <img
+        src={`data:image/png;base64,${images[page]}`}
+        alt="avatar"
+        style={{ width: '100%' }}
+      />
+      {<div className='page-controls'>
+        <Button icon={<LeftOutlined />}
+          onClick={(e) => {
+            e.stopPropagation()
+            setPage(page => page - 1)
+          }}
+          disabled={page === 0} />
+        <span onClick={e => e.stopPropagation()}>{page + 1} of {numPages}</span>
+        <Button icon={<RightOutlined />}
+          onClick={e => {
+            e.stopPropagation()
+            setPage(page => page + 1)
+          }}
+          disabled={page === numPages - 1} />
+      </div>}
+    </>
+  )
+
+}
+
+function AnhXacNhanThongTinCuTru({ data = [] }) {
+
+  const [page, setPage] = useState(0)
+  const { image, image_member } = data[0]?.info || {}
+  const images = [image, image_member]
   const numPages = images.length
 
   return (
