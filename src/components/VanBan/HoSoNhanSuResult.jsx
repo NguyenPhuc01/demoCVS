@@ -155,6 +155,10 @@ function SoYeuLyLich({ data }) {
     mother_dob_id, mother_dob_id_confidence,
     academic_level, academic_level_confidence,
     academic_level_id, academic_level_id_confidence,
+    place_of_birth, place_of_birth_confidence,
+    place_of_birth_id, place_of_birth_id_confidence,
+    gender, gender_confidence,
+    gender_id, gender_id_confidence,
   } = data || {}
 
   return (
@@ -175,6 +179,10 @@ function SoYeuLyLich({ data }) {
       <Field name='Trang đi kèm với ngày sinh mẹ' value={mother_dob_id} confidence={mother_dob_id_confidence} />
       <Field name='Trình độ học vấn' value={academic_level} confidence={academic_level_confidence} />
       <Field name='Trang đi kèm trình độ học vấn' value={academic_level_id} confidence={academic_level_id_confidence} />
+      <Field name='Nơi sinh' value={place_of_birth} confidence={place_of_birth_confidence} />
+      <Field name='Trang đi kèm nơi sinh' value={place_of_birth_id} confidence={place_of_birth_id_confidence} />
+      <Field name='Giới tính' value={gender} confidence={gender_confidence} />
+      <Field name='Trang đi kèm giới tính' value={gender_id} confidence={gender_id_confidence} />
     </>
   )
 }
