@@ -75,7 +75,8 @@ function DangKyXeMatTruoc({ data }) {
 function DangKyXeMatSau({ data }) {
     const { name, name_confidence, address, address_confidence, engine, engine_confidence, brand, brand_confidence, model, model_confidence,
         color, color_confidence, capacity, capacity_confidence, issued_at, issued_at_confidence, first_issue_date, first_issue_date_confidence,
-        last_issue_date, last_issue_date_confidence, year_of_manufacture, year_of_manufacture_confidence, plate, plate_confidence, chassis, chassis_confidence
+        last_issue_date, last_issue_date_confidence, year_of_manufacture, year_of_manufacture_confidence, plate, plate_confidence, chassis, chassis_confidence,
+        pay_load, pay_load_confidence
     } = data || {}
 
     return (
@@ -93,6 +94,7 @@ function DangKyXeMatSau({ data }) {
             <Field name='Ngày đăng ký cuối cùng' value={last_issue_date} confidence={last_issue_date_confidence} />
             <Field name='Năm sản xuất' value={year_of_manufacture} confidence={year_of_manufacture_confidence} />
             <Field name='Biển số xe' value={plate} confidence={plate_confidence} />
+            <Field name='Trọng tải' value={pay_load} confidence={pay_load_confidence} />
         </>
     )
 }
