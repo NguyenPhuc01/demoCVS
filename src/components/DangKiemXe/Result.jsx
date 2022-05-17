@@ -62,7 +62,11 @@ function DangKiemXe({ data }) {
         inside_cargo_container_dimension, inside_cargo_container_dimension_confidence, manufactured_year, manufactured_year_confidence,
         mark, mark_confidence, model_code, model_code_confidence, modification, modification_confidence, permissible_no, permissible_no_confidence,
         regis_date, regis_date_confidence, registration_number, registration_number_confidence, seri, seri_confidence, tire_size, tire_size_confidence,
-        chassis_number, chassis_number_confidence, engine_number, engine_number_confidence, type, type_confidence, valid_until, valid_until_confidence
+        chassis_number, chassis_number_confidence, engine_number, engine_number_confidence, type, type_confidence, valid_until, valid_until_confidence,
+        wheel_form, wheel_form_confidence,
+        capacity, capacity_confidence,
+        report_number, report_number_confidence,
+        authorized_pay_load, authorized_pay_load_confidence,
     } = data || {}
 
     return (
@@ -87,6 +91,10 @@ function DangKiemXe({ data }) {
             <Field name='Engine number' value={engine_number} confidence={engine_number_confidence} />
             <Field name='Type' value={type} confidence={type_confidence} />
             <Field name='Valid until' value={valid_until} confidence={valid_until_confidence} />
+            <Field name='Wheel form' value={wheel_form} confidence={wheel_form_confidence} />
+            <Field name='Capacity' value={capacity} confidence={capacity_confidence} />
+            <Field name='Report number' value={report_number} confidence={report_number_confidence} />
+            <Field name='Authorized payload' value={authorized_pay_load} confidence={authorized_pay_load_confidence} />
         </>
     )
 }
