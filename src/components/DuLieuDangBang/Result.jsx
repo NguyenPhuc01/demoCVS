@@ -16,9 +16,10 @@ export default function Result({ result, type }) {
         <>
             {data ? (
                 <>
-                    {type === 'bang-tong-quat' || type === 'bao-cao-tai-chinh' ?
+                    {type === 'bang-tong-quat' ?
                         <BangTongQuatResult data={data} type={type} /> :
-                        <ExcelResult data={data} />}
+                        type === 'bao-cao-tai-chinh' ? <BangTongQuatResult data={data.origin} type={type} /> :
+                            <ExcelResult data={data} />}
                 </>
             ) :
                 <div className='error'>

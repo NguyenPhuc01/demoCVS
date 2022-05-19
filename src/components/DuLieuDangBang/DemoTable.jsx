@@ -260,7 +260,7 @@ export default function DemoTable({ currentType, result, setResult }) {
         </Upload>
         <div style={{ marginTop: isPDF ? 60 : 24, textAlign: 'center' }}
         >
-          {isLargePDF && <div style={{ color: '#EC1C2A' }} >Chỉ có thể tải lên tối đa 10 trang PDF</div>}
+          {isLargePDF && <div style={{ color: '#EC1C2A' }} >Chỉ có thể tải lên tối đa 5 trang PDF</div>}
           <Button
             onClick={(hasData || isLargePDF) ? onReset : onSubmit}
             loading={loading}
