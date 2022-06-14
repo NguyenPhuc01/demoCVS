@@ -45,8 +45,8 @@ export const Nav40DataSource = {
       {
         name: "item7",
         className: "header3-item",
-        title: "+84 886625220",
-        href: "tel:+84886625220",
+        title: "0982 925 220",
+        href: "tel:0982925220",
         target: "_blank"
       },
       {
@@ -706,10 +706,10 @@ export const Footer10DataSource = {
                   <PhoneFilled />
                   <OutboundLink
                     target="_blank"
-                    href="tel:+84886625220"
+                    href="tel:0982925220"
                     style={{ padding: 0 }}
                   >
-                    +84 886625220
+                    0982 925 220
                   </OutboundLink>
                 </>
               )

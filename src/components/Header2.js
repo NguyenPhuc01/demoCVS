@@ -69,12 +69,12 @@ export class Header2 extends Component {
             >
               <div style={{ marginBottom: 20, marginLeft: 24 }}>
                 <OutboundLink
-                  href="tel:+84886625220"
+                  href="tel:0982925220"
                   target="_blank"
                   style={{ color: "#EC1C2A" }}
                   rel="noopener noreferrer"
                 >
-                  +84 886625220
+                  0982 925 220
                 </OutboundLink>
               </div>
               <div style={{ marginBottom: 20, marginLeft: 24 }}>
