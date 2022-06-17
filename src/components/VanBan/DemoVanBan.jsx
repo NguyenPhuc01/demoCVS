@@ -34,12 +34,13 @@ const urlOptions = {
   'uy-nhiem-chi': 'https://demo.computervision.com.vn/api/v2/nlpextract/giay_uynhiemchi?get_thumb=true',
   'ho-so-nhan-su': 'https://demo.computervision.com.vn/api/v2/ocr/employee_profile?get_thumb=true',
   'dang-ky-bao-hiem': 'https://demo.computervision.com.vn/api/v2/ocr/ycbh?get_thumb=true',
+  'the-tong-quat': 'https://demo.computervision.com.vn/api/v2/ocr/card_general?get_thumb=true',
 }
 
 const showMenuTypes = [
   'van-ban-tong-quat', 'e-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
   'bao-gia-xe', 'giay-ra-vien', 'de-nghi-thanh-toan', 'dang-ky-du-tuyen', 'a4', 'bang-tot-nghiep', 'giay-khai-tu',
-  'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap', 'dcttcn', 'uy-nhiem-chi', 'dang-ky-bao-hiem'
+  'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap', 'dcttcn', 'uy-nhiem-chi', 'dang-ky-bao-hiem', 'the-tong-quat'
 ]
 
 export default function DemoVanBan({ currentType, result, setResult }) {
@@ -212,7 +213,9 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                             style={{ width: '100%' }}
                           /> :
                             <img
-                              src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image : result.data[pageNumber - 1].info?.image}`}
+                              src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image
+                                : currentType === 'the-tong-quat' ? result.data.img
+                                  : result.data[pageNumber - 1].info?.image}`}
                               alt="avatar"
                               style={{ width: '100%' }}
                             />}
