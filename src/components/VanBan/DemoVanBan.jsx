@@ -215,7 +215,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                             <img
                               src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image
                                 : currentType === 'the-tong-quat' ? result.data.img
-                                  : result.data[pageNumber - 1].info?.image}`}
+                                  : result.data[pageNumber - 1]?.info?.image}`}
                               alt="avatar"
                               style={{ width: '100%' }}
                             />}

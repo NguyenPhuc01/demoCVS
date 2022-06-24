@@ -103,7 +103,7 @@ function Field({ name, value, confidence, en }) {
 }
 
 function BangKe({ data }) {
-  const { medical_facility, table_number, table_date, patient_name, address, pid, total_payment, info_goods,
+  const { medical_facility, table_number, table_date, patient_name, address, pid, total_payment,
     medical_facility_confidence,
     table_number_confidence,
     table_date_confidence,
@@ -123,17 +123,21 @@ function BangKe({ data }) {
       <Field name='Địa chỉ' value={address} confidence={address_confidence} />
       <Field name='Mã y tế/Mã bệnh nhân' value={pid} confidence={pid_confidence} />
       <Field name='Tổng tiền thanh toán' value={total_payment} confidence={total_payment_confidence} />
-      {table?.length ? <>{table.map(item => <BangTongQuat data={item.json} />)}</> : null}
+      {table?.info_table?.length ? <BangTongQuat
+        data={table.info_table.flatMap(table => table)}
+        scroll={{ x: 513, y: 400 }}
+        type='bang-ke'
+      /> : null}
     </>
   )
 }
 
 
-function BangTongQuat({ data }) {
+function BangTongQuat({ data, type, ...props }) {
 
   const columns = data?.[0].map((item, index) => {
     const { value, box } = item
-    return { title: value, key: index, dataIndex: index }
+    return { title: value, key: index, dataIndex: index, width: (type === 'bang-ke' && index === 1) ? 140 : 'auto' }
   })
 
   const dataSource = data?.slice(1).map(row => {
@@ -150,6 +154,7 @@ function BangTongQuat({ data }) {
       {data?.length ? <TableWrapper>
         <Table dataSource={dataSource} columns={columns} pagination={false}
           scroll={{ x: 513 }}
+          {...props}
         />
       </TableWrapper> : null}
     </>
@@ -1873,5 +1878,20 @@ const TableWrapper = styled.div`
         &:first-child {
             border-right: 0;
         }
+    }
+    .ant-table-body {
+      margin-right: -8px;
+      &::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+        background: transparent;
+      }
+      &::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #69696999;
+        -webkit-border-radius: 50px;
+      }
     }
 `
