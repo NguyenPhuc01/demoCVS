@@ -13,6 +13,7 @@ import DemoCMND from "./OCR/DemoCMND";
 import DemoHoChieuQuocTe from "./Passport/DemoHoChieuQuocTe";
 import DemoPhilippines from "./Philippines/DemoPhilippines";
 import DemoVanBan from "./VanBan/DemoVanBan";
+import { useQueryParam } from "use-query-params";
 
 const types1 = [
   { id: 1, name: "CMND/CCCD", key: "CMND/CCCD" },
@@ -31,7 +32,10 @@ const types2 = [
 
 const types3 = [
   { id: 10, name: "Hoá đơn tổng quát", key: "hoa-don-full" },
-  { id: 11, name: "Giấy đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" }
+  { id: 11, name: "Giấy đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" },
+  { id: 34, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
+  { id: 25, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
+  { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" }
 ];
 
 const types4 = [
@@ -53,9 +57,7 @@ const types5 = [
 
 const types6 = [
   { id: 23, name: "Bảng tổng quát", key: "bang-tong-quat" },
-  { id: 34, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
   { id: 24, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
-  { id: 25, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
   { id: 26, name: "Giấy đăng ký dự tuyển", key: "dang-ky-du-tuyen" },
   { id: 27, name: "A4", key: "a4" },
   { id: 28, name: "Bằng tốt nghiệp", key: "bang-tot-nghiep" },
@@ -65,9 +67,9 @@ const types6 = [
   { id: 32, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" },
   { id: 35, name: "DCTTCN", key: "dcttcn" },
   { id: 36, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" },
-  { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" },
   { id: 37, name: "Giấy đăng ký bảo hiểm", key: "dang-ky-bao-hiem" },
-  { id: 38, name: "Thẻ tổng quát", key: "the-tong-quat" }
+  { id: 38, name: "Thẻ tổng quát", key: "the-tong-quat" },
+  { id: 39, name: "CV", key: "cv" }
 ];
 
 function useQuery() {
@@ -78,6 +80,8 @@ export default function DemoPage() {
   const [currentType, setCurrentType] = useState("CMND/CCCD");
   const [currentTab, setCurrentTab] = useState("1");
   const [result, setResult] = useState(null);
+
+  // const [currentType, setCurrentType] = useQueryParam("foo", StringParam);
 
   let query = useQuery();
 
@@ -318,6 +322,13 @@ export default function DemoPage() {
       />
     ),
     "the-tong-quat": (
+      <DemoVanBan
+        currentType={currentType}
+        result={result}
+        setResult={setResult}
+      />
+    ),
+    cv: (
       <DemoVanBan
         currentType={currentType}
         result={result}

@@ -8,6 +8,9 @@ module.exports = [{
       plugin: require('../node_modules/gatsby-plugin-intl/gatsby-browser.js'),
       options: {"plugins":[],"path":"C:\\Code\\CVS\\cvs-demo-web/src/intl","languages":["vi","en"],"defaultLanguage":"vi"},
     },{
+      plugin: require('../node_modules/gatsby-plugin-use-query-params/gatsby-browser.js'),
+      options: {"plugins":[]},
+    },{
       plugin: require('../gatsby-browser.js'),
       options: {"plugins":[]},
     }]

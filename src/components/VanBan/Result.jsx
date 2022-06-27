@@ -8,7 +8,7 @@ const getConfidence = confidence => {
 }
 
 export default function Result({ result, type }) {
-  const { result: data, time, data: data2, errorCode, errorMessage } = result || {}
+  const { result: data, data: data2 = [], } = result || {}
   const [current, setCurrent] = useState('1')
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -37,6 +37,7 @@ export default function Result({ result, type }) {
     'uy-nhiem-chi': <UyNhiemChi data={data2[currentPage]?.info} />,
     'dang-ky-bao-hiem': <DangKyBaoHiem data={data2[currentPage]?.info} />,
     'the-tong-quat': <VanBanScan data={data2?.info} />,
+    'cv': <CV data={data} />,
   }
   return (
     <>
@@ -99,6 +100,63 @@ function Field({ name, value, confidence, en }) {
         </> : null}
       </div>
     </div>
+  )
+}
+
+function CV({ data }) {
+
+  const { EDUCATION, EXPERIENCE, INFORMATION } = data
+  const { CERT, GRAD = [], SPEC } = EDUCATION
+  const { COMP = [], SKILL = [] } = EXPERIENCE
+  const { ADDRESS, DOB, EMAIL = [], FACEBOOK = [], GENDER, HOME, LINKEDIN = [], NAME, OTHER = [], PHONE = [] } = INFORMATION
+
+  return (
+    <>
+      <div style={{ color: 'rgba(255,255,255,0.34)', padding: '12px 0' }} >-- THÔNG TIN --</div>
+      <Field name='Họ tên' value={NAME} />
+      <Field name='Giới tính' value={GENDER} />
+      <Field name='Ngày sinh' value={DOB} />
+      <Field name='Địa chỉ' value={ADDRESS} />
+      <Field name='Nhà' value={HOME} />
+      <div className='field'>
+        <div className='field-name'>Email:</div>
+        {EMAIL.map(item => <div className='field-value'>{item}</div>)}
+      </div>
+      <div className='field'>
+        <div className='field-name'>Facebook:</div>
+        {FACEBOOK.map(item => <div className='field-value'>{item}</div>)}
+      </div>
+      <div className='field'>
+        <div className='field-name'>LinkedIn:</div>
+        {LINKEDIN.map(item => <div className='field-value'>{item}</div>)}
+      </div>
+      <div className='field'>
+        <div className='field-name'>Điện thoại:</div>
+        {PHONE.map(item => <div className='field-value'>{item}</div>)}
+      </div>
+      <div className='field'>
+        <div className='field-name'>Khác:</div>
+        {OTHER.map(item => <div className='field-value'>{item}</div>)}
+      </div>
+
+      <div style={{ color: 'rgba(255,255,255,0.34)', padding: '12px 0' }} >-- HỌC VẤN --</div>
+      <div className='field'>
+        <div className='field-name'>Tốt nghiệp trường:</div>
+        {GRAD.map(item => <div className='field-value'>{item}</div>)}
+      </div>
+      <Field name='Chuyên ngành' value={SPEC} />
+      <Field name='Chứng chỉ' value={CERT} />
+
+      <div style={{ color: 'rgba(255,255,255,0.34)', padding: '12px 0' }} >-- KỸ NĂNG & KINH NGHIỆM --</div>
+      <div className='field'>
+        <div className='field-name'>Kỹ năng:</div>
+        {SKILL.map(item => <div className='field-value'>{item}</div>)}
+      </div>
+      <div className='field'>
+        <div className='field-name'>Công ty:</div>
+        {COMP.map(item => <div className='field-value'>{item}</div>)}
+      </div>
+    </>
   )
 }
 

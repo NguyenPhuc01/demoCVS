@@ -77,7 +77,8 @@ module.exports = {
     `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sitemap`
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-use-query-params`
     // `gatsby-transformer-remark`
     // "gatsby-transformer-sharp",
     // "gatsby-plugin-sharp"

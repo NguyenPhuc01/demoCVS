@@ -19,6 +19,9 @@ var plugins = [{
     },{
       plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-sitemap/gatsby-ssr'),
       options: {"plugins":[],"output":"/sitemap.xml","createLinkInHead":true},
+    },{
+      plugin: require('C:/Code/CVS/cvs-demo-web/node_modules/gatsby-plugin-use-query-params/gatsby-ssr'),
+      options: {"plugins":[]},
     }]
 // During bootstrap, we write requires at top of this file which looks like:
 // var plugins = [

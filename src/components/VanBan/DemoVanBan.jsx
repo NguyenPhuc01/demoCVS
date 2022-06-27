@@ -35,6 +35,7 @@ const urlOptions = {
   'ho-so-nhan-su': 'https://demo.computervision.com.vn/api/v2/ocr/employee_profile?get_thumb=true',
   'dang-ky-bao-hiem': 'https://demo.computervision.com.vn/api/v2/ocr/ycbh?get_thumb=true',
   'the-tong-quat': 'https://demo.computervision.com.vn/api/v2/ocr/card_general?get_thumb=true',
+  'cv': 'https://demo.computervision.com.vn/api/v2/cv_parser/cv_file_parser?get_thumb=true',
 }
 
 const showMenuTypes = [
@@ -91,7 +92,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
     const url = urlOptions[currentType]
     if (file) {
       let formData = new FormData()
-      if (currentType === 'a4') {
+      if (currentType === 'a4' || currentType === 'cv') {
         formData.append('file', file)
       } else {
         formData.append('img', file)
