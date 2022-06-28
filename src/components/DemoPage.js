@@ -35,7 +35,8 @@ const types3 = [
   { id: 11, name: "Giấy đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" },
   { id: 34, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
   { id: 25, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
-  { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" }
+  { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" },
+  { id: 39, name: "CV", key: "cv" }
 ];
 
 const types4 = [
@@ -68,8 +69,7 @@ const types6 = [
   { id: 35, name: "DCTTCN", key: "dcttcn" },
   { id: 36, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" },
   { id: 37, name: "Giấy đăng ký bảo hiểm", key: "dang-ky-bao-hiem" },
-  { id: 38, name: "Thẻ tổng quát", key: "the-tong-quat" },
-  { id: 39, name: "CV", key: "cv" }
+  { id: 38, name: "Thẻ tổng quát", key: "the-tong-quat" }
 ];
 
 function useQuery() {

@@ -727,7 +727,8 @@ function BaoGiaXe({ data }) {
     {
       title: 'Tên phụ tùng, vật tư',
       key: 'description',
-      dataIndex: 'description'
+      dataIndex: 'description',
+      width: 200
     },
     {
       title: 'Số lượng',
@@ -748,6 +749,16 @@ function BaoGiaXe({ data }) {
       title: 'Giảm giá',
       key: 'discount',
       dataIndex: 'discount'
+    },
+    {
+      title: 'Phần trăm thuế',
+      key: 'tax',
+      dataIndex: 'tax'
+    },
+    {
+      title: 'Thành tiền',
+      key: 'amount_total',
+      dataIndex: 'amount_total'
     },
   ]
 
