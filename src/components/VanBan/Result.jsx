@@ -227,6 +227,8 @@ function HoaDonXe({ data }) {
     sub_total, sub_total_box, sub_total_confidence,
     vat_amount, vat_amount_box, vat_amount_confidence,
     purchaser_name, purchaser_name_box, purchaser_name_confidence,
+    supplier_address, supplier_address_confidence,
+    vat_rate, vat_rate_confidence,
     account_bank
   } = data || {}
 
@@ -256,6 +258,8 @@ function HoaDonXe({ data }) {
       <Field name='Tiền trước thuế' value={sub_total} confidence={sub_total_confidence} />
       <Field name='Tiền thuế' value={vat_amount} confidence={vat_amount_confidence} />
       <Field name='Tên đơn vị' value={purchaser_name} confidence={purchaser_name_confidence} />
+      <Field name='Địa chỉ nhà cung cấp' value={supplier_address} confidence={supplier_address_confidence} />
+      <Field name='Thuế suất VAT' value={vat_rate} confidence={vat_rate_confidence} />
       {info_goods?.length ? <TableWrapper>
         <Table dataSource={info_goods} columns={columns} pagination={false} />
       </TableWrapper> : null}
@@ -288,6 +292,8 @@ function HoaDonVAT({ data }) {
     sub_total, sub_total_box, sub_total_confidence,
     vat_amount, vat_amount_box, vat_amount_confidence,
     purchaser_name, purchaser_name_box, purchaser_name_confidence,
+    supplier_address, supplier_address_confidence,
+    vat_rate, vat_rate_confidence,
     account_bank
   } = data || {}
 
@@ -314,6 +320,8 @@ function HoaDonVAT({ data }) {
       <Field name='Nhà cung cấp' value={supplier} confidence={supplier_confidence} />
       <Field name='Mã số thuế nhà cung cấp' value={tax_code} confidence={tax_code_confidence} />
       <Field name='Hình thức thanh toán' value={payment_method} confidence={payment_method_confidence} />
+      <Field name='Địa chỉ nhà cung cấp' value={supplier_address} confidence={supplier_address_confidence} />
+      <Field name='Thuế suất VAT' value={vat_rate} confidence={vat_rate_confidence} />
       {info_goods?.length ? <TableWrapper>
         <Table dataSource={info_goods} columns={columns} pagination={false} />
       </TableWrapper> : null}
@@ -663,6 +671,8 @@ function HoaDon({ data }) {
     sub_total, sub_total_box, sub_total_confidence,
     vat_amount, vat_amount_box, vat_amount_confidence,
     purchaser_name, purchaser_name_box, purchaser_name_confidence,
+    supplier_address, supplier_address_confidence,
+    vat_rate, vat_rate_confidence,
     account_bank, table
   } = data || {}
 
@@ -692,6 +702,8 @@ function HoaDon({ data }) {
       <Field name='Tiền trước thuế' value={sub_total} confidence={sub_total_confidence} />
       <Field name='Tiền thuế' value={vat_amount} confidence={vat_amount_confidence} />
       <Field name='Tên đơn vị' value={purchaser_name} confidence={purchaser_name_confidence} />
+      <Field name='Địa chỉ nhà cung cấp' value={supplier_address} confidence={supplier_address_confidence} />
+      <Field name='Thuế suất VAT' value={vat_rate} confidence={vat_rate_confidence} />
       {table?.length ? <TableWrapper>
         <Table dataSource={dataSource} columns={columns} pagination={false}
           scroll={{ x: 513 }}
@@ -787,6 +799,8 @@ function HoaDonFull({ data }) {
     sub_total, sub_total_box, sub_total_confidence,
     vat_amount, vat_amount_box, vat_amount_confidence,
     purchaser_name, purchaser_name_box, purchaser_name_confidence,
+    supplier_address, supplier_address_confidence,
+    vat_rate, vat_rate_confidence,
     account_bank, table
   } = data || {}
 
@@ -816,6 +830,8 @@ function HoaDonFull({ data }) {
       <Field name='Tiền trước thuế' value={sub_total} confidence={sub_total_confidence} />
       <Field name='Tiền thuế' value={vat_amount} confidence={vat_amount_confidence} />
       <Field name='Tên đơn vị' value={purchaser_name} confidence={purchaser_name_confidence} />
+      <Field name='Địa chỉ nhà cung cấp' value={supplier_address} confidence={supplier_address_confidence} />
+      <Field name='Thuế suất VAT' value={vat_rate} confidence={vat_rate_confidence} />
       {table?.length ? <TableWrapper>
         <Table dataSource={dataSource} columns={columns} pagination={false}
           scroll={{ x: 513 }}
