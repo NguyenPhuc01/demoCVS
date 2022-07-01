@@ -13,7 +13,9 @@ import DemoCMND from "./OCR/DemoCMND";
 import DemoHoChieuQuocTe from "./Passport/DemoHoChieuQuocTe";
 import DemoPhilippines from "./Philippines/DemoPhilippines";
 import DemoVanBan from "./VanBan/DemoVanBan";
-import { useQueryParam } from "use-query-params";
+import { useQueryParams, StringParam, withDefault } from "use-query-params";
+
+const { TabPane } = Tabs;
 
 const types1 = [
   { id: 1, name: "CMND/CCCD", key: "CMND/CCCD" },
@@ -72,25 +74,22 @@ const types6 = [
   { id: 38, name: "Thẻ tổng quát", key: "the-tong-quat" }
 ];
 
-function useQuery() {
-  return new URLSearchParams(window.location.search);
-}
+const tabs = [
+  { key: "id_card", name: "Giấy tờ tùy thân", types: types1 },
+  { key: "vehicle_document", name: "Giấy tờ xe", types: types2 },
+  { key: "business", name: "Tài liệu doanh nghiệp", types: types3 },
+  { key: "insurance", name: "Giấy tờ bảo hiểm", types: types4 },
+  { key: "sea_id_card", name: "SEA ID Card", types: types5 },
+  { key: "other", name: "Khác", types: types6 }
+];
 
 export default function DemoPage() {
-  const [currentType, setCurrentType] = useState("CMND/CCCD");
-  const [currentTab, setCurrentTab] = useState("1");
   const [result, setResult] = useState(null);
-
-  // const [currentType, setCurrentType] = useQueryParam("foo", StringParam);
-
-  let query = useQuery();
-
-  useEffect(() => {
-    let params = query.get("type");
-    if (params) {
-      setCurrentType(params);
-    }
-  }, [query]);
+  const [query, setQuery] = useQueryParams({
+    tab: withDefault(StringParam, "id_card"),
+    type: withDefault(StringParam, "CMND/CCCD")
+  });
+  const { tab, type } = query;
 
   const demoOptions = {
     "CMND/CCCD": <DemoCMND result={result} setResult={setResult} />,
@@ -109,39 +108,19 @@ export default function DemoPage() {
     ),
 
     "bang-diem": (
-      <DemoTable
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoTable currentType={type} result={result} setResult={setResult} />
     ),
     "sao-ke-ngan-hang": (
-      <DemoTable
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoTable currentType={type} result={result} setResult={setResult} />
     ),
     "bang-ke-vien-phi": (
-      <DemoTable
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoTable currentType={type} result={result} setResult={setResult} />
     ),
     "bao-cao-tai-chinh": (
-      <DemoTable
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoTable currentType={type} result={result} setResult={setResult} />
     ),
     "bang-tong-quat": (
-      <DemoTable
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoTable currentType={type} result={result} setResult={setResult} />
     ),
 
     "ho-chieu-quoc-te": (
@@ -154,212 +133,101 @@ export default function DemoPage() {
     ),
 
     "van-ban-tong-quat": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "hoa-don-xe": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "hoa-don-vat": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "hoa-don-full": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "bang-ke": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "phieu-kham-benh": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "boi-thuong-bao-hiem": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "e-claim": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "giay-ra-vien": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "bao-gia-xe": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "pvi-hoa-don": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "so-khai-sinh": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "de-nghi-thanh-toan": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "dang-ky-du-tuyen": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
-    a4: (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
-    ),
+    a4: <DemoVanBan currentType={type} result={result} setResult={setResult} />,
     "bang-tot-nghiep": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "giay-khai-tu": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "dang-ky-thue": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "so-ho-khau": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "ly-lich-tu-phap": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     dcttcn: (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "uy-nhiem-chi": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "ho-so-nhan-su": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "dang-ky-bao-hiem": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "the-tong-quat": (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
-    cv: (
-      <DemoVanBan
-        currentType={currentType}
-        result={result}
-        setResult={setResult}
-      />
-    )
+    cv: <DemoVanBan currentType={type} result={result} setResult={setResult} />
   };
 
-  const { TabPane } = Tabs;
-
   function callback(key) {
-    setCurrentTab(key);
     setResult(null);
     switch (key) {
-      case "1":
-        navigate("/ocr?type=CMND/CCCD", { replace: true });
+      case "id_card":
+        setQuery({ tab: key, type: types1[0].key }, "replaceIn");
         return;
-      case "2":
-        navigate("/ocr?type=giay-phep-lai-xe-2", { replace: true });
+      case "vehicle_document":
+        setQuery({ tab: key, type: types2[0].key }, "replaceIn");
         return;
-      case "3":
-        navigate("/ocr?type=hoa-don-full", { replace: true });
+      case "business":
+        setQuery({ tab: key, type: types3[0].key }, "replaceIn");
         return;
-      case "4":
-        navigate("/ocr?type=giay-ra-vien", { replace: true });
+      case "insurance":
+        setQuery({ tab: key, type: types4[0].key }, "replaceIn");
         return;
-      case "5":
-        navigate("/ocr?type=id-card-myanmar", { replace: true });
+      case "sea_id_card":
+        setQuery({ tab: key, type: types5[0].key }, "replaceIn");
         return;
-      case "6":
-        navigate("/ocr?type=bang-tong-quat", { replace: true });
+      case "other":
+        setQuery({ tab: key, type: types6[0].key }, "replaceIn");
         return;
       default:
         break;
@@ -383,181 +251,40 @@ export default function DemoPage() {
           Chọn loại tài liệu
         </Divider>
         <div className="content-wrapper">
-          <Tabs defaultActiveKey="1" onChange={callback} activeKey={currentTab}>
-            <TabPane tab="Giấy tờ tuỳ thân" key="1">
-              <Space
-                size={[8, 8]}
-                wrap
-                align="center"
-                style={{
-                  justifyContent: "center",
-                  width: "100%",
-                  marginBottom: 10
-                }}
-              >
-                {types1.map(type => {
-                  const { id, name, key } = type;
-                  return (
-                    <Link to={`?type=${key}`} key={key}>
-                      <Button
-                        key={id}
-                        type={key === currentType ? "primary" : "default"}
-                        onClick={() => {
-                          setResult(null);
-                        }}
-                      >
-                        {name}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </Space>
-            </TabPane>
-            <TabPane tab="Giấy tờ xe" key="2">
-              <Space
-                size={[8, 8]}
-                wrap
-                align="center"
-                style={{
-                  justifyContent: "center",
-                  width: "100%",
-                  marginBottom: 10
-                }}
-              >
-                {types2.map(type => {
-                  const { id, name, key } = type;
-                  return (
-                    <Link to={`?type=${key}`} key={key}>
-                      <Button
-                        key={id}
-                        type={key === currentType ? "primary" : "default"}
-                        onClick={() => {
-                          setResult(null);
-                        }}
-                      >
-                        {name}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </Space>
-            </TabPane>
-            <TabPane tab="Tài liệu doanh nghiệp" key="3">
-              <Space
-                size={[8, 8]}
-                wrap
-                align="center"
-                style={{
-                  justifyContent: "center",
-                  width: "100%",
-                  marginBottom: 10
-                }}
-              >
-                {types3.map(type => {
-                  const { id, name, key } = type;
-                  return (
-                    <Link to={`?type=${key}`} key={key}>
-                      <Button
-                        key={id}
-                        type={key === currentType ? "primary" : "default"}
-                        onClick={() => {
-                          setResult(null);
-                        }}
-                      >
-                        {name}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </Space>
-            </TabPane>
-            <TabPane tab="Giấy tờ bảo hiểm" key="4">
-              <Space
-                size={[8, 8]}
-                wrap
-                align="center"
-                style={{
-                  justifyContent: "center",
-                  width: "100%",
-                  marginBottom: 10
-                }}
-              >
-                {types4.map(type => {
-                  const { id, name, key } = type;
-                  return (
-                    <Link to={`?type=${key}`} key={key}>
-                      <Button
-                        key={id}
-                        type={key === currentType ? "primary" : "default"}
-                        onClick={() => {
-                          setResult(null);
-                        }}
-                      >
-                        {name}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </Space>
-            </TabPane>
-            <TabPane tab="SEA ID Card" key="5">
-              <Space
-                size={[8, 8]}
-                wrap
-                align="center"
-                style={{
-                  justifyContent: "center",
-                  width: "100%",
-                  marginBottom: 10
-                }}
-              >
-                {types5.map(type => {
-                  const { id, name, key } = type;
-                  return (
-                    <Link to={`?type=${key}`} key={key}>
-                      <Button
-                        key={id}
-                        type={key === currentType ? "primary" : "default"}
-                        onClick={() => {
-                          setResult(null);
-                        }}
-                      >
-                        {name}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </Space>
-            </TabPane>
-            <TabPane tab="Khác" key="6">
-              <Space
-                size={[8, 8]}
-                wrap
-                align="center"
-                style={{
-                  justifyContent: "center",
-                  width: "100%",
-                  marginBottom: 10
-                }}
-              >
-                {types6.map(type => {
-                  const { id, name, key } = type;
-                  return (
-                    <Link to={`?type=${key}`} key={key}>
-                      <Button
-                        key={id}
-                        type={key === currentType ? "primary" : "default"}
-                        onClick={() => {
-                          setResult(null);
-                        }}
-                      >
-                        {name}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </Space>
-            </TabPane>
+          <Tabs onChange={callback} activeKey={tab}>
+            {tabs.map(tab => {
+              const { key, name, types } = tab;
+              return (
+                <TabPane tab={name} key={key}>
+                  <Space
+                    size={[8, 8]}
+                    wrap
+                    align="center"
+                    style={{
+                      justifyContent: "center",
+                      width: "100%",
+                      marginBottom: 10
+                    }}
+                  >
+                    {types.map(t => {
+                      const { id, name, key } = t;
+                      return (
+                        <Button
+                          key={id}
+                          type={key === type ? "primary" : "default"}
+                          onClick={() => {
+                            setResult(null);
+                            setQuery({ type: key }, "replaceIn");
+                          }}
+                        >
+                          {name}
+                        </Button>
+                      );
+                    })}
+                  </Space>
+                </TabPane>
+              );
+            })}
           </Tabs>
         </div>
         <Divider
@@ -572,7 +299,7 @@ export default function DemoPage() {
         >
           Vui lòng chọn ảnh demo bên dưới hoặc tải ảnh từ máy của bạn lên
         </Divider>
-        <div className="upload-wrapper">{demoOptions[currentType]}</div>
+        <div className="upload-wrapper">{demoOptions[type]}</div>
       </div>
     </div>
   );

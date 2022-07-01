@@ -3,28 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Link } from "gatsby-plugin-intl";
 import DemoSmartCrop from "./SmartCrop/DemoSmartCrop";
 import DemoTagging from "./Tagging/DemoTagging";
+import { useQueryParam, StringParam, withDefault } from "use-query-params";
 
 const types = [
   { id: 1, name: "Smart crop", key: "smart-crop" },
   { id: 2, name: "Tagging", key: "tagging" }
 ];
 
-function useQuery() {
-  return new URLSearchParams(window.location.search);
-}
-
 export default function DemoPage3() {
-  const [currentType, setCurrentType] = useState("smart-crop");
   const [result, setResult] = useState(null);
-
-  let query = useQuery();
-
-  useEffect(() => {
-    let params = query.get("type");
-    if (params) {
-      setCurrentType(params);
-    }
-  }, []);
+  const [currentType, setCurrentType] = useQueryParam(
+    "type",
+    withDefault(StringParam, "smart-crop")
+  );
 
   const demoOptions = {
     "smart-crop": <DemoSmartCrop result={result} setResult={setResult} />,
@@ -61,18 +52,16 @@ export default function DemoPage3() {
               {types.map(type => {
                 const { id, name, key } = type;
                 return (
-                  <Link to={`?type=${key}`} key={key}>
-                    <Button
-                      key={id}
-                      type={key === currentType ? "primary" : "default"}
-                      onClick={() => {
-                        setCurrentType(key);
-                        setResult(null);
-                      }}
-                    >
-                      {name}
-                    </Button>
-                  </Link>
+                  <Button
+                    key={id}
+                    type={key === currentType ? "primary" : "default"}
+                    onClick={() => {
+                      setCurrentType(key);
+                      setResult(null);
+                    }}
+                  >
+                    {name}
+                  </Button>
                 );
               })}
             </Space>
