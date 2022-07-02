@@ -19,7 +19,9 @@ export default function Result({ result, type }) {
                     {type === 'bang-tong-quat' ?
                         <BangTongQuatResult data={data} type={type} /> :
                         type === 'bao-cao-tai-chinh' ? <BangTongQuatResult data={data.origin} type={type} /> :
-                            <ExcelResult data={data} />}
+                            // <ExcelResult data={data} />
+                            <BangTongQuatResult data={data} type={type} />
+                    }
                 </>
             ) :
                 <div className='error'>
@@ -75,6 +77,7 @@ function BangTongQuatResult({ data, type }) {
     const resultOptions = {
         'bang-tong-quat': <BangTongQuat data={data[currentPage]?.json} />,
         'bao-cao-tai-chinh': <BaoCaoTaiChinh data={data[currentPage]?.json} title={data[currentPage]?.title} />,
+        'sao-ke-ngan-hang': <SaoKeNganHang data={data[currentPage]?.json} />
     }
 
     return (
@@ -136,6 +139,43 @@ function BangTongQuat({ data }) {
         </>
     )
 }
+
+
+function SaoKeNganHang({ data }) {
+
+    const columns = data?.[0][0].map((item, index) => {
+        const { value, box } = item
+        return { key: index, dataIndex: index }
+    })
+
+    return (
+        <>
+            {data?.length ? <>
+                {data.map(table => {
+
+                    const dataSource = table?.map(row => {
+                        let obj = {}
+                        row.forEach((e, index) => {
+                            obj[index] = e.value
+                        });
+                        return obj
+                    })
+
+                    return (
+                        <TableWrapper>
+                            <Table dataSource={dataSource} columns={columns} pagination={false}
+                                showHeader={false}
+                                scroll={{ x: 545 }}
+                            />
+                        </TableWrapper>
+                    )
+                })}
+            </>
+                : null}
+        </>
+    )
+}
+
 
 function BaoCaoTaiChinh({ data, title }) {
 

@@ -18,60 +18,61 @@ import { useQueryParams, StringParam, withDefault } from "use-query-params";
 const { TabPane } = Tabs;
 
 const types1 = [
-  { id: 1, name: "CMND/CCCD", key: "CMND/CCCD" },
-  { id: 2, name: "Hộ chiếu Việt Nam", key: "ho-chieu-vn" },
-  { id: 3, name: "Giấy phép lái xe", key: "giay-phep-lai-xe-1" },
-  { id: 4, name: "Universal Passport", key: "ho-chieu-quoc-te" },
-  { id: 5, name: "Giấy khai sinh", key: "giay-khai-sinh" }
+  { id: 10, name: "CMND/CCCD", key: "CMND/CCCD" },
+  { id: 11, name: "Hộ chiếu Việt Nam", key: "ho-chieu-vn" },
+  { id: 12, name: "Giấy phép lái xe", key: "giay-phep-lai-xe-1" },
+  { id: 13, name: "Universal Passport", key: "ho-chieu-quoc-te" },
+  { id: 14, name: "Giấy khai sinh", key: "giay-khai-sinh" }
 ];
 
 const types2 = [
-  { id: 6, name: "Giấy phép lái xe", key: "giay-phep-lai-xe-2" },
-  { id: 7, name: "Đăng ký xe", key: "dang-ky-xe" },
-  { id: 8, name: "Đăng kiểm xe", key: "dang-kiem-xe" },
-  { id: 9, name: "Biển số xe", key: "bien-so-xe" }
+  { id: 20, name: "Giấy phép lái xe", key: "giay-phep-lai-xe-2" },
+  { id: 21, name: "Đăng ký xe", key: "dang-ky-xe" },
+  { id: 22, name: "Đăng kiểm xe", key: "dang-kiem-xe" },
+  { id: 23, name: "Biển số xe", key: "bien-so-xe" }
 ];
 
 const types3 = [
-  { id: 10, name: "Hoá đơn tổng quát", key: "hoa-don-full" },
-  { id: 11, name: "Giấy đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" },
-  { id: 34, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
-  { id: 25, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
-  { id: 33, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" },
-  { id: 39, name: "CV", key: "cv" }
+  { id: 30, name: "Hoá đơn tổng quát", key: "hoa-don-full" },
+  { id: 31, name: "Giấy đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" },
+  { id: 32, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
+  { id: 33, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
+  { id: 34, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" },
+  { id: 35, name: "CV", key: "cv" }
 ];
 
 const types4 = [
-  { id: 12, name: "Giấy ra viện", key: "giay-ra-vien" },
-  { id: 13, name: "Báo giá xe", key: "bao-gia-xe" },
-  { id: 14, name: "eClaim", key: "e-claim" },
-  { id: 15, name: "Hoá đơn xe", key: "hoa-don-xe" },
-  { id: 16, name: "Hóa đơn viện phí", key: "pvi-hoa-don" },
-  { id: 17, name: "Sổ khai sinh", key: "so-khai-sinh" },
-  { id: 18, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
-  { id: 19, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" }
+  { id: 40, name: "Giấy ra viện", key: "giay-ra-vien" },
+  { id: 41, name: "Báo giá xe", key: "bao-gia-xe" },
+  { id: 42, name: "eClaim", key: "e-claim" },
+  { id: 43, name: "Hoá đơn xe", key: "hoa-don-xe" },
+  { id: 44, name: "Hóa đơn viện phí", key: "pvi-hoa-don" },
+  { id: 45, name: "Sổ khai sinh", key: "so-khai-sinh" },
+  { id: 46, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
+  { id: 47, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" }
 ];
 
 const types5 = [
-  { id: 20, name: "ID Card Myanmar", key: "id-card-myanmar" },
-  { id: 21, name: "ID Card Cambodia", key: "id-card-cambodia" },
-  { id: 22, name: "ID Card Philippines", key: "id-card-philippines" }
+  { id: 50, name: "ID Card Myanmar", key: "id-card-myanmar" },
+  { id: 51, name: "ID Card Cambodia", key: "id-card-cambodia" },
+  { id: 52, name: "ID Card Philippines", key: "id-card-philippines" }
 ];
 
 const types6 = [
-  { id: 23, name: "Bảng tổng quát", key: "bang-tong-quat" },
-  { id: 24, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
-  { id: 26, name: "Giấy đăng ký dự tuyển", key: "dang-ky-du-tuyen" },
-  { id: 27, name: "A4", key: "a4" },
-  { id: 28, name: "Bằng tốt nghiệp", key: "bang-tot-nghiep" },
-  { id: 29, name: "Giấy khai tử", key: "giay-khai-tu" },
-  { id: 30, name: "Đăng ký thuế", key: "dang-ky-thue" },
+  { id: 60, name: "Bảng tổng quát", key: "bang-tong-quat" },
+  { id: 61, name: "Sao kê ngân hàng", key: "sao-ke-ngan-hang" },
+  { id: 62, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
+  { id: 63, name: "Giấy đăng ký dự tuyển", key: "dang-ky-du-tuyen" },
+  { id: 64, name: "A4", key: "a4" },
+  { id: 65, name: "Bằng tốt nghiệp", key: "bang-tot-nghiep" },
+  { id: 66, name: "Giấy khai tử", key: "giay-khai-tu" },
+  { id: 67, name: "Đăng ký thuế", key: "dang-ky-thue" },
   // { id: 31, name: "Sổ hộ khẩu", key: "so-ho-khau" },
-  { id: 32, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" },
-  { id: 35, name: "DCTTCN", key: "dcttcn" },
-  { id: 36, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" },
-  { id: 37, name: "Giấy đăng ký bảo hiểm", key: "dang-ky-bao-hiem" },
-  { id: 38, name: "Thẻ tổng quát", key: "the-tong-quat" }
+  { id: 68, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" },
+  { id: 69, name: "DCTTCN", key: "dcttcn" },
+  { id: 610, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" },
+  { id: 611, name: "Giấy đăng ký bảo hiểm", key: "dang-ky-bao-hiem" },
+  { id: 612, name: "Thẻ tổng quát", key: "the-tong-quat" }
 ];
 
 const tabs = [
