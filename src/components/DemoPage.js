@@ -35,7 +35,6 @@ const types2 = [
 const types3 = [
   { id: 30, name: "Hoá đơn tổng quát", key: "hoa-don-full" },
   { id: 31, name: "Giấy đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" },
-  { id: 32, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
   { id: 33, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
   { id: 34, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" },
   { id: 35, name: "CV", key: "cv" }
@@ -60,7 +59,6 @@ const types5 = [
 
 const types6 = [
   { id: 60, name: "Bảng tổng quát", key: "bang-tong-quat" },
-  { id: 61, name: "Sao kê ngân hàng", key: "sao-ke-ngan-hang" },
   { id: 62, name: "Văn bản tổng quát", key: "van-ban-tong-quat" },
   { id: 63, name: "Giấy đăng ký dự tuyển", key: "dang-ky-du-tuyen" },
   { id: 64, name: "A4", key: "a4" },
@@ -70,9 +68,15 @@ const types6 = [
   // { id: 31, name: "Sổ hộ khẩu", key: "so-ho-khau" },
   { id: 68, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" },
   { id: 69, name: "DCTTCN", key: "dcttcn" },
-  { id: 610, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" },
   { id: 611, name: "Giấy đăng ký bảo hiểm", key: "dang-ky-bao-hiem" },
   { id: 612, name: "Thẻ tổng quát", key: "the-tong-quat" }
+];
+
+const types7 = [
+  { id: 70, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
+  { id: 71, name: "Sao kê ngân hàng", key: "sao-ke-ngan-hang" },
+  { id: 72, name: "Giấy nộp tiền", key: "giay-nop-tien" },
+  { id: 73, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" }
 ];
 
 const tabs = [
@@ -80,6 +84,7 @@ const tabs = [
   { key: "vehicle_document", name: "Giấy tờ xe", types: types2 },
   { key: "business", name: "Tài liệu doanh nghiệp", types: types3 },
   { key: "insurance", name: "Giấy tờ bảo hiểm", types: types4 },
+  { key: "fintech", name: "Tài chính - Ngân hàng", types: types7 },
   { key: "sea_id_card", name: "SEA ID Card", types: types5 },
   { key: "other", name: "Khác", types: types6 }
 ];
@@ -206,7 +211,10 @@ export default function DemoPage() {
     "the-tong-quat": (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
-    cv: <DemoVanBan currentType={type} result={result} setResult={setResult} />
+    cv: <DemoVanBan currentType={type} result={result} setResult={setResult} />,
+    "giay-nop-tien": (
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
+    )
   };
 
   function callback(key) {
@@ -223,6 +231,9 @@ export default function DemoPage() {
         return;
       case "insurance":
         setQuery({ tab: key, type: types4[0].key }, "replaceIn");
+        return;
+      case "fintech":
+        setQuery({ tab: key, type: types7[0].key }, "replaceIn");
         return;
       case "sea_id_card":
         setQuery({ tab: key, type: types5[0].key }, "replaceIn");

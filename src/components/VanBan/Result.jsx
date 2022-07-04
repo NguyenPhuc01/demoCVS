@@ -38,6 +38,7 @@ export default function Result({ result, type }) {
     'dang-ky-bao-hiem': <DangKyBaoHiem data={data2[currentPage]?.info} />,
     'the-tong-quat': <VanBanScan data={data2?.info} />,
     'cv': <CV data={data} />,
+    'giay-nop-tien': <GiayNopTien data={data2[currentPage]?.info} />,
   }
   return (
     <>
@@ -100,6 +101,33 @@ function Field({ name, value, confidence, en }) {
         </> : null}
       </div>
     </div>
+  )
+}
+
+
+function GiayNopTien({ data }) {
+  const {
+    nguoinop, nguoinop_confidence,
+    so_cmnd, so_cmnd_confidence,
+    nguoinhan, nguoinhan_confidence,
+    stk_nguoinhan, stk_nguoinhan_confidence,
+    nganhang_nguoinhan, nganhang_nguoinhan_confidence,
+    sotien, sotien_confidence,
+    phichuyentien, phichuyentien_confidence,
+    noidung, noidung_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Họ tên người nộp tiền' value={nguoinop} confidence={nguoinop_confidence} />
+      <Field name='Số CMND/Hộ chiếu/Passport người nộp tiền' value={so_cmnd} confidence={so_cmnd_confidence} />
+      <Field name='Họ tên người nhận tiền' value={nguoinhan} confidence={nguoinhan_confidence} />
+      <Field name='Số tài khoản người nhận' value={stk_nguoinhan} confidence={stk_nguoinhan_confidence} />
+      <Field name='Tên ngân hàng người nhận' value={nganhang_nguoinhan} confidence={nganhang_nguoinhan_confidence} />
+      <Field name='Số tiền chuyển khoản' value={sotien} confidence={sotien_confidence} />
+      <Field name='Phí chuyển khoản' value={phichuyentien} confidence={phichuyentien_confidence} />
+      <Field name='Nội dung chuyển khoản' value={noidung} confidence={noidung_confidence} />
+    </>
   )
 }
 
