@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://computervision.com.vn//sitemap.xml
-Host: https://computervision.com.vn
