@@ -11,6 +11,7 @@ const url = 'https://demo.computervision.com.vn/api/v2/ekyc/face_matching'
 
 export default function DemoFaceMatching({ result, setResult }) {
 
+    const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
 
     const [loading, setLoading] = useState(false)
     const [file1, setFile1] = useState(null)
@@ -66,7 +67,7 @@ export default function DemoFaceMatching({ result, setResult }) {
         }
     }
 
-    const onSubmit = () => {
+    const onSubmit = (recaptchaToken) => {
         if ((file1 && file2) || (imageUrl1 && imageUrl2)) {
             trackTrialEvent(window.location.pathname)
 
@@ -75,19 +76,12 @@ export default function DemoFaceMatching({ result, setResult }) {
                 let formData = new FormData()
                 formData.append('img1', file1)
                 formData.append('img2', file2)
+                formData.append('recaptchaToken', recaptchaToken)
                 setLoading(true)
                 axios({
                     method: "post",
-                    url: `${url}?format_type=file&type1=card`,
-                    auth: {
-                        username: AuthKey.username,
-                        password: AuthKey.password
-                    },
+                    url: `${window.location.origin}/api/face-matching`,
                     data: formData,
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Access-Control-Allow-Origin': '*'
-                    }
                 })
                     .then(res => {
                         setResult(res.data)
@@ -101,14 +95,7 @@ export default function DemoFaceMatching({ result, setResult }) {
                 setLoading(true)
                 axios({
                     method: "get",
-                    url: `${url}?format_type=url&type1=card&img1=${imageUrl1}&img2=${imageUrl2}`,
-                    auth: {
-                        username: AuthKey.username,
-                        password: AuthKey.password
-                    },
-                    headers: {
-                        'Access-Control-Allow-Origin': '*'
-                    }
+                    url: `${window.location.origin}/api/face-matching?img1=${imageUrl1}&img2=${imageUrl2}`,
                 })
                     .then(res => {
                         setResult(res.data)
@@ -121,6 +108,14 @@ export default function DemoFaceMatching({ result, setResult }) {
             }
         }
 
+    }
+
+    const newSubmit = () => {
+        window.grecaptcha.ready(() => {
+            window.grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then(token => {
+                onSubmit(token)
+            })
+        })
     }
 
     const onReset = () => {
@@ -214,7 +209,7 @@ export default function DemoFaceMatching({ result, setResult }) {
                 </Col>
                 <Col md={24}>
                     <Button
-                        onClick={hasData ? onReset : onSubmit}
+                        onClick={hasData ? onReset : newSubmit}
                         loading={loading}
                         type='primary'
                         block
