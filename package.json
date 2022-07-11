@@ -10,7 +10,7 @@
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
-    "serve": "gatsby serve --port 9000",
+    "serve": "gatsby serve --port 9000 --host localhost",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "preload-fonts": "gatsby-preload-fonts"
   },
