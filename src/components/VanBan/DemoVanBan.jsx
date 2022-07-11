@@ -49,7 +49,6 @@ export default function DemoVanBan({ currentType, result, setResult }) {
 
   const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
 
-
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
   const isPDF = file?.type.includes('pdf')

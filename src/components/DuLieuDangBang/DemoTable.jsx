@@ -133,6 +133,8 @@ const urlOptions = {
 
 export default function DemoTable({ currentType, result, setResult }) {
 
+  const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
+
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
   const isPDF = file?.type.includes('pdf')
@@ -147,26 +149,20 @@ export default function DemoTable({ currentType, result, setResult }) {
     setFile(file)
   };
 
-  const onSubmit = () => {
+  const onSubmit = (recaptchaToken) => {
     if (!file) return;
     trackTrialEvent(window.location.pathname)
 
     let formData = new FormData()
     formData.append('img', file)
+    formData.append('recaptchaToken', recaptchaToken)
+
     const url = urlOptions[currentType]
     setLoading(true)
     axios({
       method: "post",
-      url: `${url}&format_type=file`,
-      auth: {
-        username: AuthKey.username,
-        password: AuthKey.password
-      },
+      url: `${window.location.origin}/api/ocr/v2?type=${currentType}`,
       data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': '*'
-      }
     })
       .then(res => {
         setResult(res.data)
@@ -176,6 +172,14 @@ export default function DemoTable({ currentType, result, setResult }) {
         console.log(err)
         setLoading(false)
       })
+  }
+
+  const newSubmit = () => {
+    window.grecaptcha.ready(() => {
+      window.grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then(token => {
+        onSubmit(token)
+      })
+    })
   }
 
   const onReset = () => {
@@ -262,7 +266,7 @@ export default function DemoTable({ currentType, result, setResult }) {
         >
           {isLargePDF && <div style={{ color: '#EC1C2A' }} >Chỉ có thể tải lên tối đa 5 trang PDF</div>}
           <Button
-            onClick={(hasData || isLargePDF) ? onReset : onSubmit}
+            onClick={(hasData || isLargePDF) ? onReset : newSubmit}
             loading={loading}
             type='primary'
             block
