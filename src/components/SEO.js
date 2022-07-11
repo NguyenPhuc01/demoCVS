@@ -53,7 +53,6 @@ const SEO = ({ title, description, url, pathname, image }) => {
   const site = results.allSite.edges[0].node.siteMetadata;
   // const twitter = site.social.find(option => option.name === 'twitter') || {};
 
-
   const fullURL = path => (path ? `${site.siteUrl}${path}` : site.siteUrl);
 
   // const pageTitle = title ? `${title} | ${site.title}` : site.title;
@@ -100,7 +99,13 @@ const SEO = ({ title, description, url, pathname, image }) => {
       title={pageTitle}
       htmlAttributes={{ lang: intl.locale }}
       meta={metaTags}
-    />
+    >
+      <script
+        key="recaptcha"
+        type="text/javascript"
+        src={`https://www.google.com/recaptcha/api.js?render=${process.env.GATSBY_RECAPTCHA_V3_SITE_KEY}`}
+      />
+    </Helmet>
   );
 };
 

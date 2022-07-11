@@ -47,6 +47,9 @@ const showMenuTypes = [
 
 export default function DemoVanBan({ currentType, result, setResult }) {
 
+  const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
+
+
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
   const isPDF = file?.type.includes('pdf')
@@ -86,7 +89,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
     }
   }
 
-  const onSubmit = () => {
+  const onSubmit = (recaptchaToken) => {
     if (!file && !imageUrl) return;
     trackTrialEvent(window.location.pathname)
 
@@ -98,19 +101,12 @@ export default function DemoVanBan({ currentType, result, setResult }) {
       } else {
         formData.append('img', file)
       }
+      formData.append('recaptchaToken', recaptchaToken)
       setLoading(true)
       axios({
         method: "post",
-        url: `${url}&format_type=file`,
-        auth: {
-          username: AuthKey.username,
-          password: AuthKey.password
-        },
+        url: `${window.location.origin}/api/ocr/v2?type=${currentType}`,
         data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Access-Control-Allow-Origin': '*'
-        }
       })
         .then(res => {
           setResult(res.data)
@@ -124,14 +120,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
       setLoading(true)
       axios({
         method: "get",
-        url: `${url}&format_type=url&img=${imageUrl}`,
-        auth: {
-          username: AuthKey.username,
-          password: AuthKey.password
-        },
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
+        url: `${window.location.origin}/api/ocr/v2?type=${currentType}&img=${imageUrl}&recaptchaToken=${recaptchaToken}`,
       })
         .then(res => {
           setResult(res.data)
@@ -142,6 +131,14 @@ export default function DemoVanBan({ currentType, result, setResult }) {
           setLoading(false)
         })
     }
+  }
+
+  const newSubmit = () => {
+    window.grecaptcha.ready(() => {
+      window.grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then(token => {
+        onSubmit(token)
+      })
+    })
   }
 
   const onReset = () => {
@@ -169,7 +166,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
           loading={loading}
           input={input}
           onReset={onReset}
-          onSubmit={onSubmit}
+          onSubmit={newSubmit}
           error={error}
           onChangeLink={onChangeLink}
         /> :
@@ -257,7 +254,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
             <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: isPDF ? 56 : 8 }} />
 
             <Button
-              onClick={hasData ? onReset : onSubmit}
+              onClick={hasData ? onReset : newSubmit}
               loading={loading}
               type='primary'
               block
