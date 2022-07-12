@@ -2,22 +2,24 @@ import { DeleteFilled, LoadingOutlined, PlusOutlined } from '@ant-design/icons'
 import { Col, Row, Upload, Button, Input } from 'antd'
 import React, { useState } from 'react'
 import axios from 'axios';
-import { AuthKey } from '../AuthKey';
 import { isURL, trackTrialEvent } from '../utils';
 import Result from './Result';
 import ViewApiButton from '../ViewApiButton';
+import ReCAPTCHA from "react-google-recaptcha"
 
 const url = 'https://myanmar.computervision.com.vn/api/v2/ekyc/card?get_thumb=true'
 
 export default function DemoMyanmar({ result, setResult }) {
 
   const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
+  const recaptchaRef = React.useRef();
 
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
   const [imageUrl, setImageUrl] = useState(null)
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
+  const [token, setToken] = useState('')
 
   const hasData = file && result?.data
 
@@ -41,26 +43,20 @@ export default function DemoMyanmar({ result, setResult }) {
     }
   }
 
-  const onSubmit = () => {
+  const onSubmit = (recaptchaToken) => {
     if (!file && !imageUrl) return;
     trackTrialEvent(window.location.pathname)
 
     if (file) {
       let formData = new FormData()
       formData.append('img', file)
+      formData.append('recaptchaToken', recaptchaToken)
+
       setLoading(true)
       axios({
         method: "post",
-        url: `${url}&format_type=file`,
-        auth: {
-          username: 'A3zzt23qx5dtjZgd74ZwOgoQVZdsnTQ32cfPyMSIhyoJ',
-          password: 'af8ebd1edca5f398dc45de1ef8a6ace940dcf09a6289383df61d0be80fa732d1'
-        },
+        url: `${window.location.origin}/api/ocr/v2-cam?type=myanmar`,
         data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Access-Control-Allow-Origin': '*'
-        }
       })
         .then(res => {
           setResult(res.data)
@@ -74,14 +70,7 @@ export default function DemoMyanmar({ result, setResult }) {
       setLoading(true)
       axios({
         method: "get",
-        url: `${url}&format_type=url&img=${imageUrl}`,
-        auth: {
-          username: 'A3zzt23qx5dtjZgd74ZwOgoQVZdsnTQ32cfPyMSIhyoJ',
-          password: 'af8ebd1edca5f398dc45de1ef8a6ace940dcf09a6289383df61d0be80fa732d1'
-        },
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
+        url: `${window.location.origin}/api/ocr/v2-cam?type=myanmar&img=${imageUrl}&recaptchaToken=${recaptchaToken}`,
       })
         .then(res => {
           setResult(res.data)
@@ -99,6 +88,8 @@ export default function DemoMyanmar({ result, setResult }) {
     setResult(null)
     setImageUrl(null)
     setInput('')
+    setToken('')
+    recaptchaRef.current.reset()
   }
 
   const onDelete = e => {
@@ -106,6 +97,14 @@ export default function DemoMyanmar({ result, setResult }) {
     onReset()
   }
 
+  const onChangeReCAPTCHA = token => {
+    setToken(token)
+  }
+
+  const onSubmitWithReCAPTCHA = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    onSubmit(recaptchaValue)
+  }
 
   return (
     <Row gutter={[30, 60]}>
@@ -135,18 +134,24 @@ export default function DemoMyanmar({ result, setResult }) {
             </div>}
         </Upload>
         <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: 8 }} />
+        <ReCAPTCHA
+          sitekey={recaptchaSiteKey}
+          onChange={onChangeReCAPTCHA}
+          ref={recaptchaRef}
+          style={{ marginTop: 24 }}
+        />
         <Button
-          onClick={hasData ? onReset : onSubmit}
+          onClick={hasData ? onReset : onSubmitWithReCAPTCHA}
           loading={loading}
           type='primary'
           block
           style={{ height: 48, marginTop: 24 }}
+          disabled={hasData ? false : !token}
         >
           {hasData ? 'Thử lại' : 'XỬ LÝ'}
         </Button>
       </Col>
       <Col md={12} xs={24}>
-        {/* <div className='flex-vertical' > */}
         <div className='demo-result'>
           {result ?
             <Result result={result} />
@@ -156,7 +161,6 @@ export default function DemoMyanmar({ result, setResult }) {
           }
         </div>
         <ViewApiButton />
-        {/* </div> */}
       </Col>
     </Row>
 

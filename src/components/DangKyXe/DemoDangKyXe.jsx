@@ -2,22 +2,24 @@ import { DeleteFilled, LoadingOutlined, PlusOutlined } from '@ant-design/icons'
 import { Col, Row, Upload, Button, Input } from 'antd'
 import React, { useState } from 'react'
 import axios from 'axios';
-import { AuthKey } from '../AuthKey';
 import { isURL, trackTrialEvent } from '../utils';
 import Result from './Result';
 import ViewApiButton from '../ViewApiButton';
+import ReCAPTCHA from "react-google-recaptcha"
 
 const url = 'https://demo.computervision.com.vn/api/v2/ocr/vehicle_registration?get_thumb=true'
 
 export default function DemoDangKyXe({ result, setResult }) {
 
   const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
+  const recaptchaRef = React.useRef();
 
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
   const [imageUrl, setImageUrl] = useState(null)
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
+  const [token, setToken] = useState('')
 
   const hasData = file && result?.data
 
@@ -82,19 +84,13 @@ export default function DemoDangKyXe({ result, setResult }) {
     }
   }
 
-  const newSubmit = () => {
-    window.grecaptcha.ready(() => {
-      window.grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then(token => {
-        onSubmit(token)
-      })
-    })
-  }
-
   const onReset = () => {
     setFile(null)
     setResult(null)
     setImageUrl(null)
     setInput('')
+    setToken('')
+    recaptchaRef.current.reset()
   }
 
   const onDelete = e => {
@@ -102,6 +98,14 @@ export default function DemoDangKyXe({ result, setResult }) {
     onReset()
   }
 
+  const onChangeReCAPTCHA = token => {
+    setToken(token)
+  }
+
+  const onSubmitWithReCAPTCHA = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    onSubmit(recaptchaValue)
+  }
 
   return (
     <Row gutter={[30, 60]}>
@@ -131,18 +135,24 @@ export default function DemoDangKyXe({ result, setResult }) {
             </div>}
         </Upload>
         <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: 8 }} />
+        <ReCAPTCHA
+          sitekey={recaptchaSiteKey}
+          onChange={onChangeReCAPTCHA}
+          ref={recaptchaRef}
+          style={{ marginTop: 24 }}
+        />
         <Button
-          onClick={hasData ? onReset : newSubmit}
+          onClick={hasData ? onReset : onSubmitWithReCAPTCHA}
           loading={loading}
           type='primary'
           block
           style={{ height: 48, marginTop: 24 }}
+          disabled={hasData ? false : !token}
         >
           {hasData ? 'Thử lại' : 'XỬ LÝ'}
         </Button>
       </Col>
       <Col md={12} xs={24}>
-        {/* <div className='flex-vertical' > */}
         <div className='demo-result'>
           {result ?
             <Result result={result} />
@@ -152,7 +162,6 @@ export default function DemoDangKyXe({ result, setResult }) {
           }
         </div>
         <ViewApiButton />
-        {/* </div> */}
       </Col>
     </Row>
   )

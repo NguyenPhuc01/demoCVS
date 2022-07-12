@@ -2,7 +2,6 @@ import { DeleteFilled, LeftOutlined, LoadingOutlined, PlusOutlined, RightOutline
 import { Col, Row, Upload, Button, Input, Space, Menu } from 'antd'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { AuthKey } from '../AuthKey';
 import { isURL, trackTrialEvent } from '../utils';
 import Result from './Result';
 import ViewApiButton from '../ViewApiButton';
@@ -278,7 +277,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
               type='primary'
               block
               style={{ height: 48, marginTop: 24 }}
-              disabled={!token}
+              disabled={hasData ? false : !token}
             >
               {hasData ? 'Thử lại' : 'XỬ LÝ'}
             </Button>

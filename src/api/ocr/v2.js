@@ -126,7 +126,7 @@ export default async function handler(req, res) {
 
     if (
       !recaptchaValidationResult.success ||
-      recaptchaValidationResult.score <= 0.7
+      recaptchaValidationResult.score < 0.5
     ) {
       res.status(400).send(recaptchaValidationResult.message);
     } else {
@@ -158,7 +158,7 @@ export default async function handler(req, res) {
 
     if (
       !recaptchaValidationResult.success ||
-      recaptchaValidationResult.score <= 0.7
+      recaptchaValidationResult.score < 0.5
     ) {
       res.status(400).send(recaptchaValidationResult.message);
     } else {

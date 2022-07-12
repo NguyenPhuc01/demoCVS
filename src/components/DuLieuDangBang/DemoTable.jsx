@@ -2,7 +2,6 @@ import { DeleteFilled, LeftOutlined, LoadingOutlined, PlusOutlined, RightOutline
 import { Col, Row, Upload, Button, Input, Space, Menu } from 'antd'
 import React, { useState } from 'react'
 import axios from 'axios';
-import { AuthKey } from '../AuthKey';
 import { isURL, trackTrialEvent } from '../utils';
 import Result from './Result';
 import PreviewPDF from './PreviewPDF';
@@ -291,14 +290,13 @@ export default function DemoTable({ currentType, result, setResult }) {
             type='primary'
             block
             style={{ height: 48, marginTop: 24 }}
-            disabled={!token}
+            disabled={(hasData || isLargePDF) ? false : !token}
           >
             {(hasData || isLargePDF) ? 'Thử lại' : 'XỬ LÝ'}
           </Button>
         </div>
       </Col>
       <Col md={12} xs={24}>
-        {/* <div className='flex-vertical' > */}
         <div className='demo-result' style={{ height: 'calc(100% - 114px)' }}>
           {result ?
             <Result result={result} type={currentType} />
@@ -307,8 +305,6 @@ export default function DemoTable({ currentType, result, setResult }) {
             </div>
           }
         </div>
-        {/* <ViewApiButton /> */}
-        {/* </div> */}
       </Col>
     </Row>
   )

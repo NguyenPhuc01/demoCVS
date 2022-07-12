@@ -2,16 +2,16 @@ import { DeleteFilled, LoadingOutlined, PlusOutlined } from '@ant-design/icons'
 import { Col, Row, Upload, Button, Input } from 'antd'
 import React, { useState } from 'react'
 import axios from 'axios';
-import { AuthKey } from '../AuthKey';
 import { isURL, trackTrialEvent } from '../utils';
 import Result from './Result';
-import ExamImage from './ExamImage';
+import ReCAPTCHA from "react-google-recaptcha"
 
 const url = 'https://demo.computervision.com.vn/api/v2/ekyc/face_matching'
 
 export default function DemoFaceMatching({ result, setResult }) {
 
   const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
+  const recaptchaRef = React.useRef();
 
   const [loading, setLoading] = useState(false)
   const [file1, setFile1] = useState(null)
@@ -22,6 +22,7 @@ export default function DemoFaceMatching({ result, setResult }) {
   const [imageUrl2, setImageUrl2] = useState(null)
   const [input2, setInput2] = useState('')
   const [error2, setError2] = useState('')
+  const [token, setToken] = useState('')
 
   const hasData = result?.data
   const hasData1 = file1 && result?.data
@@ -110,18 +111,12 @@ export default function DemoFaceMatching({ result, setResult }) {
 
   }
 
-  const newSubmit = () => {
-    window.grecaptcha.ready(() => {
-      window.grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then(token => {
-        onSubmit(token)
-      })
-    })
-  }
-
   const onReset = () => {
     setResult(null)
     onReset1()
     onReset2()
+    setToken('')
+    recaptchaRef.current.reset()
   }
 
   const onReset1 = () => {
@@ -148,11 +143,18 @@ export default function DemoFaceMatching({ result, setResult }) {
     onReset2()
   }
 
+  const onChangeReCAPTCHA = token => {
+    setToken(token)
+  }
+
+  const onSubmitWithReCAPTCHA = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    onSubmit(recaptchaValue)
+  }
 
   return (
     <>
-      {/* <ExamImage onChangeFile1={onChangeFile1} onChangeFile2={onChangeFile2} file1={file1} file2={file2} /> */}
-      <Row gutter={[30, 60]}>
+      <Row gutter={[30, 30]}>
         <Col md={12} xs={24}>
           <Upload
             multiple={false}
@@ -208,12 +210,18 @@ export default function DemoFaceMatching({ result, setResult }) {
           <Input value={input2} onChange={onChangeLink2} disabled={!!file1} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: 8 }} />
         </Col>
         <Col md={24}>
+          <ReCAPTCHA
+            sitekey={recaptchaSiteKey}
+            onChange={onChangeReCAPTCHA}
+            ref={recaptchaRef}
+          />
           <Button
-            onClick={hasData ? onReset : newSubmit}
+            onClick={hasData ? onReset : onSubmitWithReCAPTCHA}
             loading={loading}
             type='primary'
             block
             style={{ height: 48, marginTop: 24 }}
+            disabled={hasData ? false : !token}
           >
             {hasData ? 'Thử lại' : 'XỬ LÝ'}
           </Button>

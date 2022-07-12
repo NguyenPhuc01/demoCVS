@@ -2,11 +2,9 @@ import { DeleteFilled, LoadingOutlined, PlusOutlined } from '@ant-design/icons'
 import { Col, Row, Upload, Button, Input } from 'antd'
 import React, { useState } from 'react'
 import axios from 'axios';
-import { AuthKey } from '../AuthKey';
 import { isURL, trackTrialEvent } from '../utils';
 import Result from './Result';
 import ViewApiButton from '../ViewApiButton';
-import ExamImage from './ExamImage';
 import ReCAPTCHA from "react-google-recaptcha"
 
 const url = 'https://demo.computervision.com.vn/backend/api/v1/request/ocr/cmt/get_infor_all'
@@ -85,13 +83,13 @@ export default function DemoCMND({ result, setResult }) {
     }
   }
 
-  const newSubmit = () => {
-    window.grecaptcha.ready(() => {
-      window.grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then(token => {
-        onSubmit(token)
-      })
-    })
-  }
+  // const newSubmit = () => {
+  //   window.grecaptcha.ready(() => {
+  //     window.grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then(token => {
+  //       onSubmit(token)
+  //     })
+  //   })
+  // }
 
   const onReset = () => {
     setFile(null)
@@ -157,7 +155,7 @@ export default function DemoCMND({ result, setResult }) {
             type='primary'
             block
             style={{ height: 48, marginTop: 24 }}
-            disabled={!token}
+            disabled={hasData ? false : !token}
           >
             {hasData ? 'Thử lại' : 'XỬ LÝ'}
           </Button>

@@ -131,7 +131,7 @@ export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, l
           type='primary'
           block
           style={{ height: 48, marginTop: 24 }}
-          disabled={!token}
+          disabled={hasData ? false : !token}
         >
           {hasData ? 'Thử lại' : 'XỬ LÝ'}
         </Button>
