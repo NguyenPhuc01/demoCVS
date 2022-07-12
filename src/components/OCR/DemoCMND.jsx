@@ -21,6 +21,8 @@ export default function DemoCMND({ result, setResult }) {
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
 
+  const [submitted, setSubmitted] = useState(false)
+
   const hasData = file && result?.data
 
   const onChangeFile = ({ file }) => {
@@ -103,6 +105,12 @@ export default function DemoCMND({ result, setResult }) {
     onReset()
   }
 
+  const submit = (token) => {
+    console.log("token: ", token);
+    onSubmit(token)
+  }
+
+
 
   return (
     <>
@@ -133,8 +141,15 @@ export default function DemoCMND({ result, setResult }) {
               </div>}
           </Upload>
           <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: 8 }} />
+          <ReCaptcha
+            action="homepage"
+            siteKey={recaptchaSiteKey}
+            onVerify={(token) => submit(token)}
+            submitted={submitted}
+          />
           <Button
-            onClick={hasData ? onReset : newSubmit}
+            // onClick={hasData ? onReset : newSubmit}
+            onClick={() => setSubmitted(true)}
             loading={loading}
             type='primary'
             block
