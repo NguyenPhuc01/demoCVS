@@ -7,6 +7,7 @@ import { isURL, trackTrialEvent } from '../utils';
 import Result from './Result';
 import PreviewPDF from './PreviewPDF';
 import ViewApiButton from '../ViewApiButton';
+import ReCAPTCHA from "react-google-recaptcha"
 
 const urlOptions = {
   'bang-diem': 'https://demo.computervision.com.vn/api/v2/ocr/document/transcript?get_thumb=false',
@@ -134,6 +135,7 @@ const urlOptions = {
 export default function DemoTable({ currentType, result, setResult }) {
 
   const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
+  const recaptchaRef = React.useRef();
 
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
@@ -142,6 +144,7 @@ export default function DemoTable({ currentType, result, setResult }) {
   const [pageNumber, setPageNumber] = useState(1)
   const [current, setCurrent] = useState('1')
   const isLargePDF = numPages > 5 && currentType === 'bang-tong-quat'
+  const [token, setToken] = useState('')
 
   const hasData = file && result?.data
 
@@ -186,11 +189,22 @@ export default function DemoTable({ currentType, result, setResult }) {
     setFile(null)
     setResult(null)
     setNumPages(null)
+    setToken('')
+    recaptchaRef.current.reset()
   }
 
   const onDelete = e => {
     e.stopPropagation()
     onReset()
+  }
+
+  const onChangeReCAPTCHA = token => {
+    setToken(token)
+  }
+
+  const onSubmitWithReCAPTCHA = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    onSubmit(recaptchaValue)
   }
 
   return (
@@ -265,12 +279,19 @@ export default function DemoTable({ currentType, result, setResult }) {
         <div style={{ marginTop: isPDF ? 60 : 24, textAlign: 'center' }}
         >
           {isLargePDF && <div style={{ color: '#EC1C2A' }} >Chỉ có thể tải lên tối đa 5 trang PDF</div>}
+          <ReCAPTCHA
+            sitekey={recaptchaSiteKey}
+            onChange={onChangeReCAPTCHA}
+            ref={recaptchaRef}
+            style={{ marginTop: 24 }}
+          />
           <Button
-            onClick={(hasData || isLargePDF) ? onReset : newSubmit}
+            onClick={(hasData || isLargePDF) ? onReset : onSubmitWithReCAPTCHA}
             loading={loading}
             type='primary'
             block
-            style={{ height: 48, }}
+            style={{ height: 48, marginTop: 24 }}
+            disabled={!token}
           >
             {(hasData || isLargePDF) ? 'Thử lại' : 'XỬ LÝ'}
           </Button>

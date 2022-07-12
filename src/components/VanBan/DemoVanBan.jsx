@@ -8,6 +8,7 @@ import Result from './Result';
 import ViewApiButton from '../ViewApiButton';
 import PreviewPDF from '../DuLieuDangBang/PreviewPDF';
 import HoSoNhanSuDemo from './HoSoNhanSuDemo';
+import ReCAPTCHA from "react-google-recaptcha"
 
 const urlOptions = {
   'van-ban-tong-quat': 'https://demo.computervision.com.vn/api/v2/ocr/document/general?get_thumb=true',
@@ -48,6 +49,7 @@ const showMenuTypes = [
 export default function DemoVanBan({ currentType, result, setResult }) {
 
   const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
+  const recaptchaRef = React.useRef();
 
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
@@ -65,6 +67,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
 
   const [current, setCurrent] = useState('1')
   const [pageNumber, setPageNumber] = useState(1)
+  const [token, setToken] = useState('')
 
   const hasData = file && result?.data
 
@@ -147,11 +150,22 @@ export default function DemoVanBan({ currentType, result, setResult }) {
     setImageUrl(null)
     setInput('')
     setPageNumber(1)
+    setToken('')
+    recaptchaRef.current.reset()
   }
 
   const onDelete = e => {
     e.stopPropagation()
     onReset()
+  }
+
+  const onChangeReCAPTCHA = token => {
+    setToken(token)
+  }
+
+  const onSubmitWithReCAPTCHA = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    onSubmit(recaptchaValue)
   }
 
   return (
@@ -165,7 +179,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
           loading={loading}
           input={input}
           onReset={onReset}
-          onSubmit={newSubmit}
+          onSubmit={onSubmit}
           error={error}
           onChangeLink={onChangeLink}
         /> :
@@ -252,12 +266,19 @@ export default function DemoVanBan({ currentType, result, setResult }) {
             </Upload>
             <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: isPDF ? 56 : 8 }} />
 
+            <ReCAPTCHA
+              sitekey={recaptchaSiteKey}
+              onChange={onChangeReCAPTCHA}
+              ref={recaptchaRef}
+              style={{ marginTop: 24 }}
+            />
             <Button
-              onClick={hasData ? onReset : newSubmit}
+              onClick={hasData ? onReset : onSubmitWithReCAPTCHA}
               loading={loading}
               type='primary'
               block
-              style={{ height: 48, marginTop: 35 }}
+              style={{ height: 48, marginTop: 24 }}
+              disabled={!token}
             >
               {hasData ? 'Thử lại' : 'XỬ LÝ'}
             </Button>

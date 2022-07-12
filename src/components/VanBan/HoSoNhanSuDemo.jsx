@@ -4,19 +4,22 @@ import React, { useState, useEffect } from 'react'
 import ViewApiButton from '../ViewApiButton';
 import PreviewPDF from '../DuLieuDangBang/PreviewPDF';
 import HoSoNhanSuResult from './HoSoNhanSuResult';
+import ReCAPTCHA from "react-google-recaptcha"
 
 
 
 export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, loading, input,
   onReset, onSubmit, error, onChangeLink
 }) {
-
+  const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
+  const recaptchaRef = React.useRef();
   const isPDF = file?.type.includes('pdf')
   const hasData = file && result?.data
 
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1)
   const [current, setCurrent] = useState('origin')
+  const [token, setToken] = useState('')
 
   const reset = () => {
     setNumPages(null)
@@ -34,6 +37,15 @@ export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, l
     'health_certification': <AnhGiayKhamSucKhoe data={result?.data[current]} />,
     'confirm_residence': <AnhXacNhanThongTinCuTru data={result?.data[current]} />,
     'origin': null
+  }
+
+  const onChangeReCAPTCHA = token => {
+    setToken(token)
+  }
+
+  const onSubmitWithReCAPTCHA = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    onSubmit(recaptchaValue)
   }
 
   return (
@@ -107,12 +119,19 @@ export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, l
         </Upload>
         <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: (isPDF || result?.data?.length > 1) ? 56 : 8 }} />
 
+        <ReCAPTCHA
+          sitekey={recaptchaSiteKey}
+          onChange={onChangeReCAPTCHA}
+          ref={recaptchaRef}
+          style={{ marginTop: 24 }}
+        />
         <Button
-          onClick={hasData ? reset : onSubmit}
+          onClick={hasData ? reset : onSubmitWithReCAPTCHA}
           loading={loading}
           type='primary'
           block
           style={{ height: 48, marginTop: 24 }}
+          disabled={!token}
         >
           {hasData ? 'Thử lại' : 'XỬ LÝ'}
         </Button>
