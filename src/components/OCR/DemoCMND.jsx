@@ -7,6 +7,7 @@ import { isURL, trackTrialEvent } from '../utils';
 import Result from './Result';
 import ViewApiButton from '../ViewApiButton';
 import ExamImage from './ExamImage';
+import ReCaptcha from "@pittica/gatsby-plugin-recaptcha"
 
 const url = 'https://demo.computervision.com.vn/backend/api/v1/request/ocr/cmt/get_infor_all'
 
@@ -105,7 +106,6 @@ export default function DemoCMND({ result, setResult }) {
 
   return (
     <>
-      {/* <ExamImage onChangeFile={onChangeFile} /> */}
       <Row gutter={[30, 60]}>
         <Col md={12} xs={24}>
           <Upload
@@ -144,7 +144,6 @@ export default function DemoCMND({ result, setResult }) {
           </Button>
         </Col>
         <Col md={12} xs={24}>
-          {/* <div className='flex-vertical' > */}
           <div className='demo-result'>
             {result ?
               <Result result={result} />
@@ -154,7 +153,6 @@ export default function DemoCMND({ result, setResult }) {
             }
           </div>
           <ViewApiButton />
-          {/* </div> */}
         </Col>
       </Row>
     </>

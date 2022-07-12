@@ -12,6 +12,7 @@ const url = 'https://demo.computervision.com.vn/api/v2/ocr/document/business_reg
 
 export default function DemoDangKyDoanhNghiep({ result, setResult }) {
 
+  const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY
 
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState(null)
@@ -52,7 +53,7 @@ export default function DemoDangKyDoanhNghiep({ result, setResult }) {
     }
   }
 
-  const onSubmit = () => {
+  const onSubmit = (recaptchaToken) => {
     if (!file && !imageUrl) return;
     trackTrialEvent(window.location.pathname)
 
@@ -60,19 +61,13 @@ export default function DemoDangKyDoanhNghiep({ result, setResult }) {
     if (file) {
       let formData = new FormData()
       formData.append('img', file)
+      formData.append('recaptchaToken', recaptchaToken)
+
       setLoading(true)
       axios({
         method: "post",
-        url: `${url}&format_type=file`,
-        auth: {
-          username: AuthKey.username,
-          password: AuthKey.password
-        },
+        url: `${window.location.origin}/api/ocr/v2?type=dang-ky-doanh-nghiep`,
         data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Access-Control-Allow-Origin': '*'
-        }
       })
         .then(res => {
           setResult(res.data)
@@ -86,14 +81,7 @@ export default function DemoDangKyDoanhNghiep({ result, setResult }) {
       setLoading(true)
       axios({
         method: "get",
-        url: `${url}&format_type=url&img=${imageUrl}`,
-        auth: {
-          username: AuthKey.username,
-          password: AuthKey.password
-        },
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
+        url: `${window.location.origin}/api/ocr/v2?type=dang-ky-doanh-nghiep&recaptchaToken=${recaptchaToken}`,
       })
         .then(res => {
           setResult(res.data)
@@ -104,6 +92,14 @@ export default function DemoDangKyDoanhNghiep({ result, setResult }) {
           setLoading(false)
         })
     }
+  }
+
+  const newSubmit = () => {
+    window.grecaptcha.ready(() => {
+      window.grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then(token => {
+        onSubmit(token)
+      })
+    })
   }
 
   const onReset = () => {
@@ -151,7 +147,7 @@ export default function DemoDangKyDoanhNghiep({ result, setResult }) {
         </Upload>
         <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: isPDF ? 56 : 8 }} />
         <Button
-          onClick={hasData ? onReset : onSubmit}
+          onClick={hasData ? onReset : newSubmit}
           loading={loading}
           type='primary'
           block

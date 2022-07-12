@@ -1,7 +1,14 @@
 const axios = require("axios");
 const FormData = require("form-data");
 
-const url = "https://demo.computervision.com.vn/api/v2/ekyc/face_matching";
+const urlOptions = {
+  cambodia:
+    "https://cambodia.computervision.com.vn/api/v2/ekyc/card?get_thumb=true",
+  myanmar:
+    "https://myanmar.computervision.com.vn/api/v2/ekyc/card?get_thumb=true",
+  philippines:
+    "https://demo.computervision.com.vn/api/v2/ocr/philippines?get_thumb=true"
+};
 
 const recaptchaValidation = async ({ recaptchaToken }) => {
   try {
@@ -33,12 +40,13 @@ const recaptchaValidation = async ({ recaptchaToken }) => {
 };
 
 export default async function handler(req, res) {
+  const type = req.query.type;
+  const url = urlOptions[type];
+
   if (req.method === `POST`) {
-    const file1 = req.files[0];
-    const file2 = req.files[1];
+    const file = req.files[0];
     let form = new FormData();
-    form.append("img1", file1.buffer, file1.originalname);
-    form.append("img2", file2.buffer, file2.originalname);
+    form.append("img", file.buffer, file.originalname);
 
     const recaptchaValidationResult = await recaptchaValidation({
       recaptchaToken: req.body.recaptchaToken
@@ -52,10 +60,10 @@ export default async function handler(req, res) {
     } else {
       axios({
         method: "POST",
-        url: `${url}?format_type=file&type1=card`,
+        url: `${url}&format_type=file`,
         auth: {
-          username: process.env.GATSBY_API_USERNAME,
-          password: process.env.GATSBY_API_PASSWORD
+          username: process.env.GATSBY_API_USERNAME2,
+          password: process.env.GATSBY_API_PASSWORD2
         },
         data: form,
         headers: form.getHeaders()
@@ -71,9 +79,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === `GET`) {
-    const img1 = req.query.img1;
-    const img2 = req.query.img2;
-
+    const img = req.query.img;
     const recaptchaValidationResult = await recaptchaValidation({
       recaptchaToken: req.query.recaptchaToken
     });
@@ -86,10 +92,10 @@ export default async function handler(req, res) {
     } else {
       axios({
         method: "GET",
-        url: `${url}?format_type=url&type1=card&img1=${img1}&img2=${img2}`,
+        url: `${url}&format_type=url&img=${img}`,
         auth: {
-          username: process.env.GATSBY_API_USERNAME,
-          password: process.env.GATSBY_API_PASSWORD
+          username: process.env.GATSBY_API_USERNAME2,
+          password: process.env.GATSBY_API_PASSWORD2
         },
         headers: {
           "Access-Control-Allow-Origin": "*"
