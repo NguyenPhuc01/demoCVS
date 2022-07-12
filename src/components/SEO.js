@@ -100,11 +100,11 @@ const SEO = ({ title, description, url, pathname, image }) => {
       htmlAttributes={{ lang: intl.locale }}
       meta={metaTags}
     >
-      <script
+      {/* <script
         key="recaptcha"
         type="text/javascript"
         src={`https://www.google.com/recaptcha/api.js?render=${process.env.GATSBY_RECAPTCHA_V3_SITE_KEY}`}
-      />
+      /> */}
     </Helmet>
   );
 };
