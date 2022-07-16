@@ -149,6 +149,7 @@ export default function DemoCMND({ result, setResult }) {
             ref={recaptchaRef}
             style={{ marginTop: 24 }}
             fallback={true}
+            hl='vi'
           />
           <Button
             onClick={hasData ? onReset : onSubmitWithReCAPTCHA}
