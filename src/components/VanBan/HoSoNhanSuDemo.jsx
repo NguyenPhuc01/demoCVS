@@ -124,6 +124,8 @@ export default function HoSoNhanSuDemo({ result, onChangeFile, file, imageUrl, l
           onChange={onChangeReCAPTCHA}
           ref={recaptchaRef}
           style={{ marginTop: 24 }}
+          fallback={true}
+          hl='vi'
         />
         <Button
           onClick={hasData ? reset : onSubmitWithReCAPTCHA}

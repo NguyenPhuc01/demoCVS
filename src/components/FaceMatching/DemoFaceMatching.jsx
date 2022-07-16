@@ -214,6 +214,8 @@ export default function DemoFaceMatching({ result, setResult }) {
             sitekey={recaptchaSiteKey}
             onChange={onChangeReCAPTCHA}
             ref={recaptchaRef}
+            fallback={true}
+            hl='vi'
           />
           <Button
             onClick={hasData ? onReset : onSubmitWithReCAPTCHA}

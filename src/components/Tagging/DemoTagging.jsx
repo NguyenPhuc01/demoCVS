@@ -141,6 +141,8 @@ export default function DemoTagging({ result, setResult }) {
           onChange={onChangeReCAPTCHA}
           ref={recaptchaRef}
           style={{ marginTop: 24 }}
+          fallback={true}
+          hl='vi'
         />
         <Button
           onClick={hasData ? onReset : onSubmitWithReCAPTCHA}
