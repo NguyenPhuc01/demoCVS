@@ -2,8 +2,12 @@ const axios = require("axios");
 const FormData = require("form-data");
 
 const urlOptions = {
-  "tong-quat":
+  "van-ban-tong-quat":
     "https://demo.computervision.com.vn/api/v2/ocr/document/general?get_thumb=true",
+  "hoa-don-xe":
+    "https://demo.computervision.com.vn/api/v2/ocr/document/invoice_vehicle?get_thumb=true",
+  "hoa-don-vat":
+    "https://demo.computervision.com.vn/api/v2/ocr/document/pvi_invoice?get_thumb=false",
   "hoa-don":
     "https://demo.computervision.com.vn/api/v2/ocr/document/invoice_vehicle?get_thumb=true",
   "bang-ke":
@@ -26,8 +30,10 @@ const urlOptions = {
     "https://demo.computervision.com.vn/api/v2/ocr/document/hospital_discharge_paper?get_thumb=true",
   "de-nghi-thanh-toan":
     "https://demo.computervision.com.vn/api/v2/nlpextract/denghithanhtoan?get_thumb=true",
-  "giay-dang-ky-du-tuyen":
+  "dang-ky-du-tuyen":
     "https://demo.computervision.com.vn/api/v2/nlpextract/dangkydutuyen?get_thumb=true",
+  a4:
+    "https://demo.computervision.com.vn/backend/api/v1/request/ocr/v1/get_infor?get_thumb=true",
   "bang-tot-nghiep":
     "https://demo.computervision.com.vn/api/v2/nlpextract/bangtotnghiep?get_thumb=true",
   "giay-khai-tu":
