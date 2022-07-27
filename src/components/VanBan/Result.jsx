@@ -39,6 +39,7 @@ export default function Result({ result, type }) {
     'the-tong-quat': <VanBanScan data={data2?.info} />,
     'cv': <CV data={data} />,
     'giay-nop-tien': <GiayNopTien data={data2[currentPage]?.info} />,
+    'visa': <Visa data={data2[currentPage]?.info} />,
   }
   return (
     <>
@@ -130,6 +131,40 @@ function GiayNopTien({ data }) {
     </>
   )
 }
+
+
+function Visa({ data }) {
+  const {
+    name, name_confidence,
+    date_of_birth, date_of_birth_confidence,
+    gender, gender_confidence,
+    nationality, nationality_confidence,
+    passport_number, passport_number_confidence,
+    visa_number, visa_number_confidence,
+    period_of_stay, period_of_stay_confidence,
+    number_of_entries, number_of_entries_confidence,
+    date_of_issue, date_of_issue_confidence,
+    expiry_date, expiry_date_confidence,
+    intended_date, intended_date_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Tên của khách' value={name} confidence={name_confidence} />
+      <Field name='Ngày sinh của khách' value={date_of_birth} confidence={date_of_birth_confidence} />
+      <Field name='Giới tính của khách' value={gender} confidence={gender_confidence} />
+      <Field name='Quốc tịch của khách' value={nationality} confidence={nationality_confidence} />
+      <Field name='Số hộ chiếu của khách' value={passport_number} confidence={passport_number_confidence} />
+      <Field name='Số visa của khách' value={visa_number} confidence={visa_number_confidence} />
+      <Field name='Thời gian lưu trú' value={period_of_stay} confidence={period_of_stay_confidence} />
+      <Field name='Số lượng đăng ký' value={number_of_entries} confidence={number_of_entries_confidence} />
+      <Field name='Ngày đăng ký' value={date_of_issue} confidence={date_of_issue_confidence} />
+      <Field name='Ngày hết hạn' value={expiry_date} confidence={expiry_date_confidence} />
+      <Field name='Ngày dự kiến đến' value={intended_date} confidence={intended_date_confidence} />
+    </>
+  )
+}
+
 
 function CV({ data }) {
 

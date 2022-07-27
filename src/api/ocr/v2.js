@@ -58,6 +58,8 @@ const urlOptions = {
     "https://demo.computervision.com.vn/api/v2/cv_parser/cv_file_parser?get_thumb=true",
   "giay-nop-tien":
     "https://demo.computervision.com.vn/api/v2/nlpextract/giaynoptien?get_thumb=true",
+  visa:
+    "https://demo.computervision.com.vn/api/v2/nlpextract/visa?get_thumb=false",
 
   blx:
     "https://demo.computervision.com.vn/api/v2/ocr/driving_license?get_thumb=true",

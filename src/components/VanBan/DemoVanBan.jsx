@@ -42,7 +42,7 @@ const urlOptions = {
 const showMenuTypes = [
   'van-ban-tong-quat', 'e-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
   'bao-gia-xe', 'giay-ra-vien', 'de-nghi-thanh-toan', 'dang-ky-du-tuyen', 'a4', 'bang-tot-nghiep', 'giay-khai-tu',
-  'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap', 'dcttcn', 'uy-nhiem-chi', 'dang-ky-bao-hiem', 'the-tong-quat', 'giay-nop-tien'
+  'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap', 'dcttcn', 'uy-nhiem-chi', 'dang-ky-bao-hiem', 'the-tong-quat', 'giay-nop-tien', 'visa'
 ]
 
 export default function DemoVanBan({ currentType, result, setResult }) {

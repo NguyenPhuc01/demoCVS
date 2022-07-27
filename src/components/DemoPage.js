@@ -69,7 +69,8 @@ const types6 = [
   { id: 68, name: "Lý lịch tư pháp", key: "ly-lich-tu-phap" },
   { id: 69, name: "DCTTCN", key: "dcttcn" },
   { id: 611, name: "Giấy đăng ký bảo hiểm", key: "dang-ky-bao-hiem" },
-  { id: 612, name: "Thẻ tổng quát", key: "the-tong-quat" }
+  { id: 612, name: "Thẻ tổng quát", key: "the-tong-quat" },
+  { id: 613, name: "Visa", key: "visa" }
 ];
 
 const types7 = [
@@ -213,6 +214,9 @@ export default function DemoPage() {
     ),
     cv: <DemoVanBan currentType={type} result={result} setResult={setResult} />,
     "giay-nop-tien": (
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
+    ),
+    visa: (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     )
   };
