@@ -37,7 +37,8 @@ const types3 = [
   { id: 31, name: "Giấy đăng ký doanh nghiệp", key: "dang-ky-doanh-nghiep" },
   { id: 33, name: "Đề nghị thanh toán", key: "de-nghi-thanh-toan" },
   { id: 34, name: "Hồ sơ nhân sự", key: "ho-so-nhan-su" },
-  { id: 35, name: "CV", key: "cv" }
+  { id: 35, name: "CV", key: "cv" },
+  { id: 36, name: "Hợp đồng mua bán trái phiếu", key: "hop-dong-trai-phieu" }
 ];
 
 const types4 = [
@@ -217,6 +218,9 @@ export default function DemoPage() {
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     visa: (
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
+    ),
+    "hop-dong-trai-phieu": (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     )
   };

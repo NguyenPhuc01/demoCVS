@@ -40,6 +40,7 @@ export default function Result({ result, type }) {
     'cv': <CV data={data} />,
     'giay-nop-tien': <GiayNopTien data={data2[currentPage]?.info} />,
     'visa': <Visa data={data2[currentPage]?.info} />,
+    'hop-dong-trai-phieu': <HopDongTraiPhieu data={data2[currentPage]?.info} />,
   }
   return (
     <>
@@ -164,6 +165,66 @@ function Visa({ data }) {
     </>
   )
 }
+
+
+function HopDongTraiPhieu({ data }) {
+  const {
+    so_hd, so_hd_confidence,
+    ten_ben_ban, ten_ben_ban_confidence,
+    so_cmnd, so_cmnd_confidence,
+    noi_cap, noi_cap_confidence,
+    ngay_cap, ngay_cap_confidence,
+    dia_chi, dia_chi_confidence,
+    so_tkgdck, so_tkgdck_confidence,
+    ten_trai_phieu, ten_trai_phieu_confidence,
+    to_chuc_phat_hanh, to_chuc_phat_hanh_confidence,
+    dai_ly, dai_ly_confidence,
+    ngay_phat_hanh, ngay_phat_hanh_confidence,
+    ngay_dao_han, ngay_dao_han_confidence,
+    menh_gia, menh_gia_confidence,
+    ngay_thanh_toan, ngay_thanh_toan_confidence,
+    so_luong_trai_phieu, so_luong_trai_phieu_confidence,
+    don_gia_trai_phieu, don_gia_trai_phieu_confidence,
+    tong_gia_trai_phieu, tong_gia_trai_phieu_confidence,
+    thue_thu_ca_nhan, thue_thu_ca_nhan_confidence,
+    phi_quan_ly, phi_quan_ly_confidence,
+    so_tien_ben_ban, so_tien_ben_ban_confidence,
+    nguoi_thu_huong, nguoi_thu_huong_confidence,
+    so_tai_khoan, so_tai_khoan_confidence,
+    mo_tai, mo_tai_confidence,
+    noi_dung, noi_dung_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số HĐ' value={so_hd} confidence={so_hd_confidence} />
+      <Field name='Tên bên bán' value={ten_ben_ban} confidence={ten_ben_ban_confidence} />
+      <Field name='Số CMND' value={so_cmnd} confidence={so_cmnd_confidence} />
+      <Field name='Nơi cấp' value={noi_cap} confidence={noi_cap_confidence} />
+      <Field name='Ngày cấp' value={ngay_cap} confidence={ngay_cap_confidence} />
+      <Field name='Địa chỉ' value={dia_chi} confidence={dia_chi_confidence} />
+      <Field name='Số TKGDCK' value={so_tkgdck} confidence={so_tkgdck_confidence} />
+      <Field name='Tên trái phiếu' value={ten_trai_phieu} confidence={ten_trai_phieu_confidence} />
+      <Field name='Tổ chức phát hành' value={to_chuc_phat_hanh} confidence={to_chuc_phat_hanh_confidence} />
+      <Field name='Đại lý đăng ký lưu ký và Đại lý thanh toán' value={dai_ly} confidence={dai_ly_confidence} />
+      <Field name='Ngày phát hành' value={ngay_phat_hanh} confidence={ngay_phat_hanh_confidence} />
+      <Field name='Ngày đáo hạn' value={ngay_dao_han} confidence={ngay_dao_han_confidence} />
+      <Field name='Mệnh giá' value={menh_gia} confidence={menh_gia_confidence} />
+      <Field name='Ngày thanh toán' value={ngay_thanh_toan} confidence={ngay_thanh_toan_confidence} />
+      <Field name='Số lượng Trái phiếu giao dịch' value={so_luong_trai_phieu} confidence={so_luong_trai_phieu_confidence} />
+      <Field name='Đơn giá bán Trái phiếu' value={don_gia_trai_phieu} confidence={don_gia_trai_phieu_confidence} />
+      <Field name='Tổng giá bán Trái phiếu' value={tong_gia_trai_phieu} confidence={tong_gia_trai_phieu_confidence} />
+      <Field name='Thuế thu nhập cá nhân' value={thue_thu_ca_nhan} confidence={thue_thu_ca_nhan_confidence} />
+      <Field name='Phí quản lý chuyển nhượng' value={phi_quan_ly} confidence={phi_quan_ly_confidence} />
+      <Field name='Số tiền bên bán thực nhận' value={so_tien_ben_ban} confidence={so_tien_ben_ban_confidence} />
+      <Field name='Người thụ hưởng' value={nguoi_thu_huong} confidence={nguoi_thu_huong_confidence} />
+      <Field name='Số tài khoản' value={so_tai_khoan} confidence={so_tai_khoan_confidence} />
+      <Field name='Mở tại' value={mo_tai} confidence={mo_tai_confidence} />
+      <Field name='Nội dung' value={noi_dung} confidence={noi_dung_confidence} />
+    </>
+  )
+}
+
 
 
 function CV({ data }) {
