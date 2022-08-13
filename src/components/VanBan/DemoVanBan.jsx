@@ -7,6 +7,7 @@ import Result from './Result';
 import ViewApiButton from '../ViewApiButton';
 import PreviewPDF from '../DuLieuDangBang/PreviewPDF';
 import HoSoNhanSuDemo from './HoSoNhanSuDemo';
+import HoSoTraiPhieuDemo from './HoSoTraiPhieuDemo';
 import ReCAPTCHA from "react-google-recaptcha"
 
 const urlOptions = {
@@ -183,120 +184,133 @@ export default function DemoVanBan({ currentType, result, setResult }) {
           error={error}
           onChangeLink={onChangeLink}
         /> :
-        <Row gutter={[30, 60]}>
-          <Col md={12} xs={24} style={{ position: "relative" }}>
-            {(file || imageUrl) && <>{(showMenuTypes.includes(currentType)) && <div className='menu'>
-              <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]}>
-                <Menu.Item key="1" >
-                  Ảnh gốc
-                </Menu.Item>
-                {result?.data && <Menu.Item key="2">
-                  Ảnh đã xử lý
-                </Menu.Item>}
-                {(result?.data?.[pageNumber - 1]?.info?.image_table || result?.data?.[pageNumber - 1]?.info?.image_drug) && <Menu.Item key="3">
-                  Ảnh bảng
-                </Menu.Item>}
-              </Menu>
-            </div>}
-            </>}
-            <Upload
-              multiple={false}
-              accept='image/*, application/pdf'
-              beforeUpload={() => false}
-              showUploadList={false}
-              onChange={onChangeFile}
-              disabled={loading || hasData}
-              className='image-uploader'
-            >
-              {(file || input) ?
-                <div style={{ position: 'relative' }}>
-                  {error ? <div className='upload-area'>{error}</div> :
-                    <>
-                      {current === '3' && <img
-                        src={`data:image/png;base64,${result.data[pageNumber - 1].info.image_table || result?.data?.[pageNumber - 1]?.info?.image_drug}`}
-                        alt="avatar"
-                        style={{ width: '100%' }}
-                      />}
-                      {current === '2' &&
-                        <>
-                          {currentType === 'a4' ? <img
-                            src={`data:image/png;base64,${result.data[pageNumber - 1]?.data?.image}`}
-                            alt="avatar"
-                            style={{ width: '100%' }}
-                          /> :
-                            <img
-                              src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image
-                                : currentType === 'the-tong-quat' ? result.data.img
-                                  : result.data[pageNumber - 1]?.info?.image}`}
-                              alt="avatar"
-                              style={{ width: '100%' }}
-                            />}
-                          {(isPDF || result?.data?.length > 1) && <div className='page-controls'>
-                            <Button icon={<LeftOutlined />}
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                setPageNumber(page => page - 1)
-                              }}
-                              disabled={pageNumber === 1} />
-                            <span onClick={e => e.stopPropagation()}>{pageNumber} of {numPages || result?.data?.length}</span>
-                            <Button icon={<RightOutlined />}
-                              onClick={e => {
-                                e.stopPropagation()
-                                setPageNumber(page => page + 1)
-                              }}
-                              disabled={pageNumber === numPages} />
-                          </div>}
-                        </>}
-                      {current === '1' && (isPDF ?
-                        <PreviewPDF file={file} numPages={numPages} setNumPages={setNumPages} pageNumber={pageNumber} setPageNumber={setPageNumber} /> :
-                        <img
-                          src={file ? URL.createObjectURL(file) : imageUrl}
+        currentType === 'ho-so-trai-phieu' ?
+          <HoSoTraiPhieuDemo
+            result={result}
+            file={file}
+            onChangeFile={onChangeFile}
+            imageUrl={imageUrl}
+            loading={loading}
+            input={input}
+            onReset={onReset}
+            onSubmit={onSubmit}
+            error={error}
+            onChangeLink={onChangeLink}
+          /> :
+          <Row gutter={[30, 60]}>
+            <Col md={12} xs={24} style={{ position: "relative" }}>
+              {(file || imageUrl) && <>{(showMenuTypes.includes(currentType)) && <div className='menu'>
+                <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]}>
+                  <Menu.Item key="1" >
+                    Ảnh gốc
+                  </Menu.Item>
+                  {result?.data && <Menu.Item key="2">
+                    Ảnh đã xử lý
+                  </Menu.Item>}
+                  {(result?.data?.[pageNumber - 1]?.info?.image_table || result?.data?.[pageNumber - 1]?.info?.image_drug) && <Menu.Item key="3">
+                    Ảnh bảng
+                  </Menu.Item>}
+                </Menu>
+              </div>}
+              </>}
+              <Upload
+                multiple={false}
+                accept='image/*, application/pdf'
+                beforeUpload={() => false}
+                showUploadList={false}
+                onChange={onChangeFile}
+                disabled={loading || hasData}
+                className='image-uploader'
+              >
+                {(file || input) ?
+                  <div style={{ position: 'relative' }}>
+                    {error ? <div className='upload-area'>{error}</div> :
+                      <>
+                        {current === '3' && <img
+                          src={`data:image/png;base64,${result.data[pageNumber - 1].info.image_table || result?.data?.[pageNumber - 1]?.info?.image_drug}`}
                           alt="avatar"
                           style={{ width: '100%' }}
-                        />)}
-                      <Button icon={<DeleteFilled />} style={{ position: 'absolute', top: 0, right: 0 }} type='primary' onClick={onDelete} />
-                    </>
-                  }
+                        />}
+                        {current === '2' &&
+                          <>
+                            {currentType === 'a4' ? <img
+                              src={`data:image/png;base64,${result.data[pageNumber - 1]?.data?.image}`}
+                              alt="avatar"
+                              style={{ width: '100%' }}
+                            /> :
+                              <img
+                                src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image
+                                  : currentType === 'the-tong-quat' ? result.data.img
+                                    : result.data[pageNumber - 1]?.info?.image}`}
+                                alt="avatar"
+                                style={{ width: '100%' }}
+                              />}
+                            {(isPDF || result?.data?.length > 1) && <div className='page-controls'>
+                              <Button icon={<LeftOutlined />}
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  setPageNumber(page => page - 1)
+                                }}
+                                disabled={pageNumber === 1} />
+                              <span onClick={e => e.stopPropagation()}>{pageNumber} of {numPages || result?.data?.length}</span>
+                              <Button icon={<RightOutlined />}
+                                onClick={e => {
+                                  e.stopPropagation()
+                                  setPageNumber(page => page + 1)
+                                }}
+                                disabled={pageNumber === numPages} />
+                            </div>}
+                          </>}
+                        {current === '1' && (isPDF ?
+                          <PreviewPDF file={file} numPages={numPages} setNumPages={setNumPages} pageNumber={pageNumber} setPageNumber={setPageNumber} /> :
+                          <img
+                            src={file ? URL.createObjectURL(file) : imageUrl}
+                            alt="avatar"
+                            style={{ width: '100%' }}
+                          />)}
+                        <Button icon={<DeleteFilled />} style={{ position: 'absolute', top: 0, right: 0 }} type='primary' onClick={onDelete} />
+                      </>
+                    }
 
-                </div>
-                : <div className='upload-area' >
-                  <PlusOutlined />
-                  <div style={{ marginTop: 8 }}>Upload</div>
-                </div>}
-            </Upload>
-            <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: isPDF ? 56 : 8 }} />
+                  </div>
+                  : <div className='upload-area' >
+                    <PlusOutlined />
+                    <div style={{ marginTop: 8 }}>Upload</div>
+                  </div>}
+              </Upload>
+              <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: isPDF ? 56 : 8 }} />
 
-            <ReCAPTCHA
-              sitekey={recaptchaSiteKey}
-              onChange={onChangeReCAPTCHA}
-              ref={recaptchaRef}
-              style={{ marginTop: 24 }}
-              fallback={true}
-              hl='vi'
-            />
-            <Button
-              onClick={hasData ? onReset : onSubmitWithReCAPTCHA}
-              loading={loading}
-              type='primary'
-              block
-              style={{ height: 48, marginTop: 24 }}
-              disabled={hasData ? false : !token}
-            >
-              {hasData ? 'Thử lại' : 'XỬ LÝ'}
-            </Button>
-          </Col>
-          <Col md={12} xs={24}>
-            <div className='demo-result'>
-              {result ?
-                <Result result={result} type={currentType} />
-                : <div className='note' >
-                  {loading ? <LoadingOutlined style={{ fontSize: 40 }} /> : 'Vui lòng thêm ảnh và nhấn "Xử lý" để trải nghiệm dịch vụ'}
-                </div>
-              }
-            </div>
-            <ViewApiButton />
-          </Col>
-        </Row>
+              <ReCAPTCHA
+                sitekey={recaptchaSiteKey}
+                onChange={onChangeReCAPTCHA}
+                ref={recaptchaRef}
+                style={{ marginTop: 24 }}
+                fallback="true"
+                hl='vi'
+              />
+              <Button
+                onClick={hasData ? onReset : onSubmitWithReCAPTCHA}
+                loading={loading}
+                type='primary'
+                block
+                style={{ height: 48, marginTop: 24 }}
+                disabled={hasData ? false : !token}
+              >
+                {hasData ? 'Thử lại' : 'XỬ LÝ'}
+              </Button>
+            </Col>
+            <Col md={12} xs={24}>
+              <div className='demo-result'>
+                {result ?
+                  <Result result={result} type={currentType} />
+                  : <div className='note' >
+                    {loading ? <LoadingOutlined style={{ fontSize: 40 }} /> : 'Vui lòng thêm ảnh và nhấn "Xử lý" để trải nghiệm dịch vụ'}
+                  </div>
+                }
+              </div>
+              <ViewApiButton />
+            </Col>
+          </Row>
       }</>
 
   )
