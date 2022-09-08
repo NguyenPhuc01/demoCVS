@@ -70,7 +70,7 @@ export default function DemoCMND({ result, setResult }) {
       setLoading(true)
       axios({
         method: "get",
-        url: `${window.location.origin}?url=${imageUrl}&recaptchaToken=${recaptchaToken}`,
+        url: `${window.location.origin}/api/ocr/v1?url=${imageUrl}&recaptchaToken=${recaptchaToken}`,
       })
         .then(res => {
           setResult(res.data)
