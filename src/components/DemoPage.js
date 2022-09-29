@@ -72,7 +72,8 @@ const types6 = [
   { id: 69, name: "DCTTCN", key: "dcttcn" },
   { id: 611, name: "Giấy đăng ký bảo hiểm", key: "dang-ky-bao-hiem" },
   { id: 612, name: "Thẻ tổng quát", key: "the-tong-quat" },
-  { id: 613, name: "Visa", key: "visa" }
+  { id: 613, name: "Visa", key: "visa" },
+  { id: 614, name: "SMS Video", key: "sms-video" }
 ];
 
 const types7 = [
@@ -225,6 +226,9 @@ export default function DemoPage() {
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "ho-so-trai-phieu": (
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
+    ),
+    "sms-video": (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     )
   };

@@ -263,11 +263,15 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                           </>}
                         {current === '1' && (isPDF ?
                           <PreviewPDF file={file} numPages={numPages} setNumPages={setNumPages} pageNumber={pageNumber} setPageNumber={setPageNumber} /> :
-                          <img
-                            src={file ? URL.createObjectURL(file) : imageUrl}
-                            alt="avatar"
-                            style={{ width: '100%' }}
-                          />)}
+                          currentType === 'sms-video' ?
+                            <div style={{ height: 360, display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+                              {file.name}
+                            </div> :
+                            <img
+                              src={file ? URL.createObjectURL(file) : imageUrl}
+                              alt="avatar"
+                              style={{ width: '100%' }}
+                            />)}
                         <Button icon={<DeleteFilled />} style={{ position: 'absolute', top: 0, right: 0 }} type='primary' onClick={onDelete} />
                       </>
                     }

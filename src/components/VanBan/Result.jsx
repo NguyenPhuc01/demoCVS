@@ -41,12 +41,13 @@ export default function Result({ result, type }) {
     'giay-nop-tien': <GiayNopTien data={data2[currentPage]?.info} />,
     'visa': <Visa data={data2[currentPage]?.info} />,
     'hop-dong-trai-phieu': <HopDongTraiPhieu data={data2[currentPage]?.info} />,
+    'sms-video': <SmsVideo data={data2} />
   }
   return (
     <>
       {(data || data2) ? (
         <>
-          <div className='result-wrapper' style={{ overflowX: type === 'van-ban-tong-quat' ? 'auto' : 'inherit', padding: current === '2' && 0 }}>
+          <div className='result-wrapper' style={type === 'sms-video' ? { maxHeight: 600, overflow: 'auto' } : { overflowX: type === 'van-ban-tong-quat' ? 'auto' : 'inherit', padding: current === '2' && 0 }}>
             {current === '1' ?
               <>
                 {resultOptions[type]}
@@ -54,7 +55,7 @@ export default function Result({ result, type }) {
               <img alt='img' src={`data:image/png;base64,${data2[currentPage].info.image}`} width='100%' />
             }
           </div>
-          {data2?.length > 1 && <div style={{ textAlign: 'center', marginTop: 6 }}>
+          {type !== 'sms-video' && data2?.length > 1 && <div style={{ textAlign: 'center', marginTop: 6 }}>
             <Space>
               <Button type='text' onClick={() => setCurrentPage(page => page - 1)} disabled={currentPage === 0} >Trước</Button>
               <span>{currentPage + 1}/{data2.length}</span>
@@ -226,6 +227,46 @@ function HopDongTraiPhieu({ data }) {
 }
 
 
+function SmsVideo({ data }) {
+
+  const dataSource = data.map((d, index) => ({ id: index, ...d }))
+  const columns = [
+    {
+      title: 'img',
+      dataIndex: 'img',
+      key: 'img',
+      render: img => <img alt='img' src={`data:image/png;base64,${img}`} style={{ width: 150 }} />
+    },
+    {
+      title: 'text',
+      dataIndex: 'text',
+      key: 'text',
+      render: text => <span style={{ whiteSpace: 'pre-line' }} >{text}</span>
+    },
+  ];
+
+  return <>
+    {data.map(d => {
+      const { img, text } = d
+      return <Space size={16} style={{ marginBottom: 20, width: '100%' }} align='start'>
+        <img alt='img' src={`data:image/png;base64,${img}`} style={{ width: 150 }} />
+        <span style={{ whiteSpace: 'pre-line' }} >{text}</span>
+      </Space>
+    })}
+  </>
+
+  return <TableWrapper>
+    <Table
+      dataSource={dataSource}
+      columns={columns}
+      rowKey={row => row.id}
+      showHeader={false}
+      size='small'
+      scroll={{ y: 600 }}
+      paginnation={false}
+    /></TableWrapper>
+
+}
 
 function CV({ data }) {
 

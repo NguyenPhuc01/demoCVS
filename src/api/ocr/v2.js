@@ -64,6 +64,8 @@ const urlOptions = {
     "https://demo.computervision.com.vn/api/v2/nlpextract/hd_mua_ban_trai_phieu?get_thumb=true",
   "ho-so-trai-phieu":
     "https://demo.computervision.com.vn/api/v2/ocr/document/bond_records?get_thumb=true",
+  "sms-video":
+    "https://demo.computervision.com.vn/api/v2/ocr/sms_video?get_thumb=true",
 
   blx:
     "https://demo.computervision.com.vn/api/v2/ocr/driving_license?get_thumb=true",
@@ -150,7 +152,9 @@ export default async function handler(req, res) {
           password: process.env.GATSBY_API_PASSWORD
         },
         data: form,
-        headers: form.getHeaders()
+        headers: form.getHeaders(),
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
       })
         .then(response => {
           res.json(response.data);
