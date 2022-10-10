@@ -273,7 +273,7 @@ function TonThatXe({ data }) {
 
   const typeOptions = {
     dent: 'Xe bị móp (dent)',
-    scratch: 'Xe bị trầy, xước (scrath)',
+    scratch: 'Xe bị trầy, xước (scratch)',
     torn: 'Xe bị rách (torn)',
     broken: 'Xe bị vỡ (broken)',
   }
