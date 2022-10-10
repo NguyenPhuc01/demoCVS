@@ -44,7 +44,7 @@ const showMenuTypes = [
   'van-ban-tong-quat', 'e-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
   'bao-gia-xe', 'giay-ra-vien', 'de-nghi-thanh-toan', 'dang-ky-du-tuyen', 'a4', 'bang-tot-nghiep', 'giay-khai-tu',
   'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap', 'dcttcn', 'uy-nhiem-chi', 'dang-ky-bao-hiem', 'the-tong-quat', 'giay-nop-tien', 'visa',
-  'hop-dong-trai-phieu'
+  'hop-dong-trai-phieu', 'car-damage-assessment'
 ]
 
 export default function DemoVanBan({ currentType, result, setResult }) {
@@ -240,7 +240,8 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                               <img
                                 src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image
                                   : currentType === 'the-tong-quat' ? result.data.img
-                                    : result.data[pageNumber - 1]?.info?.image}`}
+                                    : currentType === 'car-damage-assessment' ? result.image
+                                      : result.data[pageNumber - 1]?.info?.image}`}
                                 alt="avatar"
                                 style={{ width: '100%' }}
                               />}

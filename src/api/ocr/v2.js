@@ -96,7 +96,7 @@ const urlOptions = {
     "https://demo.computervision.com.vn/api/v2/ocr/passport?get_thumb=true",
 
   "car-damage-assessment":
-    "https://demo.computervision.com.vn/api/v2/vision/car_damage_assessment?get_thumb=false"
+    "https://demo.computervision.com.vn/api/v2/vision/car_damage_assessment?get_thumb=true"
 };
 
 const recaptchaValidation = async ({ recaptchaToken }) => {

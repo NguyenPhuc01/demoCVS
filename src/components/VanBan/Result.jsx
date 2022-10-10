@@ -272,10 +272,10 @@ function SmsVideo({ data }) {
 function TonThatXe({ data }) {
 
   const typeOptions = {
-    dent: 'Xe bị móp',
-    scratch: 'Xe bị trầy, xước',
-    torn: 'Xe bị rách',
-    broken: 'Xe bị vỡ',
+    dent: 'Xe bị móp (dent)',
+    scratch: 'Xe bị trầy, xước (scrath)',
+    torn: 'Xe bị rách (torn)',
+    broken: 'Xe bị vỡ (broken)',
   }
 
   return (
