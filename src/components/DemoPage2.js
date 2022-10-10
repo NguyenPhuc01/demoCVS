@@ -83,7 +83,7 @@ export default function DemoPage2() {
           }}
           orientation="left"
         >
-          Vui lòng chọn ảnh demo bên dưới hoặc tải ảnh từ máy của bạn lên
+          Tải ảnh từ máy của bạn lên
         </Divider>
         <div className="upload-wrapper">{demoOptions[currentType]}</div>
       </div>

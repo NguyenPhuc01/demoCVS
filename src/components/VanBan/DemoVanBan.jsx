@@ -96,7 +96,6 @@ export default function DemoVanBan({ currentType, result, setResult }) {
     if (!file && !imageUrl) return;
     trackTrialEvent(window.location.pathname)
 
-    const url = urlOptions[currentType]
     if (file) {
       let formData = new FormData()
       if (currentType === 'a4' || currentType === 'cv') {

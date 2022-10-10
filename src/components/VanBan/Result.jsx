@@ -41,7 +41,8 @@ export default function Result({ result, type }) {
     'giay-nop-tien': <GiayNopTien data={data2[currentPage]?.info} />,
     'visa': <Visa data={data2[currentPage]?.info} />,
     'hop-dong-trai-phieu': <HopDongTraiPhieu data={data2[currentPage]?.info} />,
-    'sms-video': <SmsVideo data={data2} />
+    'sms-video': <SmsVideo data={data2} />,
+    'car-damage-assessment': <TonThatXe data={data2} />
   }
   return (
     <>
@@ -55,7 +56,7 @@ export default function Result({ result, type }) {
               <img alt='img' src={`data:image/png;base64,${data2[currentPage].info.image}`} width='100%' />
             }
           </div>
-          {type !== 'sms-video' && data2?.length > 1 && <div style={{ textAlign: 'center', marginTop: 6 }}>
+          {type !== 'sms-video' && type !== 'car-damage-assessment' && data2?.length > 1 && <div style={{ textAlign: 'center', marginTop: 6 }}>
             <Space>
               <Button type='text' onClick={() => setCurrentPage(page => page - 1)} disabled={currentPage === 0} >Trước</Button>
               <span>{currentPage + 1}/{data2.length}</span>
@@ -95,7 +96,7 @@ function VanBanScan({ data }) {
 function Field({ name, value, confidence, en }) {
   return (
     <div className='field'>
-      <div className='field-name'>{name}:</div>
+      {name && <div className='field-name'>{name}:</div>}
       <div className='field-value'>{value}
         {confidence ? <>
           <span className='confidence-label'> - {en ? 'Confidence: ' : 'Độ tin cậy: '}
@@ -265,6 +266,26 @@ function SmsVideo({ data }) {
       scroll={{ y: 600 }}
       paginnation={false}
     /></TableWrapper>
+
+}
+
+function TonThatXe({ data }) {
+
+  const typeOptions = {
+    dent: 'Xe bị móp',
+    scratch: 'Xe bị trầy, xước',
+    torn: 'Xe bị rách',
+    broken: 'Xe bị vỡ',
+  }
+
+  return (
+    <>
+      {data.map((d, index) => {
+        const { damage_score, damage_type } = d
+        return <Field key={index} value={typeOptions[damage_type]} confidence={damage_score} />
+      })}
+    </>
+  )
 
 }
 

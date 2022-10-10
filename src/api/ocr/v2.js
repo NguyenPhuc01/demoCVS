@@ -93,7 +93,10 @@ const urlOptions = {
   "giay-khai-sinh":
     "https://demo.computervision.com.vn/api/v2/ocr/birth_certificate?get_thumb=true",
   passport:
-    "https://demo.computervision.com.vn/api/v2/ocr/passport?get_thumb=true"
+    "https://demo.computervision.com.vn/api/v2/ocr/passport?get_thumb=true",
+
+  "car-damage-assessment":
+    "https://demo.computervision.com.vn/api/v2/vision/car_damage_assessment?get_thumb=false"
 };
 
 const recaptchaValidation = async ({ recaptchaToken }) => {

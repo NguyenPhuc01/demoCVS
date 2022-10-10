@@ -4,8 +4,10 @@ import { Link } from "gatsby-plugin-intl";
 import DemoSmartCrop from "./SmartCrop/DemoSmartCrop";
 import DemoTagging from "./Tagging/DemoTagging";
 import { useQueryParam, StringParam, withDefault } from "use-query-params";
+import DemoVanBan from "./VanBan/DemoVanBan";
 
 const types = [
+  { id: 3, name: "Giám định tổn thất", key: "car-damage-assessment" },
   { id: 1, name: "Smart crop", key: "smart-crop" },
   { id: 2, name: "Tagging", key: "tagging" }
 ];
@@ -14,10 +16,17 @@ export default function DemoPage3() {
   const [result, setResult] = useState(null);
   const [currentType, setCurrentType] = useQueryParam(
     "type",
-    withDefault(StringParam, "smart-crop")
+    withDefault(StringParam, "car-damage-assessment")
   );
 
   const demoOptions = {
+    "car-damage-assessment": (
+      <DemoVanBan
+        currentType={"car-damage-assessment"}
+        result={result}
+        setResult={setResult}
+      />
+    ),
     "smart-crop": <DemoSmartCrop result={result} setResult={setResult} />,
     tagging: <DemoTagging result={result} setResult={setResult} />
   };
@@ -77,7 +86,7 @@ export default function DemoPage3() {
           }}
           orientation="left"
         >
-          Vui lòng chọn ảnh demo bên dưới hoặc tải ảnh từ máy của bạn lên
+          Tải ảnh từ máy của bạn lên
         </Divider>
         <div className="upload-wrapper">{demoOptions[currentType]}</div>
       </div>
