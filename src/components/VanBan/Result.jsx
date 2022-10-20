@@ -36,7 +36,7 @@ export default function Result({ result, type }) {
     'dcttcn': <DCTTCN data={data2[currentPage]?.info} />,
     'uy-nhiem-chi': <UyNhiemChi data={data2[currentPage]?.info} />,
     'dang-ky-bao-hiem': <DangKyBaoHiem data={data2[currentPage]?.info} />,
-    'the-tong-quat': <VanBanScan data={data2?.info} />,
+    'the-tong-quat': <VanBanScan data={data2[currentPage]?.result} />,
     'cv': <CV data={data} />,
     'giay-nop-tien': <GiayNopTien data={data2[currentPage]?.info} />,
     'visa': <Visa data={data2[currentPage]?.info} />,

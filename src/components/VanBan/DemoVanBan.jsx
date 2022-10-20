@@ -239,7 +239,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                             /> :
                               <img
                                 src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image
-                                  : currentType === 'the-tong-quat' ? result.data.img
+                                  : currentType === 'the-tong-quat' ? result.data[pageNumber - 1].img
                                     : currentType === 'car-damage-assessment' ? result.image
                                       : result.data[pageNumber - 1]?.info?.image}`}
                                 alt="avatar"
@@ -282,7 +282,7 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                     <div style={{ marginTop: 8 }}>Upload</div>
                   </div>}
               </Upload>
-              <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: isPDF ? 56 : 8 }} />
+              <Input value={input} onChange={onChangeLink} placeholder='Hoặc nhập link ảnh' style={{ height: 46, marginTop: (isPDF || result?.data?.length > 1) ? 56 : 8 }} />
 
               <ReCAPTCHA
                 sitekey={recaptchaSiteKey}
