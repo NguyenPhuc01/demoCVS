@@ -42,7 +42,8 @@ export default function Result({ result, type }) {
     'visa': <Visa data={data2[currentPage]?.info} />,
     'hop-dong-trai-phieu': <HopDongTraiPhieu data={data2[currentPage]?.info} />,
     'sms-video': <SmsVideo data={data2} />,
-    'car-damage-assessment': <TonThatXe data={data2} />
+    'car-damage-assessment': <TonThatXe data={data2} />,
+    'credit-card': <CreditCard data={data2[currentPage]?.info} />,
   }
   return (
     <>
@@ -223,6 +224,24 @@ function HopDongTraiPhieu({ data }) {
       <Field name='Số tài khoản' value={so_tai_khoan} confidence={so_tai_khoan_confidence} />
       <Field name='Mở tại' value={mo_tai} confidence={mo_tai_confidence} />
       <Field name='Nội dung' value={noi_dung} confidence={noi_dung_confidence} />
+    </>
+  )
+}
+
+function CreditCard({ data }) {
+  const {
+    due_date, due_date_confidence,
+    issue_date, issue_date_confidence,
+    name, name_confidence,
+    number, number_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số thẻ' value={number} confidence={number_confidence} />
+      <Field name='Họ tên chủ thẻ' value={name} confidence={name_confidence} />
+      <Field name='Ngày hết hạn' value={due_date} confidence={due_date_confidence} />
+      <Field name='Ngày cấp' value={issue_date} confidence={issue_date_confidence} />
     </>
   )
 }

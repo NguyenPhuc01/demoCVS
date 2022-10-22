@@ -66,6 +66,8 @@ const urlOptions = {
     "https://demo.computervision.com.vn/api/v2/ocr/document/bond_records?get_thumb=true",
   "sms-video":
     "https://demo.computervision.com.vn/api/v2/ocr/sms_video?get_thumb=true",
+  "credit-card":
+    "https://demo.computervision.com.vn/api/v2/ocr/document/credit_card?get_thumb=true",
 
   blx:
     "https://demo.computervision.com.vn/api/v2/ocr/driving_license?get_thumb=true",
