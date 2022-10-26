@@ -92,7 +92,7 @@ export default async function handler(req, res) {
     } else {
       axios({
         method: "GET",
-        url: `${url}&format_type=url&img=${img}`,
+        url: `${url}&format_type=url&img=${encodeURI(img)}`,
         auth: {
           username: process.env.GATSBY_API_USERNAME2,
           password: process.env.GATSBY_API_PASSWORD2
