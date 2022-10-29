@@ -44,6 +44,7 @@ export default function Result({ result, type }) {
     'sms-video': <SmsVideo data={data2} />,
     'car-damage-assessment': <TonThatXe data={data2} />,
     'credit-card': <CreditCard data={data2[currentPage]?.info} />,
+    'so-do': <SoDo data={data2?.info} type={data2?.type} />,
   }
   return (
     <>
@@ -1286,6 +1287,133 @@ function BVCare({ data, type }) {
       {type === 'receipts' && <PhieuThu data={data} />}
       {type === 'health_records' && <SoKhamBenh data={data} />}
       {type === 'medical_examination' && <PhieuKham data={data} />}
+      {!type && null}
+    </>
+  )
+}
+
+
+function SoDoMau1({ data }) {
+  const {
+    so_so, so_so_confidence,
+    noi_cap, noi_cap_confidence,
+    ngay_cap, ngay_cap_confidence,
+    so_vao_so, so_vao_so_confidence,
+    thong_tin_thua_dat, thong_tin_thua_dat_confidence,
+    thong_tin_nha_o, thong_tin_nha_o_confidence,
+    thong_tin_ghi_chu, thong_tin_ghi_chu_confidence,
+    noi_dung_chu_dat,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số sổ' value={so_so} confidence={so_so_confidence} />
+      <Field name='Nơi cấp' value={noi_cap} confidence={noi_cap_confidence} />
+      <Field name='Ngày cấp' value={ngay_cap} confidence={ngay_cap_confidence} />
+      <Field name='Số vào sổ cấp GCN' value={so_vao_so} confidence={so_vao_so_confidence} />
+      <Field name='Thông tin của thửa đất' value={thong_tin_thua_dat} confidence={thong_tin_thua_dat_confidence} />
+      <Field name='Thông tin của nhà ở' value={thong_tin_nha_o} confidence={thong_tin_nha_o_confidence} />
+      <Field name='Thông tin ghi chú' value={thong_tin_ghi_chu} confidence={thong_tin_ghi_chu_confidence} />
+      <div className='field'>
+        <div className='field-name'>Nội dung của chủ đất:</div>
+        {noi_dung_chu_dat?.map(nd => {
+          const { ten, ten_confidence,
+            nam_sinh, nam_sinh_confidence,
+            so_cmt, so_cmt_confidence,
+            dia_chi, dia_chi_confidence, } = nd
+          return <div style={{marginLeft: 20, marginBottom: 20}}>
+            <Field name='Họ tên' value={ten} confidence={ten_confidence} />
+            <Field name='Năm sinh' value={nam_sinh} confidence={nam_sinh_confidence} />
+            <Field name='Số cmnd, hộ chiếu' value={so_cmt} confidence={so_cmt_confidence} />
+            <Field name='Số vào sổ cấp GCNĐịa chỉ thường trú' value={dia_chi} confidence={dia_chi_confidence} />
+          </div>
+        })}
+      </div>
+    </>
+  )
+}
+
+function SoDoMau2({ data }) {
+  const {
+    so_so, so_so_confidence,
+    noi_cap, noi_cap_confidence,
+    ngay_cap, ngay_cap_confidence,
+    so_vao_so, so_vao_so_confidence,
+    dia_chi_thua_dat, dia_chi_thua_dat_confidence,
+    thong_tin_thua_dat, thong_tin_thua_dat_confidence,
+    noi_dung_chu_dat,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số sổ' value={so_so} confidence={so_so_confidence} />
+      <Field name='Nơi cấp' value={noi_cap} confidence={noi_cap_confidence} />
+      <Field name='Ngày cấp' value={ngay_cap} confidence={ngay_cap_confidence} />
+      <Field name='Số vào sổ cấp GCN' value={so_vao_so} confidence={so_vao_so_confidence} />
+      <Field name='Địa chỉ của thửa đất' value={dia_chi_thua_dat} confidence={dia_chi_thua_dat_confidence} />
+      <Field name='Thông tin của thửa đất' value={thong_tin_thua_dat} confidence={thong_tin_thua_dat_confidence} />
+      <div className='field'>
+        <div className='field-name'>Nội dung của chủ đất:</div>
+        {noi_dung_chu_dat?.map(nd => {
+          const { ten, ten_confidence,
+            nam_sinh, nam_sinh_confidence,
+            so_cmt, so_cmt_confidence,
+            dia_chi, dia_chi_confidence, } = nd
+          return <div style={{marginLeft: 20, marginBottom: 20}}>
+            <Field name='Họ tên' value={ten} confidence={ten_confidence} />
+            <Field name='Năm sinh' value={nam_sinh} confidence={nam_sinh_confidence} />
+            <Field name='Số cmnd, hộ chiếu' value={so_cmt} confidence={so_cmt_confidence} />
+            <Field name='Số vào sổ cấp GCNĐịa chỉ thường trú' value={dia_chi} confidence={dia_chi_confidence} />
+          </div>
+        })}
+      </div>
+    </>
+  )
+}
+
+function SoDoMau3({ data }) {
+  const {
+    so_so, so_so_confidence,
+    noi_cap, noi_cap_confidence,
+    ngay_cap, ngay_cap_confidence,
+    so_vao_so, so_vao_so_confidence,
+    thong_tin_thua_dat, thong_tin_thua_dat_confidence,
+    noi_dung_chu_dat,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số sổ' value={so_so} confidence={so_so_confidence} />
+      <Field name='Nơi cấp' value={noi_cap} confidence={noi_cap_confidence} />
+      <Field name='Ngày cấp' value={ngay_cap} confidence={ngay_cap_confidence} />
+      <Field name='Số vào sổ cấp GCN' value={so_vao_so} confidence={so_vao_so_confidence} />
+      <Field name='Thông tin của thửa đất' value={thong_tin_thua_dat} confidence={thong_tin_thua_dat_confidence} />
+      <div className='field'>
+        <div className='field-name'>Nội dung của chủ đất:</div>
+        {noi_dung_chu_dat?.map(nd => {
+          const { ten, ten_confidence,
+            nam_sinh, nam_sinh_confidence,
+            so_cmt, so_cmt_confidence,
+            dia_chi, dia_chi_confidence, } = nd
+          return <div style={{marginLeft: 20, marginBottom: 20}}>
+            <Field name='Họ tên' value={ten} confidence={ten_confidence} />
+            <Field name='Năm sinh' value={nam_sinh} confidence={nam_sinh_confidence} />
+            <Field name='Số cmnd, hộ chiếu' value={so_cmt} confidence={so_cmt_confidence} />
+            <Field name='Số vào sổ cấp GCNĐịa chỉ thường trú' value={dia_chi} confidence={dia_chi_confidence} />
+          </div>
+        })}
+      </div>
+    </>
+  )
+}
+
+function SoDo({ data, type }) {
+  console.log(" data, type: ",  data, type);
+  return (
+    <>
+      {type === 'giay_cnqshdd_mau_1' && <SoDoMau1 data={data} />}
+      {type === 'giay_cnqshdd_mau_2' && <SoDoMau2 data={data} />}
+      {type === 'giay_cnqshdd_mau_3' && <SoDoMau3 data={data} />}
       {!type && null}
     </>
   )
