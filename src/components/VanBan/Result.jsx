@@ -1408,7 +1408,6 @@ function SoDoMau3({ data }) {
 }
 
 function SoDo({ data, type }) {
-  console.log(" data, type: ",  data, type);
   return (
     <>
       {type === 'giay_cnqshdd_mau_1' && <SoDoMau1 data={data} />}

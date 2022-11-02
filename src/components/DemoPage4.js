@@ -6,7 +6,7 @@ import DemoCMND from "./OCR/DemoCMND";
 import { useQueryParam, StringParam, withDefault } from "use-query-params";
 
 const types = [
-  { id: 1, name: "Nhận diện GTTTT", key: "CMND/CCCD" },
+  { id: 1, name: "Nhận diện GTTT", key: "CMND/CCCD" },
   { id: 2, name: "So khớp khuôn mặt", key: "face-matching" }
 ];
 
