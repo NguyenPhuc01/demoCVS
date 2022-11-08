@@ -75,7 +75,8 @@ const types6 = [
   { id: 613, name: "Visa", key: "visa" },
   { id: 614, name: "SMS Video", key: "sms-video" },
   { id: 615, name: "Thẻ ngân hàng", key: "credit-card" },
-  { id: 616, name: "Sổ đỏ", key: "so-do" }
+  { id: 616, name: "Sổ đỏ", key: "so-do" },
+  { id: 617, name: "Phiếu lao động", key: "phieu-lao-dong" }
 ];
 
 const types7 = [
@@ -237,6 +238,9 @@ export default function DemoPage() {
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "so-do": (
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
+    ),
+    "phieu-lao-dong": (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     )
   };

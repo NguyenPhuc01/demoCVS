@@ -45,6 +45,7 @@ export default function Result({ result, type }) {
     'car-damage-assessment': <TonThatXe data={data2} />,
     'credit-card': <CreditCard data={data2[currentPage]?.info} />,
     'so-do': <SoDo data={data2?.info} type={data2?.type} />,
+    'phieu-lao-dong': <PhieuLaoDong data={data2?.info} />,
   }
   return (
     <>
@@ -243,6 +244,168 @@ function CreditCard({ data }) {
       <Field name='Họ tên chủ thẻ' value={name} confidence={name_confidence} />
       <Field name='Ngày hết hạn' value={due_date} confidence={due_date_confidence} />
       <Field name='Ngày cấp' value={issue_date} confidence={issue_date_confidence} />
+    </>
+  )
+}
+
+
+function PhieuLaoDong({ data }) {
+  const {
+    chuyen_nganh_dao_tao,
+    cong_viec_cu_the_dang_lam,
+    dia_chi_noi_lam_viec,
+    doi_tuong_uu_tien,
+    gioi_tinh,
+    ho_ten,
+    hop_dong_lao_dong,
+    loai_BHXH,
+    loai_hinh_doanh_nghiep,
+    loai_hinh_noi_lam_viec,
+    loai_hop_dong_lao_dong,
+    loai_that_nghiep,
+    ly_do_khong_tham_gia,
+    ma_dan_toc,
+    ma_ho_gia_dinh,
+    ma_quan_huyen,
+    ma_so_bhxh,
+    ma_thon_to,
+    ma_tinh_thanh_pho,
+    ma_xa_phuong,
+    ngay_sinh,
+    noi_dang_ky_thuong_tru,
+    noi_lam_viec,
+    noi_o_hien_tai,
+    quan_he_voi_chu_ho,
+    quan_huyen,
+    so_cccd_cmnd,
+    ten_dan_toc,
+    tham_gia_BHXH,
+    thoi_gian_bat_dau_thuc_hien_hdld,
+    thoi_gian_that_nghiep,
+    thon_to,
+    tinh_thanh_pho,
+    tinh_trang_tham_gia_lao_dong,
+    trinh_do_chuyen_mon_ky_thuat,
+    trinh_do_giao_duc_pho_thong,
+    vi_the_viec_lam,
+    xa_phuong
+  } = data || {}
+
+  const textMaps = {
+    IsAnh: 'Anh',
+    IsCha_me: 'Cha/Mẹ',
+    IsChau_ruot: 'Cháu ruột',
+    IsChi: 'Chị',
+    IsChu_ho: 'Chủ hộ',
+    IsCon: 'Con',
+    IsEm: 'Em',
+    IsKhac: 'Khác',
+    IsOng_ba: 'Ông/Bà',
+    IsVo_chong: 'Vợ/Chồng',
+    IsNam: 'Nam',
+    IsNu: 'Nữ',
+    IsDan_toc_thieu_so: 'Dân tộc thiểu số',
+    IsNguoi_khuyet_tat: 'Người khuyết tật',
+    IsThan_nhan_cua_nguoi_co_cong_voi_cach_mang: 'Thân nhân của người có công với cách mạng',
+    IsThuoc_ho_bi_thu_hoi_dat: 'Thuộc hộ bị thu hồi đất',
+    IsThuoc_ho_can_ngheo: 'Thuộc hộ cận nghèo',
+    IsThuoc_ho_ngheo: 'Thuộc hộ nghèo',
+    IsChua_hoc_xong_tieu_hoc: 'Chưa học xong Tiểu học',
+    IsTot_nghiep_THCS: 'Tốt nghiệp THCS',
+    IsTot_nghiep_THPT: 'Tốt nghiệp THPT',
+    IsTot_nghiep_tieu_hoc: 'Tốt nghiệp Tiểu học',
+    IsCNKT_khong_co_bang: 'CNKT không có bằng',
+    IsCao_dang: 'Cao đẳng',
+    IsChua_qua_dao_tao: 'Chưa qua đào tạo',
+    IsChung_chi_nghe_D3T: 'Chứng chỉ nghề dưới 3 tháng',
+    IsDai_hoc: 'Đại học',
+    IsSo_cap: 'Sơ cấp',
+    IsTren_dai_hoc: 'Trên đại học',
+    IsTrung_cap: 'Trung cấp',
+    IsKhong_tham_gia_lao_dong: 'Không tham gia hoạt động kinh tế',
+    IsNguoi_co_viec_lam: 'Người có việc làm',
+    IsNguoi_that_nghiep: 'Người thất nghiệp',
+    IsChu_co_so_SXKD: 'Chủ cơ sở SXKD',
+    IsLam_cong_an_luong: 'Làm công ăn lương',
+    IsLao_dong_gia_dinh: 'Lao động gia đình',
+    IsTu_lam: 'Tự làm',
+    IsXa_vien_HTX: 'Xã viên HTX',
+    IsCo: 'Có',
+    IsKhong: 'Không',
+    IsHDLD_khong_xac_dinh_thoi_han: 'HĐLĐ không xác định thời hạn',
+    IsHDLD_xac_dinh_thoi_han: 'HĐLĐ xác định thời hạn',
+    IsCa_nhan_lam_tu_do: 'Cá nhân làm tự do',
+    IsCo_so_kinh_doanh_ca_the: 'Cơ sở kinh doanh cá thể',
+    IsDoanh_nghiep: 'Doanh nghiệp',
+    IsDon_vi_su_nghiep_ngoai_nha_nuoc: 'Đơn vị sự nghiệp ngoài nhà nước',
+    IsHo_nong_lam_ngiep_thuy_san: 'Hộ nông, lâm nghiệp, thủy sản',
+    IsHop_tac_xa: 'Hợp tác xã',
+    IsKhu_vuc_nha_nuoc: 'Khu vực nhà nước',
+    IsKhu_vuc_nuoc_ngoai: 'Khu vực nước ngoài',
+    IsTo_chuc_doan_the_khac: 'Tô chức đoàn thể khác',
+    IsChua_bao_gio_lam_viec: 'Chưa bao giờ làm việc',
+    IsDa_tung_lam_viec: 'Đã từ làm việc',
+    IsDuoi_3_thang: 'Dưới 3 tháng',
+    IsTren_1_nam: 'Trên 1 năm',
+    IsTu_3_thang_den_1_nam: 'Từ 3 tháng đến 1 năm',
+    IsBat_buoc: 'Bắt buộc',
+    IsTu_nguyen: 'Tự nguyện',
+    IsDi_hoc: 'Đi học',
+    IsHuu_tri: 'Hưu trí',
+    IsKhac: 'Khác',
+    IsKhuyet_tat: 'Khuyết tật',
+    IsNoi_tro: 'Nội trợ',
+    IsDN_FDI: 'DN FDI',
+    IsDN_ngoai_nha_nuoc: 'DN ngoài Nhà nước',
+    IsDN_nha_nuoc: 'DN Nà nước'
+  }
+
+  const format = obj => Object.keys(obj)
+    .filter(key => obj[key])
+    .map(key => textMaps[key])
+    .join(', ')
+
+
+  return (
+    <>
+      <Field name='Tỉnh/thành phố' value={tinh_thanh_pho} />
+      <Field name='Mã tỉnh/thành phố' value={ma_tinh_thanh_pho} />
+      <Field name='Quận/huyện' value={quan_huyen} />
+      <Field name='Mã quận/huyện' value={ma_quan_huyen} />
+      <Field name='Xã/phường' value={xa_phuong} />
+      <Field name='Mã xã/phường' value={ma_xa_phuong} />
+      <Field name='Thôn/tổ' value={thon_to} />
+      <Field name='Mã thôn/tổ' value={ma_thon_to} />
+      <Field name='Mã hộ gia đình' value={ma_ho_gia_dinh} />
+      <Field name='Họ tên' value={ho_ten} />
+      <Field name='Quan hệ với chủ hộ' value={format(quan_he_voi_chu_ho)} />
+      <Field name='Ngày sinh' value={ngay_sinh} />
+      <Field name='Giới tính' value={format(gioi_tinh)} />
+      <Field name='Số CCCD/CMND' value={so_cccd_cmnd} />
+      <Field name='Mã số BHXH' value={ma_so_bhxh} />
+      <Field name='Nơi đăng ký thường trú' value={noi_dang_ky_thuong_tru} />
+      <Field name='Nơi ở hiện tại' value={noi_o_hien_tai} />
+      <Field name='Đối tượng ưu tiên' value={format(doi_tuong_uu_tien)} />
+      <Field name='Tên dân tộc' value={ten_dan_toc} />
+      <Field name='Mã dân tộc' value={ma_dan_toc} />
+      <Field name='Trình độ giáo dục phổ thông cao nhất đã tốt nghiệp' value={format(trinh_do_giao_duc_pho_thong)} />
+      <Field name='Trình độ chuyên môn kỹ thuật cao nhất đạt được' value={format(trinh_do_chuyen_mon_ky_thuat)} />
+      <Field name='Chuyên ngành đào tạo' value={chuyen_nganh_dao_tao} />
+      <Field name='Tình trạng tham gia hoạt động kinh tế' value={format(tinh_trang_tham_gia_lao_dong)} />
+      <Field name='Lý do không tham gia' value={format(ly_do_khong_tham_gia)} />
+      <Field name='Vị thế việc làm' value={format(vi_the_viec_lam)} />
+      <Field name='Công việc cụ thể đang làm' value={cong_viec_cu_the_dang_lam} />
+      <Field name='Tham gia BHXH' value={format(tham_gia_BHXH)} />
+      <Field name='Loại BHXH' value={format(loai_BHXH)} />
+      <Field name='Hợp đồng lao động' value={format(hop_dong_lao_dong)} />
+      <Field name='Loại hợp đồng lao động' value={format(loai_hop_dong_lao_dong)} />
+      <Field name='Thời gian bắt đầu thực hiện HĐLĐ' value={thoi_gian_bat_dau_thuc_hien_hdld} />
+      <Field name='Nơi làm việc' value={noi_lam_viec} />
+      <Field name='Loại hình nơi làm việc' value={format(loai_hinh_noi_lam_viec)} />
+      <Field name='Loại hình doanh nghiệp' value={format(loai_hinh_doanh_nghiep)} />
+      <Field name='Địa chỉ nơi làm việc' value={dia_chi_noi_lam_viec} />
+      <Field name='Loại thất nghiệp' value={format(loai_that_nghiep)} />
+      <Field name='Thời gian thất nghiệp' value={format(thoi_gian_that_nghiep)} />
     </>
   )
 }
@@ -1321,7 +1484,7 @@ function SoDoMau1({ data }) {
             nam_sinh, nam_sinh_confidence,
             so_cmt, so_cmt_confidence,
             dia_chi, dia_chi_confidence, } = nd
-          return <div style={{marginLeft: 20, marginBottom: 20}}>
+          return <div style={{ marginLeft: 20, marginBottom: 20 }}>
             <Field name='Họ tên' value={ten} confidence={ten_confidence} />
             <Field name='Năm sinh' value={nam_sinh} confidence={nam_sinh_confidence} />
             <Field name='Số cmnd, hộ chiếu' value={so_cmt} confidence={so_cmt_confidence} />
@@ -1359,7 +1522,7 @@ function SoDoMau2({ data }) {
             nam_sinh, nam_sinh_confidence,
             so_cmt, so_cmt_confidence,
             dia_chi, dia_chi_confidence, } = nd
-          return <div style={{marginLeft: 20, marginBottom: 20}}>
+          return <div style={{ marginLeft: 20, marginBottom: 20 }}>
             <Field name='Họ tên' value={ten} confidence={ten_confidence} />
             <Field name='Năm sinh' value={nam_sinh} confidence={nam_sinh_confidence} />
             <Field name='Số cmnd, hộ chiếu' value={so_cmt} confidence={so_cmt_confidence} />
@@ -1395,7 +1558,7 @@ function SoDoMau3({ data }) {
             nam_sinh, nam_sinh_confidence,
             so_cmt, so_cmt_confidence,
             dia_chi, dia_chi_confidence, } = nd
-          return <div style={{marginLeft: 20, marginBottom: 20}}>
+          return <div style={{ marginLeft: 20, marginBottom: 20 }}>
             <Field name='Họ tên' value={ten} confidence={ten_confidence} />
             <Field name='Năm sinh' value={nam_sinh} confidence={nam_sinh_confidence} />
             <Field name='Số cmnd, hộ chiếu' value={so_cmt} confidence={so_cmt_confidence} />

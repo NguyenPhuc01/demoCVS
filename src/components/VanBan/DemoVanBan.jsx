@@ -44,7 +44,7 @@ const showMenuTypes = [
   'van-ban-tong-quat', 'e-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
   'bao-gia-xe', 'giay-ra-vien', 'de-nghi-thanh-toan', 'dang-ky-du-tuyen', 'a4', 'bang-tot-nghiep', 'giay-khai-tu',
   'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap', 'dcttcn', 'uy-nhiem-chi', 'dang-ky-bao-hiem', 'the-tong-quat', 'giay-nop-tien', 'visa',
-  'hop-dong-trai-phieu', 'car-damage-assessment','credit-card',
+  'hop-dong-trai-phieu', 'car-damage-assessment', 'credit-card', 'phieu-lao-dong'
 ]
 
 export default function DemoVanBan({ currentType, result, setResult }) {
@@ -241,7 +241,8 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                                 src={`data:image/png;base64,${currentType === "van-ban-tong-quat" ? result.data[pageNumber - 1]?.image
                                   : currentType === 'the-tong-quat' ? result.data[pageNumber - 1].img
                                     : currentType === 'car-damage-assessment' ? result.image
-                                      : result.data[pageNumber - 1]?.info?.image}`}
+                                      : currentType === 'phieu-lao-dong' ? result.data?.info?.img
+                                        : result.data[pageNumber - 1]?.info?.image}`}
                                 alt="avatar"
                                 style={{ width: '100%' }}
                               />}
@@ -289,7 +290,6 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                 onChange={onChangeReCAPTCHA}
                 ref={recaptchaRef}
                 style={{ marginTop: 24 }}
-                fallback="true"
                 hl='vi'
               />
               <Button

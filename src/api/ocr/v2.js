@@ -70,6 +70,8 @@ const urlOptions = {
     "https://demo.computervision.com.vn/api/v2/ocr/document/credit_card?get_thumb=true",
   "so-do":
     "https://demo.computervision.com.vn/api/v2/ocr/document/land_certificate?get_thumb=true",
+  "phieu-lao-dong":
+    "https://demo.computervision.com.vn/api/v2/ocr/document/phieu_lao_dong?get_thumb=false",
 
   blx:
     "https://demo.computervision.com.vn/api/v2/ocr/driving_license?get_thumb=true",
