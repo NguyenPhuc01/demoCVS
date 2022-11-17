@@ -956,6 +956,7 @@ function DangKyBaoHiem({ data }) {
     MaDL, MaDL_confidence,
     CongTy, CongTy_confidence,
     Phong, Phong_confidence,
+    Co_Chu_Ky
   } = data || {}
 
   return (
@@ -979,6 +980,7 @@ function DangKyBaoHiem({ data }) {
       <Field name='Mã đại lý' value={MaDL} confidence={MaDL_confidence} />
       <Field name='Tên công ty' value={CongTy} confidence={CongTy_confidence} />
       <Field name='Tên phòng' value={Phong} confidence={Phong_confidence} />
+      <Field name='Có chữ ký' value={Co_Chu_Ky ? 'Có' : 'Không'} />
     </>
   )
 }
