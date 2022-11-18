@@ -10,41 +10,11 @@ import HoSoNhanSuDemo from './HoSoNhanSuDemo';
 import HoSoTraiPhieuDemo from './HoSoTraiPhieuDemo';
 import ReCAPTCHA from "react-google-recaptcha"
 
-const urlOptions = {
-  'van-ban-tong-quat': 'https://demo.computervision.com.vn/api/v2/ocr/document/general?get_thumb=true',
-  'hoa-don-xe': 'https://demo.computervision.com.vn/api/v2/ocr/document/invoice_vehicle?get_thumb=true',
-  'pvi-hoa-don': 'https://demo.computervision.com.vn/api/v2/ocr/document/pvi_invoice?get_thumb=false',
-  'hoa-don-vat': 'https://demo.computervision.com.vn/api/v2/ocr/document/pvi_invoice?get_thumb=false',
-  'bang-ke': 'https://demo.computervision.com.vn/api/v2/ocr/document/list_expense?get_thumb=false',
-  'phieu-kham-benh': 'https://demo.computervision.com.vn/api/v2/ocr/document/examination_form?get_thumb=false',
-  'boi-thuong-bao-hiem': 'https://demo.computervision.com.vn/api/v2/ocr/document/claim_form?get_thumb=false',
-  'e-claim': 'https://demo.computervision.com.vn/api/v2/ocr/bvcareclaim?get_thumb=true',
-  'hoa-don-full': 'https://demo.computervision.com.vn/api/v2/ocr/document/invoice_full?get_thumb=true',
-  'giay-ra-vien': 'https://demo.computervision.com.vn/api/v2/ocr/document/hospital_discharge_paper?get_thumb=true',
-  'bao-gia-xe': 'https://demo.computervision.com.vn/api/v2/ocr/document/price_quotation?get_thumb=true',
-  'so-khai-sinh': 'https://demo.computervision.com.vn/api/v2/nlpextract/civil_registration?get_thumb=true',
-  'de-nghi-thanh-toan': 'https://demo.computervision.com.vn/api/v2/nlpextract/denghithanhtoan?get_thumb=true',
-  'dang-ky-du-tuyen': 'https://demo.computervision.com.vn/api/v2/nlpextract/dangkydutuyen?get_thumb=true',
-  'a4': 'https://demo.computervision.com.vn/backend/api/v1/request/ocr/v1/get_infor?get_thumb=true',
-  'bang-tot-nghiep': 'https://demo.computervision.com.vn/api/v2/nlpextract/bangtotnghiep?get_thumb=true',
-  'giay-khai-tu': 'https://demo.computervision.com.vn/api/v2/nlpextract/khaitu?get_thumb=true',
-  'dang-ky-thue': 'https://demo.computervision.com.vn/api/v2/nlpextract/dangkythue?get_thumb=true',
-  // 'so-ho-khau': 'https://demo.computervision.com.vn/api/v2/ocr/shk?get_thumb=true',
-  'ly-lich-tu-phap': 'https://demo.computervision.com.vn/api/v2/nlpextract/lylichtuphap?get_thumb=true',
-  'dcttcn': 'https://demo.computervision.com.vn/api/v2/nlpextract/dcttcn?get_thumb=true',
-  'uy-nhiem-chi': 'https://demo.computervision.com.vn/api/v2/nlpextract/giay_uynhiemchi?get_thumb=true',
-  'ho-so-nhan-su': 'https://demo.computervision.com.vn/api/v2/ocr/employee_profile?get_thumb=true',
-  'dang-ky-bao-hiem': 'https://demo.computervision.com.vn/api/v2/ocr/ycbh?get_thumb=true',
-  'the-tong-quat': 'https://demo.computervision.com.vn/api/v2/ocr/card_general?get_thumb=true',
-  'cv': 'https://demo.computervision.com.vn/api/v2/cv_parser/cv_file_parser?get_thumb=true',
-  'giay-nop-tien': 'https://demo.computervision.com.vn/api/v2/nlpextract/giaynoptien?get_thumb=true',
-}
-
 const showMenuTypes = [
   'van-ban-tong-quat', 'e-claim', 'pvi-hoa-don', 'hoa-don-xe', 'so-khai-sinh', 'hoa-don-full',
   'bao-gia-xe', 'giay-ra-vien', 'de-nghi-thanh-toan', 'dang-ky-du-tuyen', 'a4', 'bang-tot-nghiep', 'giay-khai-tu',
   'dang-ky-thue', 'so-ho-khau', 'ly-lich-tu-phap', 'dcttcn', 'uy-nhiem-chi', 'dang-ky-bao-hiem', 'the-tong-quat', 'giay-nop-tien', 'visa',
-  'hop-dong-trai-phieu', 'car-damage-assessment', 'credit-card', 'phieu-lao-dong'
+  'hop-dong-trai-phieu', 'car-damage-assessment', 'credit-card', 'phieu-lao-dong', 'de-nghi-vay-von'
 ]
 
 export default function DemoVanBan({ currentType, result, setResult }) {
@@ -242,7 +212,8 @@ export default function DemoVanBan({ currentType, result, setResult }) {
                                   : currentType === 'the-tong-quat' ? result.data[pageNumber - 1].img
                                     : currentType === 'car-damage-assessment' ? result.image
                                       : currentType === 'phieu-lao-dong' ? result.data?.info?.img
-                                        : result.data[pageNumber - 1]?.info?.image}`}
+                                        : currentType === 'de-nghi-vay-von' ? result.data?.info?.image
+                                          : result.data[pageNumber - 1]?.info?.image}`}
                                 alt="avatar"
                                 style={{ width: '100%' }}
                               />}

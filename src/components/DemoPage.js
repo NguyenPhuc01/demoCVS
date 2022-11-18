@@ -83,7 +83,8 @@ const types7 = [
   { id: 70, name: "Báo cáo tài chính", key: "bao-cao-tai-chinh" },
   { id: 71, name: "Sao kê ngân hàng", key: "sao-ke-ngan-hang" },
   { id: 72, name: "Giấy nộp tiền", key: "giay-nop-tien" },
-  { id: 73, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" }
+  { id: 73, name: "Ủy nhiệm chi", key: "uy-nhiem-chi" },
+  { id: 74, name: "Đề nghị vay vốn", key: "de-nghi-vay-von" }
 ];
 
 const tabs = [
@@ -241,6 +242,9 @@ export default function DemoPage() {
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
     "phieu-lao-dong": (
+      <DemoVanBan currentType={type} result={result} setResult={setResult} />
+    ),
+    "de-nghi-vay-von": (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     )
   };

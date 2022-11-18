@@ -46,6 +46,7 @@ export default function Result({ result, type }) {
     'credit-card': <CreditCard data={data2[currentPage]?.info} />,
     'so-do': <SoDo data={data2?.info} type={data2?.type} />,
     'phieu-lao-dong': <PhieuLaoDong data={data2?.info} />,
+    'de-nghi-vay-von': <DeNghiVanVon data={data2?.info} />,
   }
   return (
     <>
@@ -244,6 +245,60 @@ function CreditCard({ data }) {
       <Field name='Họ tên chủ thẻ' value={name} confidence={name_confidence} />
       <Field name='Ngày hết hạn' value={due_date} confidence={due_date_confidence} />
       <Field name='Ngày cấp' value={issue_date} confidence={issue_date_confidence} />
+    </>
+  )
+}
+
+function DeNghiVanVon({ data }) {
+  const {
+    ten_khach_hang, ten_khach_hang_confidence,
+    so_cmt_khach_hang, so_cmt_khach_hang_confidence,
+    ngay_cap_khach_hang, ngay_cap_khach_hang_confidence,
+    noi_cap_khach_hang, noi_cap_khach_hang_confidence,
+    so_cmt_cu_khach_hang, so_cmt_cu_khach_hang_confidence,
+    ngay_sinh_khach_hang, ngay_sinh_khach_hang_confidence,
+    gioi_tinh_khach_hang, gioi_tinh_khach_hang_confidence,
+    so_dien_thoai_khach_hang, so_dien_thoai_khach_hang_confidence,
+    email_khach_hang, email_khach_hang_confidence,
+    dc_thuong_tru_khach_hang, dc_thuong_tru_khach_hang_confidence,
+    dc_lien_he_khach_hang, dc_lien_he_khach_hang_confidence,
+    tinh_trang_hon_nhan, tinh_trang_hon_nhan_confidence,
+    ten_vo_chong, ten_vo_chong_confidence,
+    so_cmt_vo_chong, so_cmt_vo_chong_confidence,
+    ngay_cap_vo_chong, ngay_cap_vo_chong_confidence,
+    noi_cap_vo_chong, noi_cap_vo_chong_confidence,
+    ngay_sinh_vo_chong, ngay_sinh_vo_chong_confidence,
+    gioi_tinh_vo_chong, gioi_tinh_vo_chong_confidence,
+    so_dien_thoai_vo_chong, so_dien_thoai_vo_chong_confidence,
+    email_vo_chong, email_vo_chong_confidence,
+    dc_thuong_tru_vo_chong, dc_thuong_tru_vo_chong_confidence,
+    dc_lien_he_vo_chong, dc_lien_he_vo_chong_confidence,
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Tên khách hàng' value={ten_khach_hang} confidence={ten_khach_hang_confidence} />
+      <Field name='Số CMT khách hàng' value={so_cmt_khach_hang} confidence={so_cmt_khach_hang_confidence} />
+      <Field name='Ngày cấp khách hàng' value={ngay_cap_khach_hang} confidence={ngay_cap_khach_hang_confidence} />
+      <Field name='Nơi cấp khách hàng' value={noi_cap_khach_hang} confidence={noi_cap_khach_hang_confidence} />
+      <Field name='Số CMT khách hàng' value={so_cmt_cu_khach_hang} confidence={so_cmt_cu_khach_hang_confidence} />
+      <Field name='Ngày sinh khách hàng' value={ngay_sinh_khach_hang} confidence={ngay_sinh_khach_hang_confidence} />
+      <Field name='Giới tính khách hàng' value={gioi_tinh_khach_hang} confidence={gioi_tinh_khach_hang_confidence} />
+      <Field name='SDT khách hàng' value={so_dien_thoai_khach_hang} confidence={so_dien_thoai_khach_hang_confidence} />
+      <Field name='Email khách hàng' value={email_khach_hang} confidence={email_khach_hang_confidence} />
+      <Field name='Địa chỉ thường trú khách hàng' value={dc_thuong_tru_khach_hang} confidence={dc_thuong_tru_khach_hang_confidence} />
+      <Field name='Địa chỉ liên hệ khách hàng' value={dc_lien_he_khach_hang} confidence={dc_lien_he_khach_hang_confidence} />
+      <Field name='Tình trạng hôn nhân khách hàng' value={tinh_trang_hon_nhan} confidence={tinh_trang_hon_nhan_confidence} />
+      <Field name='Tên vợ/chồng' value={ten_vo_chong} confidence={ten_vo_chong_confidence} />
+      <Field name='Số CMT vợ/chồng' value={so_cmt_vo_chong} confidence={so_cmt_vo_chong_confidence} />
+      <Field name='Ngày cấp vợ/chồng' value={ngay_cap_vo_chong} confidence={ngay_cap_vo_chong_confidence} />
+      <Field name='Nơi cấp vợ/chồng' value={noi_cap_vo_chong} confidence={noi_cap_vo_chong_confidence} />
+      <Field name='Ngày sinh vợ/chồng' value={ngay_sinh_vo_chong} confidence={ngay_sinh_vo_chong_confidence} />
+      <Field name='Giới tính vợ/chồng' value={gioi_tinh_vo_chong} confidence={gioi_tinh_vo_chong_confidence} />
+      <Field name='Số điện thoại vợ/chồng' value={so_dien_thoai_vo_chong} confidence={so_dien_thoai_vo_chong_confidence} />
+      <Field name='Email vợ/chồng' value={email_vo_chong} confidence={email_vo_chong_confidence} />
+      <Field name='Địa chỉ thường trú vợ/chồng' value={dc_thuong_tru_vo_chong} confidence={dc_thuong_tru_vo_chong_confidence} />
+      <Field name='Địa chỉ liên hệ vợ/chồng' value={dc_lien_he_vo_chong} confidence={dc_lien_he_vo_chong_confidence} />
     </>
   )
 }

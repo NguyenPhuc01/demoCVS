@@ -48,6 +48,7 @@ const urlOptions = {
     "https://demo.computervision.com.vn/api/v2/nlpextract/dcttcn?get_thumb=true",
   "uy-nhiem-chi":
     "https://demo.computervision.com.vn/api/v2/nlpextract/giay_uynhiemchi?get_thumb=true",
+
   "ho-so-nhan-su":
     "https://demo.computervision.com.vn/api/v2/ocr/employee_profile?get_thumb=true",
   "dang-ky-bao-hiem":
@@ -72,6 +73,8 @@ const urlOptions = {
     "https://demo.computervision.com.vn/api/v2/ocr/document/land_certificate?get_thumb=true",
   "phieu-lao-dong":
     "https://demo.computervision.com.vn/api/v2/ocr/document/phieu_lao_dong?get_thumb=false",
+  "de-nghi-vay-von":
+    "https://demo.computervision.com.vn/api/v2/ocr/document/dich_vu_vay_von?get_thumb=false",
 
   blx:
     "https://demo.computervision.com.vn/api/v2/ocr/driving_license?get_thumb=true",
