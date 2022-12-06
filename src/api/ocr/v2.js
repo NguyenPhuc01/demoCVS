@@ -21,7 +21,7 @@ const urlOptions = {
   "pvi-hoa-don":
     "https://demo.computervision.com.vn/api/v2/ocr/document/pvi_invoice?get_thumb=true",
   "so-khai-sinh":
-    "https://demo.computervision.com.vn/api/v2/ocr/document/civil_registration?get_thumb=true",
+    "https://demo.computervision.com.vn/api/v2/nlpextract/civil_registration?get_thumb=true",
   "hoa-don-full":
     "https://demo.computervision.com.vn/api/v2/ocr/document/invoice_full?get_thumb=true",
   "bao-gia-xe":
