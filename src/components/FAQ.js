@@ -7,7 +7,6 @@ export default class FAQ extends React.PureComponent {
   render() {
     const { dataSource, isMobile, ...props } = this.props;
     const { wrapper, titleWrapper, page, content } = dataSource;
-
     return (
       <div {...props} {...wrapper}>
         <div {...page}>

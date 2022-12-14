@@ -105,8 +105,13 @@ const trialEvents = new Map([
 
 export const trackTrialEvent = key => {
   // console.log(key);
-  typeof window !== "undefined" &&
+
+  if (typeof window.gtag !== "undefined") {
     window.gtag("event", trialEvents.get(key), { send_to: "G-KN187T7J22" });
+  }
+
+  // typeof window !== "undefined" &&
+  //   window.gtag("event", trialEvents.get(key), { send_to: "G-KN187T7J22" });
 };
 
 export const isURL = str => {

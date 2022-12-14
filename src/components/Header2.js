@@ -1,24 +1,82 @@
 import React, { Component } from "react";
-import { Button, Drawer, Space } from "antd";
+import { Button, Drawer, Dropdown, Space, Menu } from "antd";
 import { OutboundLink } from "gatsby-plugin-google-gtag";
 import { ContactFormDataSource } from "../data/home.data";
 import ContactForm from "./Home/ContactForm";
-
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { DownOutlined, SmileOutlined, UserOutlined } from "@ant-design/icons";
+import { gapi } from "gapi-script";
 export class Header2 extends Component {
   state = { visible: false };
-
+  state = { dataLogin: null };
   showDrawer = () => {
     this.setState({
       visible: true
     });
   };
 
+  // ComponentDidMount() {
+  //   gapi.load("client:auth2", () => {
+  //     gapi.auth2.init({
+  //       clientId:
+  //         "491845432253-3i8n6cora433poudseeiekbt5hfi5kcu.apps.googleusercontent.com"
+  //     });
+  //   });
+  // }
+  onSuccess = success => {
+    console.log("login success", success.profileObj.givenName);
+    this.setState({
+      dataLogin: success.profileObj
+    });
+  };
+
+  onFail = fail => {
+    console.log("login fail", fail);
+  };
   onClose = () => {
     this.setState({
       visible: false
     });
   };
+  onLogout = out => {
+    console.log("logout success", out);
+    this.setState({
+      dataLogin: null
+    });
+  };
+
   render() {
+    const menu = (
+      <Menu
+        items={[
+          {
+            key: "1",
+            label: (
+              <GoogleLogout
+                clientId="491845432253-3i8n6cora433poudseeiekbt5hfi5kcu.apps.googleusercontent.com"
+                buttonText="Logout"
+                render={renderProps => (
+                  <Button
+                    onClick={renderProps.onClick}
+                    style={{
+                      marginRight: "20px",
+                      width: "100%",
+                      height: "36px"
+                    }}
+                  >
+                    Logout
+                    <UserOutlined />
+                  </Button>
+                )}
+                onLogoutSuccess={this.onLogout}
+              />
+            )
+          }
+        ]}
+      />
+    );
+    console.log(this.state.dataLogin);
+
     return (
       <header style={{ height: 56, width: "100%", background: "#FFFFFF" }}>
         <div className="header-wrapper">
@@ -52,6 +110,36 @@ export class Header2 extends Component {
             >
               LIÊN HỆ DÙNG THỬ
             </Button>
+
+            {this.state.dataLogin !== null ? (
+              <Button style={{ marginRight: "20px", height: "36px" }}>
+                <Dropdown overlay={menu}>
+                  <Space>
+                    {this.state.dataLogin?.givenName}
+                    <DownOutlined />
+                  </Space>
+                </Dropdown>
+              </Button>
+            ) : (
+              <GoogleLogin
+                clientId="491845432253-3i8n6cora433poudseeiekbt5hfi5kcu.apps.googleusercontent.com"
+                buttonText=""
+                render={renderProps => (
+                  <Button
+                    onClick={renderProps.onClick}
+                    style={{ height: "36px", marginRight: "20px" }}
+                  >
+                    <UserOutlined />
+                  </Button>
+                )}
+                onSuccess={this.onSuccess}
+                onFailure={this.onFail}
+                cookiePolicy={"single_host_origin"}
+                style={{ boxShadow: "none" }}
+                isSignedIn={true}
+              />
+            )}
+
             <Drawer
               title="Liên hệ dùng thử"
               width={572}
