@@ -74,6 +74,10 @@ module.exports = {
         // redirect: true,
       }
     },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/app/*`] }
+    },
     `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,

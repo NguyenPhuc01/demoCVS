@@ -2,15 +2,18 @@ import React, { Component } from "react";
 import { enquireScreen } from "enquire-js";
 import { injectIntl } from "gatsby-plugin-intl";
 import loadable from "@loadable/component";
-import DemoPage from "../components/DemoPage";
 
-const Layout = loadable(() => import("../components/Layout"));
-const SEO = loadable(() => import("../components/SEO"));
+import { Feature100DataSource, SidebarDataSource } from "../data/home.data";
+
+const Layout = loadable(() => import("./Layout"));
+const SEO = loadable(() => import("./SEO"));
+const Feature100 = loadable(() => import("./Home/Feature100"));
 
 let isMobile;
 enquireScreen(b => {
   isMobile = b;
 });
+
 class IndexPage extends Component {
   constructor(props) {
     super(props);
@@ -30,9 +33,14 @@ class IndexPage extends Component {
 
     return (
       <>
-        <SEO title="Nhận diện ký tự | CVS" />
+        <SEO title="Computer Vision Vietnam" />
         <Layout>
-          <DemoPage />
+          <Feature100
+            id="Feature100"
+            key="Feature100"
+            dataSource={Feature100DataSource}
+            isMobile={this.state.isMobile}
+          />
         </Layout>
       </>
     );

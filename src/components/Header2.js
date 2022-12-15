@@ -23,8 +23,16 @@ export class Header2 extends Component {
   //     });
   //   });
   // }
+  store = mail => {
+    var emails = [];
+    emails.push(mail);
+    localStorage.setItem("email", JSON.stringify(emails));
+  };
+
   onSuccess = success => {
     console.log("login success", success.profileObj.givenName);
+    const đataUser = success.profileObj;
+    this.store(đataUser);
     this.setState({
       dataLogin: success.profileObj
     });
@@ -46,6 +54,10 @@ export class Header2 extends Component {
   };
 
   render() {
+    if (this.state.dataLogin !== null) {
+      this.store(this.state.dataLogin);
+    }
+    console.log(this.state.dataLogin);
     const menu = (
       <Menu
         items={[
@@ -75,7 +87,6 @@ export class Header2 extends Component {
         ]}
       />
     );
-    console.log(this.state.dataLogin);
 
     return (
       <header style={{ height: 56, width: "100%", background: "#FFFFFF" }}>

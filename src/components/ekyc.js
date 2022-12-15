@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { enquireScreen } from "enquire-js";
 import { injectIntl } from "gatsby-plugin-intl";
 import loadable from "@loadable/component";
-import DemoPage2 from "../components/DemoPage2";
+import DemoPage4 from "./DemoPage4";
 
-const Layout = loadable(() => import("../components/Layout"));
-const SEO = loadable(() => import("../components/SEO"));
+const Layout = loadable(() => import("./Layout"));
+const SEO = loadable(() => import("./SEO"));
 
 let isMobile;
 enquireScreen(b => {
@@ -31,9 +31,9 @@ class IndexPage extends Component {
 
     return (
       <>
-        <SEO title="Nhận diện khuôn mặt | CVS" />
+        <SEO title="eKYC | CVS" />
         <Layout>
-          <DemoPage2 />
+          <DemoPage4 />
         </Layout>
       </>
     );
