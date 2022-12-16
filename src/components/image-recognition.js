@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { enquireScreen } from "enquire-js";
 import { injectIntl } from "gatsby-plugin-intl";
 import loadable from "@loadable/component";
-import DemoPage3 from "../components/DemoPage3";
+import DemoPage3 from "./DemoPage3";
 
-const Layout = loadable(() => import("../components/Layout"));
-const SEO = loadable(() => import("../components/SEO"));
+const Layout = loadable(() => import("./Layout"));
+const SEO = loadable(() => import("./SEO"));
 
 let isMobile;
 enquireScreen(b => {

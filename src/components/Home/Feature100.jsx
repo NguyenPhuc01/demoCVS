@@ -4,15 +4,29 @@ import { trackEvent } from "../utils";
 import { Link } from "gatsby-plugin-intl";
 import styled from "styled-components";
 import DemoImage from "../../../static/demo.jpg";
+import { useEffect } from "react";
 
 const { TabPane } = Tabs;
 
 export default function Feature100(props) {
-  const { dataSource, isMobile, ...rest } = props;
-  console.log("🚀 ~ file: Feature100.jsx:12 ~ Feature100 ~ props", props);
+  const {
+    dataSource,
+    isMobile,
+    isLoginDrawer,
+    setISLoginDrawer,
+    ...rest
+  } = props;
   const { wrapper, titleWrapper, page, content } = dataSource;
 
   const [key, setKey] = useState("1");
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem("email");
+
+    if (isLogin === null) {
+      setISLoginDrawer(true);
+    }
+  }, [isLoginDrawer]);
 
   return (
     <div {...rest} {...wrapper}>
@@ -21,7 +35,7 @@ export default function Feature100(props) {
         <div>
           <Row gutter={[30, 16]}>
             <Col md={6} xs={24}>
-              <Link to="/ocr" onClick={() => trackEvent("/")}>
+              <Link to="/app/ocr" onClick={() => trackEvent("/")}>
                 <div className="feature100-content">
                   <div>
                     <img
@@ -40,7 +54,10 @@ export default function Feature100(props) {
               </Link>
             </Col>
             <Col md={6} xs={24}>
-              <Link to="/facial-recognition" onClick={() => trackEvent("/")}>
+              <Link
+                to="/app/facial-recognition"
+                onClick={() => trackEvent("/")}
+              >
                 <div className="feature100-content">
                   <div>
                     <img
@@ -59,7 +76,7 @@ export default function Feature100(props) {
               </Link>
             </Col>
             <Col md={6} xs={24}>
-              <Link to="/ekyc" onClick={() => trackEvent("/")}>
+              <Link to="/app/ekyc" onClick={() => trackEvent("/")}>
                 <div className="feature100-content">
                   <div>
                     <img
@@ -76,7 +93,7 @@ export default function Feature100(props) {
               </Link>
             </Col>
             <Col md={6} xs={24}>
-              <Link to="/image-recognition" onClick={() => trackEvent("/")}>
+              <Link to="/app/image-recognition" onClick={() => trackEvent("/")}>
                 <div className="feature100-content">
                   <div>
                     <img

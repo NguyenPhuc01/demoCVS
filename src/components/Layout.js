@@ -23,21 +23,28 @@ class LayoutComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isMobile
+      isMobile,
+      data: "hello"
     };
   }
+  // state = { data: "Hello World" };
   componentDidMount() {
     enquireScreen(b => {
       this.setState({ isMobile: !!b });
     });
   }
   render() {
+    console.log("layout", this.props);
     const { children } = this.props;
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sidebar />
         <Layout style={{ background: "#ffffff" }}>
-          <Header2 isMobile={this.state.isMobile} />
+          <Header2
+            isMobile={this.state.isMobile}
+            isloginDrawer={this.props.isloginDrawer}
+            setISLoginDrawer={this.props.setISLoginDrawer}
+          />
           <Content>{children}</Content>
           <Footer />
         </Layout>

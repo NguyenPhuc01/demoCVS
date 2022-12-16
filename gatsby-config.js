@@ -76,7 +76,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/app/*`] }
+      options: { prefixes: [`/*`] }
     },
     `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-styled-components`,

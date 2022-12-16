@@ -3,6 +3,7 @@ import { Layout, Menu, Breadcrumb } from "antd";
 import { trackEvent } from "../utils";
 import { Link } from "gatsby-plugin-intl";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+// import { Link } from "gatsby";
 
 const { Sider } = Layout;
 
@@ -49,7 +50,7 @@ class Sidebar2 extends React.Component {
         >
           {this.state.collapsed ? (
             <div className="logo_mini">
-              <Link to="/" onClick={() => trackEvent("/")}>
+              <Link to="/app" onClick={() => trackEvent("/")}>
                 <img
                   src="/Web_logo_mini.svg"
                   alt="img"
@@ -84,7 +85,7 @@ class Sidebar2 extends React.Component {
               className="sidebar"
               style={{ height: 56 }}
             >
-              <Link to="/" onClick={this.handle}>
+              <Link to="/app" onClick={this.handle}>
                 Trang chủ
               </Link>
             </Menu.Item>
@@ -94,7 +95,7 @@ class Sidebar2 extends React.Component {
               className="sidebar"
               style={{ height: 56 }}
             >
-              <Link to="/ocr" onClick={() => trackEvent("/")}>
+              <Link to="/app/ocr" onClick={() => trackEvent("/")}>
                 Nhận diện ký tự
               </Link>
             </Menu.Item>
@@ -104,7 +105,10 @@ class Sidebar2 extends React.Component {
               className="sidebar"
               style={{ height: 56 }}
             >
-              <Link to="/facial-recognition" onClick={() => trackEvent("/")}>
+              <Link
+                to="/app/facial-recognition"
+                onClick={() => trackEvent("/")}
+              >
                 Nhận diện khuôn mặt
               </Link>
             </Menu.Item>
@@ -114,7 +118,7 @@ class Sidebar2 extends React.Component {
               className="sidebar"
               style={{ height: 56 }}
             >
-              <Link to="/ekyc" onClick={() => trackEvent("/")}>
+              <Link to="/app/ekyc" onClick={() => trackEvent("/")}>
                 eKYC
               </Link>
             </Menu.Item>
@@ -124,7 +128,7 @@ class Sidebar2 extends React.Component {
               className="sidebar"
               style={{ height: 56 }}
             >
-              <Link to="/image-recognition" onClick={() => trackEvent("/")}>
+              <Link to="/app/image-recognition" onClick={() => trackEvent("/")}>
                 Xử lý hình ảnh
               </Link>
             </Menu.Item>
