@@ -34,7 +34,6 @@ const IndexPage = () => {
   }, []);
 
   // const { intl } = this.props;
-  console.log("index", isloginDrawer);
   return (
     <>
       <SEO title="Computer Vision Vietnam" />

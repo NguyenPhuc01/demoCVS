@@ -21,7 +21,7 @@ export default function Feature100(props) {
   const [key, setKey] = useState("1");
 
   useEffect(() => {
-    const isLogin = localStorage.getItem("email");
+    const isLogin = localStorage.getItem("dataUserLogin");
 
     if (isLogin === null) {
       setISLoginDrawer(true);

@@ -6,15 +6,13 @@ import ContactForm from "./Home/ContactForm";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { DownOutlined, SmileOutlined, UserOutlined } from "@ant-design/icons";
 import { gapi } from "gapi-script";
+import axios from "axios";
+
 const Header2 = ({ isloginDrawer, setISLoginDrawer }) => {
   const [visible, setVisible] = useState(false);
   const [dataLogin, setDataLogin] = useState(
-    JSON.parse(localStorage.getItem("email"))
+    JSON.parse(localStorage.getItem("dataUserLogin"))
   );
-  // state = { loginDrawer: this.props.loginDrawer };
-  // const [loginDrawer, setLoginDrawer] = useState(false);
-  // state = { dataLogin: JSON.parse(localStorage.getItem("email")) };
-
   const showDrawer = () => {
     setVisible(true);
   };
@@ -37,7 +35,23 @@ const Header2 = ({ isloginDrawer, setISLoginDrawer }) => {
   const onSuccess = success => {
     console.log("login success", success.profileObj.givenName);
     const dataUser = success.profileObj;
-    localStorage.setItem("email", JSON.stringify(dataUser));
+    const data = {
+      Email: dataUser.email,
+      FamilyName: dataUser.familyName,
+      GivenName: dataUser.givenName,
+      GoogleId: dataUser.googleId,
+      ImageUrl: dataUser.imageUrl,
+      Name: dataUser.name
+    };
+    axios
+      .post(
+        "https://sheet.best/api/sheets/99412127-13e2-443b-b9bf-320efae4e230",
+        data
+      )
+      .then(response => {
+        console.log({response});
+      });
+    localStorage.setItem("dataUserLogin", JSON.stringify(dataUser));
 
     setDataLogin(success.profileObj);
     setISLoginDrawer(false);
@@ -55,10 +69,10 @@ const Header2 = ({ isloginDrawer, setISLoginDrawer }) => {
   };
   const onLogout = out => {
     console.log("logout success", out);
-    localStorage.removeItem("email");
+    localStorage.removeItem("dataUserLogin");
     setDataLogin(null);
   };
-  console.log({ dataLogin });
+
   const menu = (
     <Menu
       items={[

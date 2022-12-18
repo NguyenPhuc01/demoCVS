@@ -34,7 +34,6 @@ class LayoutComponent extends Component {
     });
   }
   render() {
-    console.log("layout", this.props);
     const { children } = this.props;
     return (
       <Layout style={{ minHeight: "100vh" }}>
