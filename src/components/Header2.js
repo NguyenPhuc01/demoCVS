@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Button, Drawer, Dropdown, Space, Menu } from "antd";
 import { OutboundLink } from "gatsby-plugin-google-gtag";
 import { ContactFormDataSource } from "../data/home.data";
@@ -6,8 +6,9 @@ import ContactForm from "./Home/ContactForm";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { DownOutlined, SmileOutlined, UserOutlined } from "@ant-design/icons";
 import { gapi } from "gapi-script";
+import { getSrc } from "gatsby-plugin-image";
 import axios from "axios";
-
+import { navigate } from "gatsby";
 const Header2 = ({ isloginDrawer, setISLoginDrawer }) => {
   const [visible, setVisible] = useState(false);
   const [dataLogin, setDataLogin] = useState(
@@ -21,19 +22,15 @@ const Header2 = ({ isloginDrawer, setISLoginDrawer }) => {
     setISLoginDrawer(true);
   };
 
-  //   console.log(localStorage.getItem("show"));
-  // }
-  // componentWillUnmount() {
-  //   gapi.load("client:auth2", () => {
-  //     gapi.auth2.init({
-  //       clientId:
-  //         "491845432253-3i8n6cora433poudseeiekbt5hfi5kcu.apps.googleusercontent.com"
-  //     });
-  //   });
-  // }
-
+  useEffect(() => {
+    gapi.load("client:auth2", () => {
+      gapi.auth2.init({
+        clientId:
+          "491845432253-3i8n6cora433poudseeiekbt5hfi5kcu.apps.googleusercontent.com"
+      });
+    });
+  }, []);
   const onSuccess = success => {
-    console.log("login success", success.profileObj.givenName);
     const dataUser = success.profileObj;
     const data = {
       Email: dataUser.email,
@@ -49,7 +46,7 @@ const Header2 = ({ isloginDrawer, setISLoginDrawer }) => {
         data
       )
       .then(response => {
-        console.log({response});
+        console.log({ response });
       });
     localStorage.setItem("dataUserLogin", JSON.stringify(dataUser));
 
@@ -67,10 +64,10 @@ const Header2 = ({ isloginDrawer, setISLoginDrawer }) => {
     setISLoginDrawer(false);
     localStorage.setItem("show", false);
   };
-  const onLogout = out => {
-    console.log("logout success", out);
+  const onLogout = () => {
     localStorage.removeItem("dataUserLogin");
     setDataLogin(null);
+    navigate("/app");
   };
 
   const menu = (

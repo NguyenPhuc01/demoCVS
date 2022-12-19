@@ -78,11 +78,25 @@ module.exports = {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/*`] }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "Images",
+        path: "./src/Images/",
+      },
+      __key: "images",
+    },
+
     `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-use-query-params`
+    `gatsby-plugin-use-query-params`,
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    // "gatsby-transformer-sharp"
+
+    // `gatsby-transformer-sharp`
     // `gatsby-transformer-remark`
     // "gatsby-transformer-sharp",
     // "gatsby-plugin-sharp"

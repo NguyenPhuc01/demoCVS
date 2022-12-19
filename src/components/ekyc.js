@@ -28,7 +28,7 @@ class IndexPage extends Component {
 
   render() {
     const { intl } = this.props;
-    console.log("data", this.props.dataFromParent);
+
     return (
       <>
         <SEO title="eKYC | CVS" />

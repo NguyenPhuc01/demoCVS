@@ -1,9 +1,9 @@
 import React from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { trackEvent } from "../utils";
-import { Link } from "gatsby-plugin-intl";
+// import { Link } from "gatsby-plugin-intl";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-// import { Link } from "gatsby";
+import { Link } from "gatsby";
 
 const { Sider } = Layout;
 

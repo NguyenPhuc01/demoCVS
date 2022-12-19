@@ -16,20 +16,13 @@ enquireScreen(b => {
   isMobile = b;
 });
 const IndexPage = () => {
-  // class IndexPage extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //       isMobile,
-  //       loginDrawer: false
-  //     };
-  //   }
+
   const [isMobile, setIsMobile] = useState();
   const [isloginDrawer, setISLoginDrawer] = useState(false);
 
   useEffect(() => {
     enquireScreen(b => {
-      this.setState({ isMobile: !!b });
+      setIsMobile({ isMobile: !!b });
     });
   }, []);
 
