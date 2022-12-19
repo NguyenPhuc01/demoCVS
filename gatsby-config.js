@@ -82,9 +82,9 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "Images",
-        path: "./src/Images/",
+        path: "./src/Images/"
       },
-      __key: "images",
+      __key: "images"
     },
 
     `gatsby-plugin-preload-fonts`,
@@ -93,7 +93,7 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-use-query-params`,
     "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
+    "gatsby-plugin-sharp"
     // "gatsby-transformer-sharp"
 
     // `gatsby-transformer-sharp`

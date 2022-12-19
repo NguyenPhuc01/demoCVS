@@ -32,6 +32,7 @@ class LayoutComponent extends Component {
     const { children } = this.props;
     return (
       <Layout style={{ minHeight: "100vh" }}>
+      
         <Layout style={{ background: "#ffffff" }}>
           <Header2
             isMobile={this.state.isMobile}

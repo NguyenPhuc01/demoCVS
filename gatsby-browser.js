@@ -2,6 +2,7 @@ import { Layout } from "antd";
 import React from "react";
 import loadable from "@loadable/component";
 
+
 import Sidebar2 from "./src/components/Sidebar/Sidebar";
 
 export const wrapPageElement = ({ element, props }) => {

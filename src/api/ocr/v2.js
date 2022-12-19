@@ -4,6 +4,8 @@ const FormData = require("form-data");
 const urlOptions = {
   "van-ban-tong-quat":
     "https://demo.computervision.com.vn/api/v2/ocr/document/general?get_thumb=true",
+  test:
+    "https://demo.computervision.com.vn/api/v2/ocr/document/general?get_thumb=true",
   "hoa-don-xe":
     "https://demo.computervision.com.vn/api/v2/ocr/document/invoice_vehicle?get_thumb=true",
   "hoa-don-vat":
@@ -21,6 +23,8 @@ const urlOptions = {
   "pvi-hoa-don":
     "https://demo.computervision.com.vn/api/v2/ocr/document/pvi_invoice?get_thumb=true",
   "so-khai-sinh":
+    "https://demo.computervision.com.vn/api/v2/nlpextract/civil_registration?get_thumb=true",
+  "Test-so-khai-sinh":
     "https://demo.computervision.com.vn/api/v2/nlpextract/civil_registration?get_thumb=true",
   "hoa-don-full":
     "https://demo.computervision.com.vn/api/v2/ocr/document/invoice_full?get_thumb=true",

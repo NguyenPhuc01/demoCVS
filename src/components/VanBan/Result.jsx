@@ -14,6 +14,8 @@ export default function Result({ result, type }) {
 
   const resultOptions = {
     'van-ban-tong-quat': <VanBanScan data={data || data2[currentPage]?.result} />,
+    'test': <Test data={data || data2[currentPage]?.result} />,
+
     'hoa-don-xe': <HoaDonXe data={data2[currentPage]?.info} />,
     'pvi-hoa-don': <HoaDonXe data={data2[currentPage]?.info} />,
     'hoa-don-vat': <HoaDonVAT data={data2[currentPage]?.info} />,
@@ -25,6 +27,7 @@ export default function Result({ result, type }) {
     'bao-gia-xe': <BaoGiaXe data={data2[currentPage]?.info} />,
     'hoa-don-full': <HoaDonFull data={data2[currentPage]?.info} />,
     'so-khai-sinh': <SoKhaiSinh data={data2[currentPage]?.info} />,
+    'Test-so-khai-sinh': <TestSoKhaiSinh data={data2[currentPage]?.info} />,
     'de-nghi-thanh-toan': <DeNghiThanhToan data={data2[currentPage]?.info} />,
     'dang-ky-du-tuyen': <DangKyDuTuyen data={data2[currentPage]?.info} />,
     'a4': <A4 data={data2[currentPage]?.data} type={data2[currentPage]?.type} />,
@@ -77,6 +80,25 @@ export default function Result({ result, type }) {
 }
 
 function VanBanScan({ data }) {
+  return (
+    <>
+      {data.map(item => {
+        return (
+          <div>
+            {item.map(children => {
+              return (
+                <div style={{ whiteSpace: 'nowrap' }}>
+                  {children.map(box => <span>{box.text} </span>)}
+                </div>
+              )
+            })}
+          </div>
+        )
+      })}
+    </>
+  )
+}
+function Test({ data }) {
   return (
     <>
       {data.map(item => {
@@ -2374,6 +2396,39 @@ function PhieuKham({ data }) {
 }
 
 function SoKhaiSinh({ data }) {
+  const { date, dob, ethnicity, father_address, father_dob, father_ethnicity, father_name, father_nationality, gender, id,
+    mother_name, mother_dob, mother_address, name, nationality, number, place_of_birth, registrant_id, registrant_name, sign_name,
+    mother_ethnicity, mother_nationality
+  } = data || {}
+
+  return (
+    <>
+      <Field name='Số' value={number} />
+      <Field name='Người được đăng ký khai sinh' value={name} />
+      <Field name='Ngày đăng ký' value={date} />
+      <Field name='Ngày sinh' value={dob} />
+      <Field name='Giới tính' value={gender} />
+      <Field name='Dân tộc' value={ethnicity} />
+      <Field name='Quốc tịch' value={nationality} />
+      <Field name='Nơi sinh' value={place_of_birth} />
+      <Field name='Số định danh cá nhân' value={id} />
+      <Field name='Họ tên mẹ' value={mother_name} />
+      <Field name='Năm sinh mẹ' value={mother_dob} />
+      <Field name='Dân tộc mẹ' value={mother_ethnicity} />
+      <Field name='Quốc tịch mẹ' value={mother_nationality} />
+      <Field name='Nơi cu trú mẹ' value={mother_address} />
+      <Field name='Họ tên cha' value={father_name} />
+      <Field name='Năm sinh cha' value={father_dob} />
+      <Field name='Dân tộc cha' value={father_ethnicity} />
+      <Field name='Quốc tịch cha' value={father_nationality} />
+      <Field name='Nơi cu trú cha' value={father_address} />
+      <Field name='Người đi khai sinh' value={registrant_name} />
+      <Field name='Giấy tờ tùy thân' value={registrant_id} />
+      <Field name='Người ký giấy khai sinh' value={sign_name} />
+    </>
+  )
+}
+function TestSoKhaiSinh({ data }) {
   const { date, dob, ethnicity, father_address, father_dob, father_ethnicity, father_name, father_nationality, gender, id,
     mother_name, mother_dob, mother_address, name, nationality, number, place_of_birth, registrant_id, registrant_name, sign_name,
     mother_ethnicity, mother_nationality
