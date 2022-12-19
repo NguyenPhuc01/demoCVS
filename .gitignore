@@ -52,7 +52,7 @@ typings/
 *.tgz
 
 # dotenv environment variables file
-
+.env
 
 # gatsby files
 .cache/
@@ -70,5 +70,5 @@ yarn-error.log
 
 # secrets
 .contentful.json
-.env*
+
 !.env.example
