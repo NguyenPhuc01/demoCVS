@@ -13,6 +13,7 @@ import DemoCMND from "./OCR/DemoCMND";
 import DemoHoChieuQuocTe from "./Passport/DemoHoChieuQuocTe";
 import DemoPhilippines from "./Philippines/DemoPhilippines";
 import DemoVanBan from "./VanBan/DemoVanBan";
+import DemoSoKhaiSinh from './SoKhaiSinh/DemoSoKhaiSinh'
 import { useQueryParams, StringParam, withDefault } from "use-query-params";
 
 const { TabPane } = Tabs;
@@ -49,7 +50,7 @@ const types4 = [
   { id: 43, name: "Hoá đơn xe", key: "hoa-don-xe" },
   { id: 44, name: "Hóa đơn viện phí", key: "pvi-hoa-don" },
   { id: 45, name: "Sổ khai sinh", key: "so-khai-sinh" },
-  { id: 45, name: "Test Sổ khai sinh", key: "Test-so-khai-sinh" },
+  { id: 48, name: "Test Sổ khai sinh", key: "Test-so-khai-sinh" },
   { id: 46, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
   { id: 47, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" }
 ];

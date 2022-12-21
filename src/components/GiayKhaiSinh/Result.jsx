@@ -9,6 +9,7 @@ const getConfidence = confidence => {
 export default function Result({ result }) {
 
     const { data, errorCode, errorMessage } = result || {}
+    console.log("🚀 ~ file: Result.jsx:12 ~ Result ~ data", data)
     const { info, type } = data || {}
     const [current, setCurrent] = useState('1')
 
