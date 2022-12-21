@@ -13,7 +13,7 @@ import DemoCMND from "./OCR/DemoCMND";
 import DemoHoChieuQuocTe from "./Passport/DemoHoChieuQuocTe";
 import DemoPhilippines from "./Philippines/DemoPhilippines";
 import DemoVanBan from "./VanBan/DemoVanBan";
-import DemoSoKhaiSinh from './SoKhaiSinh/DemoSoKhaiSinh'
+// import DemoSoKhaiSinh from './SoKhaiSinh/DemoSoKhaiSinh'
 import { useQueryParams, StringParam, withDefault } from "use-query-params";
 
 const { TabPane } = Tabs;
@@ -50,7 +50,6 @@ const types4 = [
   { id: 43, name: "Hoá đơn xe", key: "hoa-don-xe" },
   { id: 44, name: "Hóa đơn viện phí", key: "pvi-hoa-don" },
   { id: 45, name: "Sổ khai sinh", key: "so-khai-sinh" },
-  { id: 48, name: "Test Sổ khai sinh", key: "Test-so-khai-sinh" },
   { id: 46, name: "Phiếu khám bệnh", key: "phieu-kham-benh" },
   { id: 47, name: "Bồi thường bảo hiểm", key: "boi-thuong-bao-hiem" }
 ];
@@ -78,9 +77,7 @@ const types6 = [
   { id: 614, name: "SMS Video", key: "sms-video" },
   { id: 615, name: "Thẻ ngân hàng", key: "credit-card" },
   { id: 616, name: "Sổ đỏ", key: "so-do" },
-  { id: 617, name: "Phiếu lao động", key: "phieu-lao-dong" },
-  { id: 617, name: "test", key: "test" },
-  { id: 617, name: "So khai sinh", key: "so-khai-sinh" }
+  { id: 617, name: "Phiếu lao động", key: "phieu-lao-dong" }
 ];
 
 const types7 = [
@@ -154,9 +151,6 @@ export default function DemoPage() {
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
 
-    test: (
-      <DemoVanBan currentType={type} result={result} setResult={setResult} />
-    ),
     "hoa-don-xe": (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
@@ -190,9 +184,7 @@ export default function DemoPage() {
     "so-khai-sinh": (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),
-    "Test-so-khai-sinh": (
-      <DemoVanBan currentType={type} result={result} setResult={setResult} />
-    ),
+
     "de-nghi-thanh-toan": (
       <DemoVanBan currentType={type} result={result} setResult={setResult} />
     ),

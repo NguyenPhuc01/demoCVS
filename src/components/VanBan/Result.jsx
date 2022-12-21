@@ -12,8 +12,6 @@ export default function Result({ result, type }) {
   const [current, setCurrent] = useState("1");
   const [currentPage, setCurrentPage] = useState(0);
 
-  console.log("resul", data);
-  console.log("data", data2);
   const resultOptions = {
     "van-ban-tong-quat": (
       <VanBanScan data={data || data2[currentPage]?.result} />
@@ -4612,7 +4610,6 @@ function PhieuKham({ data }) {
 }
 
 function SoKhaiSinh({ data }) {
-  console.log("🚀 ~ file: Result.jsx:2399 ~ SoKhaiSinh ~ data", { ...data });
   const {
     date,
     date_confidence,

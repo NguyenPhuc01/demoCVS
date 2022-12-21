@@ -49,10 +49,7 @@ const showMenuTypes = [
 ];
 
 export default function DemoVanBan({ currentType, result, setResult }) {
-  console.log(
-    "🚀 ~ file: DemoVanBan.jsx:52 ~ DemoVanBan ~ currentType",
-    currentType
-  );
+
   const recaptchaSiteKey = process.env.GATSBY_RECAPTCHA_V3_SITE_KEY;
   const recaptchaRef = React.useRef();
 
