@@ -4715,7 +4715,7 @@ function SoKhaiSinh({ data }) {
         confidence={mother_nationality_confidence}
       />
       <Field
-        name="Nơi cu trú mẹ"
+        name="Nơi cư trú mẹ"
         value={mother_address}
         confidence={mother_address_confidence}
       />
@@ -4740,7 +4740,7 @@ function SoKhaiSinh({ data }) {
         confidence={father_nationality_confidence}
       />
       <Field
-        name="Nơi cu trú cha"
+        name="Nơi cư trú cha"
         value={father_address}
         confidence={father_address_confidence}
       />
